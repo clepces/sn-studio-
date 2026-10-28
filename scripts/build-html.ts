@@ -96,6 +96,10 @@ export function assembleSpaHtml(): string {
 
 if (process.argv[1] === __filename) {
   const html = assembleSpaHtml();
-  fs.writeFileSync(path.join(rootDir, 'index.html'), html, 'utf-8');
-  console.log('Successfully generated index.html at root with modular template resolution');
+  const outputPath = path.join(rootDir, 'dist', 'index.html');
+  if (!fs.existsSync(path.join(rootDir, 'dist'))) {
+    fs.mkdirSync(path.join(rootDir, 'dist'), { recursive: true });
+  }
+  fs.writeFileSync(outputPath, html, 'utf-8');
+  console.log('Successfully generated dist/index.html with modular template resolution');
 }

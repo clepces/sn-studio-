@@ -15,7 +15,7 @@ export default defineConfig({
   },
   build: {
     target: 'esnext',
-    outDir: 'public/assets',
+    outDir: 'dist/assets',
     emptyOutDir: false,
     rollupOptions: {
       input: {
