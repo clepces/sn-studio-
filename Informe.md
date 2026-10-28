@@ -257,7 +257,7 @@
   ```html
   <script src="assets/js/nexus-core.js?v=0.4.2"></script>
   <script src="assets/js/modules/view-navigator.js?v=0.4.2"></script>
-  <script src="assets/js/modules/translation-studio.js?v=0.4.2"></script>
+  <script src="assets/js/lib/engine.js?v=0.4.5"></script>
   <!-- Y además el bundle compilado de TypeScript: -->
   <script type="module" src="assets/js/bundle.js?v=0.4.2"></script>
   ```

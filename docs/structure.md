@@ -58,7 +58,8 @@ solaris-nexus-studio/
 │       │       ├── platform-detector.js        # Detección de plataformas (Steam/GOG/Custom)
 │       │       ├── sidebar-tree.js             # Árbol de navegación y explorador lateral
 │       │       ├── system-health.js            # Auditor de salud y diagnósticos del sistema
-│       │       ├── translation-studio.js       # Estudio de traducción y Token Guard
+│       │       ├── lib/
+│       │       │   └── engine.js       # Estudio de traducción y Token Guard
 │       │       └── view-navigator.js           # Enrutador cliente y pestañas
 │       └── media/                              # Media, iconos y recursos gráficos
 │
