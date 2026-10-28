@@ -226,7 +226,7 @@ export class TranslationStudio implements TranslationStudioModule {
 
     if (filePath.startsWith('tests/fixtures/')) {
       try {
-        const parseRes = await fetch('api/strings/parse', {
+        const parseRes = await fetch('/api/strings/parse', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ file_path: filePath })
@@ -449,7 +449,7 @@ export class TranslationStudio implements TranslationStudioModule {
         URL.revokeObjectURL(url);
       },
       apiPost: async (endpoint: string, data: unknown) => {
-        const res = await fetch(`api/${endpoint.replace(/^\//, '')}`, {
+        const res = await fetch(`/api/${endpoint.replace(/^\//, '')}`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(data)

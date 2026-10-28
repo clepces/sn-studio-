@@ -48,7 +48,7 @@ export class TranslationManager {
 
   async loadWorkspace(): Promise<WorkspacePayload | null> {
     try {
-      const res = await fetch('api/strings/workspace');
+      const res = await fetch('/api/strings/workspace');
       const json = await res.json() as { success: boolean; data?: WorkspacePayload };
       if (json.success && json.data) {
         this.workspaceData = json.data;
@@ -72,7 +72,7 @@ export class TranslationManager {
     entry_id?: number;
   }> } | null> {
     try {
-      const res = await fetch(`api/strings/project-strings?project_id=${encodeURIComponent(projectId)}&limit=1000`);
+      const res = await fetch(`/api/strings/project-strings?project_id=${encodeURIComponent(projectId)}&limit=1000`);
       const json = await res.json() as {
         success: boolean;
         data?: {
@@ -206,7 +206,7 @@ export class TranslationManager {
     }
 
     try {
-      const res = await fetch('api/strings/create-project', {
+      const res = await fetch('/api/strings/create-project', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -313,7 +313,7 @@ export class TranslationManager {
     const targetName = this.activeSettingsProject.name;
 
     try {
-      const res = await fetch('api/strings/delete-project', {
+      const res = await fetch('/api/strings/delete-project', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -344,7 +344,7 @@ export class TranslationManager {
 
   async loadDemoData(): Promise<string> {
     try {
-      const res = await fetch('api/strings/seed-fixtures', { method: 'POST' });
+      const res = await fetch('/api/strings/seed-fixtures', { method: 'POST' });
       const json = await res.json() as { success: boolean; projects?: StrProject[] };
       const projId = (json.projects && json.projects[0]?.project_id) || 'sins-rebellion-core';
       return projId;
@@ -356,7 +356,7 @@ export class TranslationManager {
 
   async loadTmStats(): Promise<TmStatsPayload | null> {
     try {
-      const res = await fetch('api/strings/tm-stats');
+      const res = await fetch('/api/strings/tm-stats');
       const json = await res.json() as { success: boolean; data?: { stats: TmStatsPayload } };
       if (json.success && json.data && json.data.stats) {
         const stats = json.data.stats;

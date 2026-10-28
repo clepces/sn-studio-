@@ -113,7 +113,7 @@ export class NexusCoreService implements NexusCoreBridge {
 
   public async apiPost(endpoint: string, payload: any): Promise<any> {
     try {
-      const res = await fetch(`api/${endpoint}`, {
+      const res = await fetch(`/api/${endpoint.replace(/^\//, '')}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
@@ -126,7 +126,7 @@ export class NexusCoreService implements NexusCoreBridge {
 
   public async apiGet(endpoint: string): Promise<any> {
     try {
-      const res = await fetch(`api/${endpoint}`);
+      const res = await fetch(`/api/${endpoint.replace(/^\//, '')}`);
       return await res.json();
     } catch (e: any) {
       return { success: false, error: e?.message || 'Network error' };

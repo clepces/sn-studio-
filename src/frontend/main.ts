@@ -21,14 +21,18 @@ console.info('🚀 [SolarisNexus] Enterprise Frontend initialized with 100% Pure
 (window as any).GlobalNexusCore = GlobalNexusCore;
 
 document.addEventListener('DOMContentLoaded', async () => {
+  console.info('[SolarisNexus] DOMContentLoaded detected. Initializing Preloader...');
   Preloader.init();
+  console.info('[SolarisNexus] Booting Kernel...');
   await kernel.boot();
   try {
+    console.info('[SolarisNexus] Verifying system health...');
     const health = await SystemApiClient.getHealth();
+    console.info('[SolarisNexus] System Healthy:', health);
     GlobalStore.setState({ systemHealth: health });
     GlobalEventBus.emit('system:ready', health);
   } catch (err) {
-    console.warn('[SolarisNexus] Error al verificar estado inicial:', err);
+    console.error('[SolarisNexus] CRITICAL: Startup verification failed:', err);
   }
 });
 

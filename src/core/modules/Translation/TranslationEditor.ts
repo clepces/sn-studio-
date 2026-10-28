@@ -323,7 +323,7 @@ export class TranslationEditor {
     entry.status = newTrans.trim() !== '' ? 'TRANSLATED' : 'UNTRANSLATED';
 
     try {
-      await fetch('api/strings/save-entry', {
+      await fetch('/api/strings/save-entry', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -349,7 +349,7 @@ export class TranslationEditor {
     if (!entry) return;
 
     try {
-      const res = await fetch('api/strings/suggest-tm', {
+      const res = await fetch('/api/strings/suggest-tm', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ source_text: entry.original })
@@ -370,7 +370,7 @@ export class TranslationEditor {
 
   async autoPropagateTm(projectId: string, onPropagated: () => void): Promise<void> {
     try {
-      const res = await fetch('api/strings/auto-propagate', {
+      const res = await fetch('/api/strings/auto-propagate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ project_id: projectId })

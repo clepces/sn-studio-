@@ -6,7 +6,7 @@ export class TranslationValidator {
    */
   async auditFile(filePath: string): Promise<AuditFileResult> {
     try {
-      const res = await fetch('api/strings/audit-file', {
+      const res = await fetch('/api/strings/audit-file', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ file_path: filePath })

@@ -227,21 +227,23 @@ export class ViewNavigator implements NavigationInterface {
       }
 
       // Delegated click for view internal subtabs
-      const subtabBtn = (e.target as HTMLElement | null)?.closest<HTMLElement>('[data-subtab]');
+      const subtabBtn = (e.target as HTMLElement | null)?.closest<HTMLElement>('[data-subtab], [data-dash-tab], [data-dash-subtab]');
       if (subtabBtn) {
-        const targetId = subtabBtn.getAttribute('data-subtab');
+        const targetId = subtabBtn.getAttribute('data-subtab') || subtabBtn.getAttribute('data-dash-tab') || subtabBtn.getAttribute('data-dash-subtab');
         if (!targetId) return;
 
-        const bar = subtabBtn.closest('.str-subtab-bar, .mod-subtab-bar, .entity-subtab-bar, .subtab-bar');
+        const paneId = targetId.startsWith('pane-') ? targetId : (subtabBtn.hasAttribute('data-dash-tab') ? `pane-dash-${targetId}` : targetId);
+
+        const bar = subtabBtn.closest('.str-subtab-bar, .mod-subtab-bar, .entity-subtab-bar, .subtab-bar, .reagle-segmented-tabs, .tab-carousel-scroll');
         if (bar) {
-          bar.querySelectorAll('[data-subtab]').forEach(btn => btn.classList.toggle('active', btn === subtabBtn));
+          bar.querySelectorAll('[data-subtab], [data-dash-tab], [data-dash-subtab]').forEach(btn => btn.classList.toggle('active', btn === subtabBtn));
         }
 
-        const pane = document.getElementById(targetId);
+        const pane = document.getElementById(paneId);
         if (pane) {
           const parentContainer = pane.closest('.view-panel') || document.body;
-          parentContainer.querySelectorAll('.str-subtab-pane, .mod-subtab-pane, .entity-subtab-content, .subtab-pane').forEach(p => {
-            p.classList.toggle('active', p.id === targetId);
+          parentContainer.querySelectorAll('.str-subtab-pane, .mod-subtab-pane, .entity-subtab-content, .subtab-pane, .dash-pane').forEach(p => {
+            p.classList.toggle('active', p.id === paneId);
           });
         }
       }
