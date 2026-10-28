@@ -1,0 +1,128 @@
+        <!-- ====================================================================
+             3. SUBPESTAÑA: TELEMETRÍA E INGENIERÍA DE LOCALIZACIÓN
+             ==================================================================== -->
+        <div class="str-subtab-pane" id="subtab-str-telemetry">
+          <div class="reagle-card-panel str-card-panel">
+            <div class="str-panel-header">
+              <div>
+                <h3 class="str-panel-title">Telemetría e Ingeniería de Localización</h3>
+                <p class="str-panel-desc">Monitoreo estricto de variables, codificación BOM, rendimiento Regex, glosario y conflictos de mods.</p>
+              </div>
+              <div class="str-panel-actions">
+                <!-- Controles de Carrusel Telemetría -->
+                <div class="str-telemetry-carousel-controls">
+                  <button class="btn-reagle btn-icon-only" id="btn-telemetry-prev" data-action="telemetry:scroll-left" title="Desplazar a la izquierda">◄</button>
+                  <button class="btn-reagle btn-icon-only" id="btn-telemetry-next" data-action="telemetry:scroll-right" title="Desplazar a la derecha">►</button>
+                </div>
+                <button class="btn-reagle btn-reagle-primary" id="btn-telemetry-recheck" data-action="telemetry:recheck">
+                  🔄 Re-auditar Diccionario
+                </button>
+              </div>
+            </div>
+
+            <!-- Contenedor Carrusel / Grilla de Tarjetas Especializadas -->
+            <div class="str-telemetry-carousel-wrapper" id="str-telemetry-carousel">
+              <div class="str-telemetry-grid str-telemetry-carousel-track">
+                
+                <!-- Tarjeta 1: 🛡️ Token Guard y Variables -->
+                <div class="str-telemetry-box str-telemetry-card-pro">
+                  <div class="str-telec-top">
+                    <span class="str-telec-icon">🛡️</span>
+                    <span class="metric-badge-pill success" id="telecomp-token-badge">Seguro</span>
+                  </div>
+                  <span class="label">Token Guard &amp; Comodines</span>
+                  <span class="value" id="telecomp-token-val">0 Errores</span>
+                  <span class="desc">Format: %s | {0} | \n</span>
+                </div>
+
+                <!-- Tarjeta 2: 📑 Codificación y BOM Canónico -->
+                <div class="str-telemetry-box str-telemetry-card-pro">
+                  <div class="str-telec-top">
+                    <span class="str-telec-icon">📑</span>
+                    <span class="metric-badge-pill success" id="telecomp-bom-badge">Canónico Certificado</span>
+                  </div>
+                  <span class="label">Codificación Base</span>
+                  <span class="value">UTF-8 BOM</span>
+                  <span class="desc">0xEF 0xBB 0xBF (CRLF Windows)</span>
+                </div>
+
+                <!-- Tarjeta 3: ⚡ Rendimiento de Inyección Regex -->
+                <div class="str-telemetry-box str-telemetry-card-pro">
+                  <div class="str-telec-top">
+                    <span class="str-telec-icon">⚡</span>
+                    <span class="metric-badge-pill success">Óptimo (&lt;5ms)</span>
+                  </div>
+                  <span class="label">Latencia Regex / Inyección</span>
+                  <span class="value value--blue" id="telecomp-regex-val">2.4 ms</span>
+                  <span class="desc">7,828 ops/sec en memoria VFS</span>
+                </div>
+
+                <!-- Tarjeta 4: 📚 Glosario Oficial y Términos Fijos -->
+                <div class="str-telemetry-box str-telemetry-card-pro">
+                  <div class="str-telec-top">
+                    <span class="str-telec-icon">📚</span>
+                    <span class="metric-badge-pill indigo">14 Términos Protegidos</span>
+                  </div>
+                  <span class="label">Cumplimiento de Glosario</span>
+                  <span class="value value--success">98.2%</span>
+                  <span class="desc">Facciones OK (TEC, Vasari, Advent)</span>
+                </div>
+
+                <!-- Tarjeta 5: ⚙️ Control de Conflictos de Mods -->
+                <div class="str-telemetry-box str-telemetry-card-pro">
+                  <div class="str-telec-top">
+                    <span class="str-telec-icon">⚙️</span>
+                    <span class="metric-badge-pill" id="telecomp-mods-badge">LAA Compatible</span>
+                  </div>
+                  <span class="label">Colisiones de Mods</span>
+                  <span class="value" id="telecomp-mods-val">0 Conflictos</span>
+                  <span class="desc">Prioridad: Base &gt; Mod (Sin sobrescrituras)</span>
+                </div>
+
+                <!-- Tarjetas de soporte / métricas detalladas -->
+                <div class="str-telemetry-box">
+                  <span class="label">NumStrings Canónico</span>
+                  <span class="value" id="telemetry-total-strings">--</span>
+                  <span class="desc" id="telemetry-numstrings-desc">Conteo certificado por StrParser</span>
+                </div>
+
+                <div class="str-telemetry-box">
+                  <span class="label">Cobertura de Traducción</span>
+                  <span class="value value--blue" id="telemetry-coverage-percent">--%</span>
+                  <span class="desc" id="telemetry-coverage-desc">0 pendientes</span>
+                </div>
+
+                <div class="str-telemetry-box">
+                  <span class="label">Hash de Integridad (SHA-256)</span>
+                  <span class="value font-mono" id="telemetry-hash-val">Calculando...</span>
+                  <span class="desc">Checksum criptográfico del archivo .str</span>
+                </div>
+
+                <div class="str-telemetry-box">
+                  <span class="label">Uso de Heap en Memoria</span>
+                  <span class="value value--blue" id="telemetry-heap-val">-- KB</span>
+                  <span class="desc">Estructuras VFS en buffer activo</span>
+                </div>
+
+                <div class="str-telemetry-box str-telemetry-box--wide">
+                  <span class="label">Desglose de Variables de Motor</span>
+                  <span class="value value--sm" id="telemetry-tokens-breakdown">[VALUE]: -- | %s: -- | {0}: --</span>
+                  <span class="desc">Distribución exacta de tokens detectados en cadenas originales</span>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Registro de Cambios y Auditoría de Guardado -->
+            <div class="str-telemetry-history-wrap">
+              <h4 class="str-telemetry-history-title">
+                📜 Historial de Cambios Recientes (Persistencia SQLite3)
+              </h4>
+              <div class="reagle-card-panel str-telemetry-history-card">
+                <div id="telemetry-change-history-list" class="str-telemetry-history-list">
+                  <div class="str-telemetry-empty-msg">No hay modificaciones pendientes en esta sesión.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>

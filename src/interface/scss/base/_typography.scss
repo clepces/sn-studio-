@@ -1,0 +1,17 @@
+// Tipografía del sistema Nexus
+body, button, input, select, textarea {
+  font-family: var(--font-main, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code, kbd, samp, pre {
+  font-family: var(--font-mono, "SF Mono", Monaco, Consolas, "Liberation Mono", monospace);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  font-weight: 700;
+  color: var(--text-main);
+  letter-spacing: -0.01em;
+}

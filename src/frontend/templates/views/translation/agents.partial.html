@@ -1,0 +1,90 @@
+        <!-- ====================================================================
+             6. SUBPESTAÑA: AGENTS (MÓDULOS EXPERIMENTALES)
+             ==================================================================== -->
+        <div class="str-subtab-pane" id="subtab-str-agents">
+          <div class="reagle-card-panel str-card-panel">
+            <div class="str-panel-header">
+              <div>
+                <h3 class="str-panel-title">
+                  ⚡ Agentes Especializados &amp; Traductores Neurales
+                </h3>
+                <p class="str-panel-desc">
+                  Módulos de inteligencia asistida con estricta preservación léxica de variables y tokens.
+                </p>
+              </div>
+              <span class="metric-badge-pill str-badge-warning">Fase Experimental</span>
+            </div>
+
+            <!-- Aviso de Seguridad para Modelos de IA -->
+            <div class="str-agents-notice">
+              <span class="str-notice-icon">🛡️</span>
+              <div>
+                <strong>PROTOCOLO DE INTEGRIDAD IA:</strong> Todo agente o traductor neural debe operar bajo el wrapper de <code>TokenGuardService</code>. Queda prohibida la traducción literal de variables de sustitución <code>{0}</code>, <code>%s</code> o modificadores de color hexadecimal <code>[VALUE]</code>.
+              </div>
+            </div>
+
+            <!-- Grilla de Tarjetas de Agentes -->
+            <div class="str-agents-grid">
+
+              <!-- Agente 1: DeepL / Neural MT -->
+              <div class="str-agent-card beta-agent">
+                <div class="str-agent-header">
+                  <span class="title">DeepL &amp; Neural MT Asistido</span>
+                  <span class="metric-badge-pill str-badge-beta">BETA</span>
+                </div>
+                <p class="str-agent-desc">
+                  Traducción por lotes de cadenas en espera utilizando motores neuronales con máscara de tokens protegidos para prevenir distorsión sintáctica.
+                </p>
+                <div class="str-agent-footer">
+                  <span class="str-meta-text">Modelo: Transformer Local / API</span>
+                  <button class="btn-reagle" data-action="agent:deepl-configure">Configurar Clave</button>
+                </div>
+              </div>
+
+              <!-- Agente 2: Glosario Semántico JIT -->
+              <div class="str-agent-card">
+                <div class="str-agent-header">
+                  <span class="title">Glosario Semántico JIT IronEngine</span>
+                  <span class="metric-badge-pill neutral">SANDBOX</span>
+                </div>
+                <p class="str-agent-desc">
+                  Ontología canónica de términos del universo de Sins (TEC Loyalists, Advent Rebels, Vasari Exodus, Phase Missiles, antimateria).
+                </p>
+                <div class="str-agent-footer">
+                  <span class="str-meta-text">Glosario: 420 Términos</span>
+                  <button class="btn-reagle" data-action="agent:glossary-view">Explorar Glosario</button>
+                </div>
+              </div>
+
+              <!-- Agente 3: Exportador PO / GetText -->
+              <div class="str-agent-card">
+                <div class="str-agent-header">
+                  <span class="title">Exportador PO / GetText / Crowdin</span>
+                  <span class="metric-badge-pill str-badge-warning">EN DESARROLLO</span>
+                </div>
+                <p class="str-agent-desc">
+                  Conversor bidireccional entre el formato <code>.str</code> de Rebellion y el estándar industrial <code>.po</code> para traducción colaborativa en Weblate.
+                </p>
+                <div class="str-agent-footer">
+                  <span class="str-meta-text">Formato: GNU GetText</span>
+                  <button class="btn-reagle" data-action="agent:po-export">Próximamente</button>
+                </div>
+              </div>
+
+              <!-- Agente 4: Empaquetador Automático de Parche -->
+              <div class="str-agent-card">
+                <div class="str-agent-header">
+                  <span class="title">Agente Empaquetador de Minimod</span>
+                  <span class="metric-badge-pill str-badge-indigo">PRÓXIMAMENTE</span>
+                </div>
+                <p class="str-agent-desc">
+                  Inyecta automáticamente el diccionario traducido como Minimod P999 en <code>EnabledMods.txt</code> con respaldo atómico <code>.bak</code> sin tocar archivos base.
+                </p>
+                <div class="str-agent-footer">
+                  <span class="str-meta-text">Integración: VFS Pipeline</span>
+                  <button class="btn-reagle" data-action="agent:minimod-pack">Activar Flujo</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>

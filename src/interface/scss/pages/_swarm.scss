@@ -1,0 +1,108 @@
+// ==============================================================================
+// SWARM PAGE (EVENT BUS & P2P COOPERATIVE MODDING)
+// ==============================================================================
+
+.swarm-card-panel {
+  max-width: 780px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 24px;
+}
+
+.swarm-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-bottom: 1px solid rgba(160, 168, 180, 0.2);
+  padding-bottom: 12px;
+
+  &-title-wrap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  &-icon {
+    font-size: 1.3rem;
+  }
+
+  &-title {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: var(--text-main);
+  }
+
+  &-desc {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    margin-top: 4px;
+  }
+}
+
+.swarm-badge-dev {
+  font-size: 0.75rem;
+  padding: 4px 10px;
+}
+
+.swarm-body {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 16px;
+}
+
+.swarm-purpose-card {
+  background: var(--neu-slot-bg);
+  box-shadow: var(--neu-shadow-inset);
+  border-radius: 14px;
+  padding: 14px 18px;
+}
+
+.swarm-purpose-title {
+  font-size: 0.86rem;
+  font-weight: 800;
+  color: var(--text-blue, #1a73e8);
+}
+
+.swarm-purpose-text {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  margin-top: 6px;
+  line-height: 1.5;
+}
+
+.swarm-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.swarm-grid-item {
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: 12px;
+  padding: 12px;
+}
+
+.swarm-item-title {
+  font-weight: 700;
+  font-size: 0.82rem;
+  color: var(--text-main);
+}
+
+.swarm-item-desc {
+  font-size: 0.74rem;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+.swarm-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.swarm-footer-info {
+  font-size: 0.74rem;
+  color: var(--text-muted);
+}

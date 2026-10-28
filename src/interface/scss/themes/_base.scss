@@ -1,0 +1,26 @@
+// ==============================================================================
+// SOLARIS NEXUS STUDIO - THEME: BASE (FLAT / ZERO-EFFECTS)
+// Tema neutro sin efectos: Cero sombras neumórficas, cero blur glassmorphism
+// Compatible de forma nativa con Modo Light y Modo Dark
+// ==============================================================================
+
+[data-theme="base"] {
+  --theme-name: "base";
+  --theme-style: "flat-clean";
+
+  // En tema base, las superficies no tienen sombras complejas de relieve
+  --neu-shadow-canvas: var(--shadow-canvas);
+  --neu-shadow-card: var(--shadow-card);
+  --neu-shadow-card-sm: var(--shadow-card-sm);
+  --neu-shadow-card-hover: var(--shadow-card-hover);
+  --neu-shadow-pill-active: var(--shadow-pill-active);
+  --neu-shadow-dock: var(--shadow-dock);
+  --neu-shadow-floating: var(--shadow-floating);
+  --neu-shadow-inset: none;
+  --neu-shadow-inset-deep: none;
+  --neu-shadow-inset-soft: none;
+
+  // Bordes sutiles bien definidos
+  --neu-border-subtle: var(--border-subtle);
+  --neu-border-groove: var(--border-medium);
+}

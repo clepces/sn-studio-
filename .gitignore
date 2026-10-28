@@ -1,0 +1,31 @@
+# Entorno y credenciales
+.env
+.env.local
+
+# Dependencias
+node_modules/
+vendor/
+
+# Compilados y artefactos
+dist/
+build/
+
+# Almacenamiento dinámico y logs (preservar estructura)
+storage/logs/*.log
+storage/cache/*
+!storage/cache/.gitkeep
+storage/backups/*
+!storage/backups/.gitkeep
+
+# Base de datos local SQLite
+storage/*.sqlite
+storage/*.db
+
+# IDE y Sistema Operativo
+.vscode/
+.idea/
+Thumbs.db
+Desktop.ini
+
+# Rutas locales de emulación de mods en runtime
+public/Documents/

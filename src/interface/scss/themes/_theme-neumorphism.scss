@@ -1,0 +1,70 @@
+// ==============================================================================
+// SOLARIS NEXUS STUDIO - THEME: NEUMORPHISM SOFT UI
+// Adaptativo dinámicamente a Modo Light y Modo Dark
+// ==============================================================================
+
+// --- NEUMORPHISM: MODO LIGHT (POR DEFECTO) ---
+[data-theme="neumorphism"],
+[data-theme="neumorphism"][data-mode="light"] {
+  --theme-name: "neumorphism";
+  --theme-style: "soft-ui";
+
+  // Superficies
+  --neu-canvas-bg: #ced2d8;
+  --neu-window-bg: #ecf0f3;
+  --neu-sidebar-bg: #ecf0f3;
+  --neu-card-bg: #ecf0f3;
+  --neu-slot-bg: #e2e8f0;
+  --neu-input-bg: #e8ecf2;
+  --neu-segmented-bg: #e2e8f0;
+
+  // Sombras Neumórficas Extruidas (Light: Blancos y Grises)
+  --neu-shadow-canvas: 24px 24px 48px #adb1b9, -24px -24px 48px #ffffff;
+  --neu-shadow-card: 10px 10px 22px #d1d9e6, -10px -10px 22px #ffffff;
+  --neu-shadow-card-sm: 4px 4px 10px #d1d9e6, -4px -4px 10px #ffffff;
+  --neu-shadow-card-hover: 14px 14px 28px #c8d1df, -14px -14px 28px #ffffff;
+  --neu-shadow-pill-active: 4px 4px 8px rgba(174, 174, 192, 0.45), -4px -4px 8px #ffffff;
+  --neu-shadow-dock: 14px 14px 30px #b0b4bd, -14px -14px 30px #ffffff;
+  --neu-shadow-floating: 0 16px 36px rgba(15, 23, 42, 0.12), -6px -6px 16px #ffffff;
+
+  // Sombras Neumórficas Grabadas (Inner Shadows)
+  --neu-shadow-inset: inset 3px 3px 6px #bcc5d3, inset -3px -3px 6px #ffffff;
+  --neu-shadow-inset-deep: inset 4px 4px 9px #b2bccb, inset -4px -4px 9px #ffffff;
+  --neu-shadow-inset-soft: inset 2px 2px 4px #cdd6e2, inset -2px -2px 4px #ffffff;
+
+  // Bordes
+  --neu-border-subtle: rgba(255, 255, 255, 0.65);
+  --neu-border-groove: rgba(174, 174, 192, 0.35);
+}
+
+// --- NEUMORPHISM: MODO DARK (DARK SOFT UI) ---
+[data-theme="neumorphism"][data-mode="dark"],
+[data-mode="dark"][data-theme="neumorphism"],
+[data-mode="dark"] [data-theme="neumorphism"] {
+  // Superficies Oscuras Neumórficas
+  --neu-canvas-bg: #090d16;
+  --neu-window-bg: #0f172a;
+  --neu-sidebar-bg: #0d1526;
+  --neu-card-bg: #141e33;
+  --neu-slot-bg: #0b1120;
+  --neu-input-bg: #10192b;
+  --neu-segmented-bg: #0b1120;
+
+  // Sombras Neumórficas Extruidas (Dark: Sombras profundas + realce tenue)
+  --neu-shadow-canvas: 20px 20px 45px #04060a, -15px -15px 35px rgba(255, 255, 255, 0.03);
+  --neu-shadow-card: 8px 8px 18px #080d17, -6px -6px 16px rgba(255, 255, 255, 0.04);
+  --neu-shadow-card-sm: 4px 4px 10px #080d17, -3px -3px 8px rgba(255, 255, 255, 0.035);
+  --neu-shadow-card-hover: 12px 12px 24px #060a12, -8px -8px 20px rgba(255, 255, 255, 0.05);
+  --neu-shadow-pill-active: 4px 4px 10px #060a12, -3px -3px 8px rgba(255, 255, 255, 0.05);
+  --neu-shadow-dock: 10px 10px 25px #04060a, -8px -8px 20px rgba(255, 255, 255, 0.03);
+  --neu-shadow-floating: 0 16px 36px rgba(0, 0, 0, 0.7);
+
+  // Sombras Neumórficas Grabadas (Dark Inner Shadows)
+  --neu-shadow-inset: inset 3px 3px 6px #060a12, inset -2px -2px 5px rgba(255, 255, 255, 0.03);
+  --neu-shadow-inset-deep: inset 5px 5px 10px #04070d, inset -3px -3px 7px rgba(255, 255, 255, 0.025);
+  --neu-shadow-inset-soft: inset 2px 2px 4px #060a12, inset -1px -1px 3px rgba(255, 255, 255, 0.025);
+
+  // Bordes
+  --neu-border-subtle: rgba(255, 255, 255, 0.06);
+  --neu-border-groove: rgba(0, 0, 0, 0.4);
+}

@@ -1,0 +1,8 @@
+TXT
+NumStrings 2
+StringInfo
+	ID "IDS_UNCLOSED_QUOTE"
+	Value "This line has unescaped "raw" double quotes inside
+StringInfo
+	ID "IDS_BROKEN_VALUE"
+	Value "This variable has broken token [VALU

@@ -1,0 +1,66 @@
+        <!-- ====================================================================
+             2. SUBPESTAÑA: EDITOR EN VIVO (LIVE EDITOR GRID)
+             ==================================================================== -->
+        <div class="str-subtab-pane" id="subtab-str-live">
+          <!-- Fila de Filtros y Búsqueda -->
+          <div class="reagle-tabs-row" id="translation-filter-row">
+            <div class="tabs-heading-group">
+              <div class="reagle-segmented-tabs">
+                <button class="tab-link-btn active" data-filter="all">Todas</button>
+                <button class="tab-link-btn" data-filter="untranslated">Pendientes</button>
+                <button class="tab-link-btn" data-filter="translated">Traducidas</button>
+                <button class="tab-link-btn" data-filter="tokens">Con Tokens</button>
+              </div>
+            </div>
+
+            <div class="reagle-search-bar">
+              <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              <input type="text" id="grid-search-input" aria-label="Buscar clave o texto" placeholder="Buscar por clave IDS_ o contenido...">
+            </div>
+          </div>
+
+          <!-- Contenedor Virtual Grid de Alto Rendimiento -->
+          <div class="virtual-grid-container">
+            <div class="grid-header">
+              <div>ID de Cadena (Clave)</div>
+              <div>Texto Original (EN)</div>
+              <div>Traducción Activa (ES)</div>
+              <div>Tokens</div>
+              <div class="str-grid-col-action">Acción</div>
+            </div>
+            <div class="virtual-viewport" id="virtual-viewport">
+              <div class="virtual-runway" id="virtual-runway"></div>
+            </div>
+
+            <!-- Barra de Paginación Reactiva Neumórfica -->
+            <div class="nexus-pagination-bar" id="str-grid-pagination">
+              <div class="nexus-pagination-info" id="str-pagination-info">
+                Cargando cadenas...
+              </div>
+              <div class="nexus-pagination-controls">
+                <button class="nexus-pagination-btn" id="btn-page-prev" data-action="page:prev" title="Página anterior">
+                  ‹ Anterior
+                </button>
+                <div class="nexus-pagination-pages" id="str-pagination-pages"></div>
+                <button class="nexus-pagination-btn" id="btn-page-next" data-action="page:next" title="Página siguiente">
+                  Siguiente ›
+                </button>
+                <div class="pagination-size-selector">
+                  <span class="pagination-size-label">Filas:</span>
+                  <select id="str-page-size-select" class="pagination-size-select">
+                    <option value="10">10</option>
+                    <option value="25" selected>25</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                    <option value="all">Todas</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="grid-footer-hud" id="grid-footer-hud">
+              <span id="hud-status-text">Cargando cadenas reales de SQLite...</span>
+              <span class="hud-badge">TOKEN GUARD PROTEGIDO</span>
+            </div>
+          </div>
+        </div>

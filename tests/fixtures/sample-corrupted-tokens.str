@@ -1,0 +1,11 @@
+TXT
+NumStrings 3
+StringInfo
+	ID "IDS_TOKEN_MISMATCH_MSG"
+	Value "The fleet of {0} arrived at sector {1}."
+StringInfo
+	ID "IDS_BROKEN_FORMAT_SPEC"
+	Value "Constructing %s units at orbital facility %d."
+StringInfo
+	ID "IDS_COLOR_MOD_TAG"
+	Value "Phase resonance level: [VALUE0] units active."

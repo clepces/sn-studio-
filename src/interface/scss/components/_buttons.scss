@@ -1,0 +1,132 @@
+// ==============================================================================
+// SOLARIS NEXUS STUDIO - SASS 7-1: COMPONENTS / BUTTONS
+// Botones corporativos modulares (Reagle Button Suite)
+// Adaptable 100% a Modo Base (flat), Neumorphism y Glassmorphism
+// ==============================================================================
+
+.btn-reagle {
+  background: var(--neu-card-bg);
+  box-shadow: var(--neu-shadow-card-sm);
+  border: 1px solid var(--neu-border-subtle);
+  border-radius: 12px;
+  padding: 7px 14px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-main);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  white-space: nowrap;
+  user-select: none;
+  -webkit-user-select: none;
+
+  svg {
+    width: 14px;
+    height: 14px;
+    stroke: var(--text-secondary);
+    stroke-width: 2;
+    fill: none;
+    flex-shrink: 0;
+    transition: stroke 0.15s ease;
+  }
+
+  &:hover {
+    box-shadow: var(--neu-shadow-card-hover);
+    transform: translateY(-1px);
+    color: var(--text-main);
+
+    svg {
+      stroke: var(--text-main);
+    }
+  }
+
+  &:active {
+    box-shadow: var(--neu-shadow-inset-soft);
+    transform: translateY(1px);
+  }
+
+  &.btn-reagle-primary {
+    color: var(--color-blue);
+    font-weight: 700;
+
+    svg {
+      stroke: var(--color-blue);
+    }
+  }
+
+  &.btn-reagle-success {
+    color: var(--color-success);
+    font-weight: 700;
+
+    svg {
+      stroke: var(--color-success);
+    }
+  }
+
+  &.btn-reagle-danger {
+    color: var(--color-danger);
+    font-weight: 700;
+
+    svg {
+      stroke: var(--color-danger);
+    }
+  }
+
+  &:disabled,
+  &.disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    pointer-events: none;
+    box-shadow: none;
+  }
+}
+
+.btn-icon-reagle {
+  width: 32px;
+  height: 32px;
+  border-radius: 9999px;
+  background: var(--neu-card-bg);
+  box-shadow: var(--neu-shadow-card-sm);
+  border: 1px solid var(--neu-border-subtle);
+  color: var(--text-secondary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  flex-shrink: 0;
+
+  &:hover {
+    color: var(--text-main);
+    box-shadow: var(--neu-shadow-card-hover);
+    transform: scale(1.05);
+  }
+
+  &:active {
+    box-shadow: var(--neu-shadow-inset-soft);
+    transform: scale(0.95);
+  }
+}
+
+.btn-mini-pill {
+  padding: 3px 8px;
+  font-size: 0.68rem;
+  border-radius: 6px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  cursor: pointer;
+  border: 1px solid var(--neu-border-subtle);
+  background: var(--neu-slot-bg);
+  color: var(--text-secondary);
+  transition: all 0.15s ease;
+
+  &:hover {
+    background: var(--color-blue);
+    color: #ffffff;
+    border-color: var(--color-blue);
+  }
+}

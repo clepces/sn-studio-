@@ -1,0 +1,177 @@
+      <!-- ======================================================================
+           VISTA 0: DASHBOARD / EXECUTIONS (ESTUDIO CENTRAL REAGLE)
+           ====================================================================== -->
+      <section id="tab-dashboard" class="view-panel active">
+        <!-- Fila de Tabs de Ejecuciones y Búsqueda Global -->
+        <div class="reagle-tabs-row">
+
+          <div class="tabs-heading-group">
+            <h2 class="section-subheading-title">Executions</h2>
+            <div class="tab-carousel-wrapper" id="dash-tabs-carousel">
+
+              <button class="tab-carousel-nav-btn prev" 
+                data-carousel-nav="prev" 
+                aria-label="Desplazar a la izquierda" 
+                title="Ver pestañas anteriores" type="button">
+                <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>
+              </button>
+
+              <div class="tab-carousel-scroll reagle-segmented-tabs">
+                <button class="tab-link-btn active" data-dash-tab="workflows" type="button">
+                  <svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h7"/></svg>
+                  <span>Workflows</span>
+                </button>
+                <button class="tab-link-btn" data-dash-tab="permissions" type="button">
+                  <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                  <span>Permissions</span>
+                </button>
+                <button class="tab-link-btn" data-dash-tab="executions" type="button">
+                  <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                  <span>Executions (<span id="dash-exec-count">0</span>)</span>
+                </button>
+              </div>
+
+              <button class="tab-carousel-nav-btn next" data-carousel-nav="next" aria-label="Desplazar a la derecha" title="Ver más pestañas" type="button">
+                <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              </button>
+              
+            </div>
+          </div>
+
+          <div class="reagle-search-bar">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <input type="text" id="dashboard-search-input" aria-label="Buscar flujo o registro" placeholder="Buscar flujo o registro...">
+          </div>
+
+        </div>
+
+        <!-- Matriz de Tareas y Workflows con Paneles Conmutables -->
+        <div class="reagle-card-panel dash-workflow-panel">
+          <!-- 1. PANE WORKFLOWS -->
+          <div id="pane-dash-workflows" class="dash-pane active">
+            <div class="dash-grid-header">
+              <div>WORKFLOW / TAREA</div>
+              <div>ESTADO CANÓNICO</div>
+              <div>ACCIÓN</div>
+            </div>
+
+            <div class="dash-pane-empty"></div>
+
+            <div class="dash-task-list">
+
+              <!-- Tarea 1: Traducción -->
+              <div class="workflow-task-item">
+                <div class="workflow-col-main">
+                  <div class="task-icon-circle task-icon-circle--str">STR</div>
+                  <div class="main-text">
+                    <div class="main-title">Diccionario de Traducción Rebellion</div>
+                    <div class="main-desc">Localizations/es/String/English.str (UTF-8 BOM)</div>
+                  </div>
+                </div>
+                <div class="workflow-col-badge">
+                  <span class="metric-badge-pill" id="dash-str-badge">7.828 Cadenas (0 Errores)</span>
+                </div>
+                <div class="workflow-col-action">
+                  <button class="btn-row-action" data-tab="tab-translation" type="button">Abrir Editor .str →</button>
+                </div>
+              </div>
+
+              <!-- Tarea 2: VFS Mods -->
+              <div class="workflow-task-item">
+                <div class="workflow-col-main">
+                  <div class="task-icon-circle task-icon-circle--vfs">VFS</div>
+                  <div class="main-text">
+                    <div class="main-title">Gestor de Mods y Prioridades VFS</div>
+                    <div class="main-desc">EnabledMods.txt (Directorio Mods-Rebellion v1.85)</div>
+                  </div>
+                </div>
+                <div class="workflow-col-badge">
+                  <span class="metric-badge-pill neutral" id="dash-vfs-badge">0 Mods Activos (Vanilla)</span>
+                </div>
+                <div class="workflow-col-action">
+                  <button class="btn-row-action" data-tab="tab-mods" type="button">Gestionar Mods →</button>
+                </div>
+              </div>
+
+              <!-- Tarea 3: ConvertData CLI -->
+              <div class="workflow-task-item">
+                <div class="workflow-col-main">
+                  <div class="task-icon-circle task-icon-circle--bin">BIN</div>
+                  <div class="main-text">
+                    <div class="main-title">ConvertData CLI Native Engine</div>
+                    <div class="main-desc">Conversor bidireccional binario DirectX / texto plano</div>
+                  </div>
+                </div>
+                <div class="workflow-col-badge">
+                  <span class="metric-badge-pill">DirectX 9 OK</span>
+                </div>
+                <div class="workflow-col-action">
+                  <button class="btn-row-action" data-tab="tab-convert" type="button">Conversor CLI →</button>
+                </div>
+              </div>
+
+              <!-- Tarea 4: GameInfo Entities -->
+              <div class="workflow-task-item">
+                <div class="workflow-col-main">
+                  <div class="task-icon-circle task-icon-circle--ent">ENT</div>
+                  <div class="main-text">
+                    <div class="main-title">Catálogo de Flota GameInfo</div>
+                    <div class="main-desc">Archivos .entity oficiales de Rebellion</div>
+                  </div>
+                </div>
+                <div class="workflow-col-badge">
+                  <span class="metric-badge-pill" id="dash-wf-entities-badge">1.872 Archivos .entity</span>
+                </div>
+                <div class="workflow-col-action">
+                  <button class="btn-row-action" data-tab="tab-entities" type="button">Explorar Flota →</button>
+                </div>
+              </div>
+
+              <!-- Tarea 5: Galaxy Forge -->
+              <div class="workflow-task-item">
+                <div class="workflow-col-main">
+                  <div class="task-icon-circle task-icon-circle--gal">GAL</div>
+                  <div class="main-text">
+                    <div class="main-title">Galaxy Forge Companion</div>
+                    <div class="main-desc">Modelador de topologías estelares y grafos conexos</div>
+                  </div>
+                </div>
+                <div class="workflow-col-badge">
+                  <span class="metric-badge-pill" id="dash-wf-galaxy-badge">126 Mapas Conexos</span>
+                </div>
+                <div class="workflow-col-action">
+                  <button class="btn-row-action" data-tab="tab-galaxy" type="button">Ver Mapas →</button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- 2. PANE PERMISSIONS (DINÁMICO Y VERIFICADO FÍSICAMENTE) -->
+          <div id="pane-dash-permissions" class="dash-pane">
+            <div class="dash-grid-header">
+              <div>RECURSO / SUBSISTEMA</div>
+              <div>PERMISOS DISCO</div>
+              <div>ESTADO</div>
+            </div>
+            <div class="dash-pane-empty"></div>
+            <div id="dash-permissions-list" class="dash-task-list">
+              <!-- Renderizado dinámico desde /api/system/permissions -->
+            </div>
+          </div>
+
+          <!-- 3. PANE EXECUTIONS (HISTORIAL PERSISTIDO EN SQLITE + LOCALSTORAGE) -->
+          <div id="pane-dash-executions" class="dash-pane">
+            <div class="dash-grid-header">
+              <div>REGISTRO DE EJECUCIÓN</div>
+              <div>FECHA / HORA</div>
+              <div>RESULTADO</div>
+            </div>
+            <div id="dash-executions-empty" class="dash-pane-empty"></div>
+            <div id="dash-executions-list" class="dash-task-list">
+              <!-- Renderizado reactivo persistido -->
+            </div>
+            <div id="dash-executions-pagination"></div>
+          </div>
+        </div>
+      </section>

@@ -1,0 +1,16 @@
+# Build outputs and vendors
+node_modules/
+vendor/
+dist/
+build/
+storage/
+
+# Compiled bundles
+public/assets/js/bundle.js
+public/assets/css/main-theme.css
+
+# Legacy prototype scripts
+public/assets/js/modules/
+
+# Config files
+vite.config.ts

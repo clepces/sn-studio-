@@ -1,0 +1,204 @@
+// ==============================================================================
+// GALAXY FORGE STYLES
+// Migrado desde: public/assets/css/modules/galaxy-forge.css
+// ==============================================================================
+
+.galaxy-workspace-layout {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 14px;
+  flex: 1;
+  min-height: 0;
+  min-width: 0;
+  width: 100%;
+
+  > div {
+    min-width: 0;
+  }
+}
+
+.galaxy-canvas-container {
+  background: var(--neu-card-bg);
+  box-shadow: var(--neu-shadow-inset);
+  border-radius: 18px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  min-height: 280px;
+  width: 100%;
+  overflow: hidden;
+
+  canvas {
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    max-width: 100%;
+    height: auto;
+    aspect-ratio: 680 / 420;
+    display: block;
+  }
+}
+
+.galaxy-nodes-scroll {
+  max-height: 220px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-right: 4px;
+}
+
+.galaxy-panel-card {
+  padding: 14px;
+}
+
+.galaxy-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.galaxy-title {
+  font-size: 0.95rem;
+  font-weight: 800;
+}
+
+.galaxy-btn-group {
+  display: flex;
+  gap: 6px;
+}
+
+.galaxy-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 8px;
+  font-size: 0.74rem;
+  color: var(--text-secondary);
+  justify-content: center;
+}
+
+.galaxy-legend-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 4px;
+
+  &--star { background: #f59e0b; }
+  &--terran { background: #22c55e; }
+  &--desert { background: #eab308; }
+  &--ice { background: #38bdf8; }
+  &--volcanic { background: #ef4444; }
+  &--line {
+    width: 12px;
+    height: 2px;
+    border-radius: 0;
+    background: rgba(56, 189, 248, 0.7);
+    vertical-align: middle;
+  }
+}
+
+.galaxy-sidebar-col {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.galaxy-stats-card {
+  padding: 12px;
+}
+
+.galaxy-scenario-name {
+  font-weight: 800;
+  font-size: 0.90rem;
+  color: var(--text-blue, #1a73e8);
+}
+
+.galaxy-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  margin-top: 6px;
+  font-size: 0.76rem;
+  color: var(--text-secondary);
+}
+
+.galaxy-stat-val {
+  color: var(--text-main);
+}
+
+.galaxy-badge-wrap {
+  margin-top: 8px;
+}
+
+.galaxy-inspector-card {
+  padding: 12px;
+  flex: 1;
+}
+
+.galaxy-section-subtitle {
+  font-weight: 700;
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  margin-bottom: 6px;
+}
+
+.galaxy-selected-info {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+@media (max-width: 980px) {
+  .galaxy-workspace-layout {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    overflow-y: auto;
+    max-height: calc(100vh - 160px);
+  }
+
+  .galaxy-canvas-container {
+    min-height: 220px;
+  }
+}
+
+.galaxy-node-item {
+  padding: 6px 8px;
+  border-radius: 8px;
+  background: #cfd4db;
+  box-shadow: var(--neu-shadow-inset);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .node-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 6px;
+  }
+
+  .home-star {
+    color: var(--text-success, #059669);
+    margin-left: 4px;
+  }
+
+  .node-coords {
+    color: var(--text-secondary);
+    font-size: 0.7rem;
+  }
+}
+
+.galaxy-details-box {
+  background: rgba(37, 99, 235, 0.08);
+  border-left: 3px solid var(--text-blue);
+  padding: 8px;
+  border-radius: 6px;
+}
+

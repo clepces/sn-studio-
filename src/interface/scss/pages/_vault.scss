@@ -1,0 +1,116 @@
+// ==============================================================================
+// VAULT PAGE (BACKUP VAULT & PACKAGER)
+// ==============================================================================
+
+.vault-card-panel {
+  max-width: 820px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 24px;
+}
+
+.vault-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-bottom: 1px solid rgba(160, 168, 180, 0.2);
+  padding-bottom: 12px;
+
+  &-title-wrap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  &-icon {
+    font-size: 1.3rem;
+  }
+
+  &-title {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: var(--text-main);
+  }
+
+  &-desc {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    margin-top: 4px;
+  }
+}
+
+.vault-badge-active {
+  font-size: 0.75rem;
+  padding: 4px 10px;
+  background: #d1fae5;
+  color: #059669;
+}
+
+.vault-body {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 16px;
+}
+
+.vault-purpose-card {
+  background: var(--neu-slot-bg);
+  box-shadow: var(--neu-shadow-inset);
+  border-radius: 14px;
+  padding: 14px 18px;
+}
+
+.vault-purpose-title {
+  font-size: 0.86rem;
+  font-weight: 800;
+  color: var(--text-blue, #1a73e8);
+}
+
+.vault-purpose-text {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  margin-top: 6px;
+  line-height: 1.5;
+}
+
+.vault-table-wrap {
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: 14px;
+  padding: 14px;
+}
+
+.vault-table-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.vault-table-title {
+  font-weight: 800;
+  font-size: 0.84rem;
+  color: var(--text-main);
+}
+
+.vault-items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.vault-item-title {
+  font-weight: 700;
+  font-size: 0.84rem;
+}
+
+.vault-item-desc {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+.vault-footer-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 8px;
+}

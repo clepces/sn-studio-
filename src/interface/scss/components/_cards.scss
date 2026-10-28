@@ -1,0 +1,51 @@
+// ==============================================================================
+// SOLARIS NEXUS STUDIO - SASS 7-1: COMPONENTS / CARDS
+// Paneles contenedores (.reagle-card-panel) y paneles de vista (.view-panel)
+// ==============================================================================
+
+.reagle-card-panel {
+  background: var(--neu-card-bg);
+  box-shadow: var(--neu-shadow-card);
+  border-radius: 20px;
+  padding: 20px 24px;
+  border: 1px solid var(--neu-border-subtle);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.view-panel {
+  display: none !important;
+  flex-direction: column;
+  gap: 16px;
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+
+  &.active {
+    display: flex !important;
+    animation: paneFadeSlideIn 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+}
+
+.telemetry-card {
+  background: var(--neu-card-bg);
+  box-shadow: var(--neu-shadow-card-sm);
+  border-radius: 12px;
+  padding: 12px 14px;
+  border: 1px solid var(--neu-border-subtle);
+  border-left: 3px solid var(--color-blue);
+
+  &.status-optimal {
+    border-left-color: var(--color-success);
+  }
+
+  &.status-warning {
+    border-left-color: var(--color-amber);
+  }
+
+  &.status-critical {
+    border-left-color: var(--color-danger);
+  }
+}

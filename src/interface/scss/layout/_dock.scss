@@ -1,0 +1,146 @@
+// ==============================================================================
+// SOLARIS NEXUS STUDIO - SASS 7-1: LAYOUT / DOCK
+// Dock lateral flotante tipo cápsula Reagle (Modular, BEM, multi-tema)
+// ==============================================================================
+
+.reagle-dock-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: calc(100vh - 16px);
+  max-height: 920px;
+  width: 52px;
+  flex-shrink: 0;
+  gap: 8px;
+}
+
+.dock-top-capsule {
+  background: var(--dock-capsule-bg);
+  box-shadow: var(--neu-shadow-dock);
+  border-radius: 28px;
+  padding: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  min-height: 0;
+  border: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.dock-inner-dark-pill {
+  background: var(--dock-dark-pill);
+  border-radius: 24px;
+  padding: 6px 3px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.6), 0 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+.dock-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: transparent;
+  border: none;
+  color: var(--dock-icon-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+
+  svg {
+    width: 17px;
+    height: 17px;
+    stroke: currentColor;
+    stroke-width: 2;
+    fill: none;
+  }
+
+  &:hover {
+    color: var(--dock-icon-active);
+    background: var(--dock-btn-hover);
+  }
+
+  &.active {
+    background: var(--dock-btn-active);
+    color: var(--dock-icon-active);
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.15), 0 2px 5px rgba(0, 0, 0, 0.4);
+  }
+}
+
+.dock-vertical-label {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-size: 0.55rem;
+  letter-spacing: 0.12em;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--dock-text-vertical);
+  margin-top: auto;
+  margin-bottom: 12px;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.dock-bottom-capsule {
+  background: var(--dock-capsule-bg);
+  box-shadow: var(--neu-shadow-dock);
+  border-radius: 22px;
+  padding: 8px 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  border: none;
+  height: 118px;
+  flex-shrink: 0;
+}
+
+.dock-bottom-label {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-size: 0.54rem;
+  letter-spacing: 0.14em;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--dock-text-vertical);
+  margin-top: 6px;
+  margin-bottom: 8px;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.dock-settings-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  background: var(--dock-dark-pill);
+  border: none;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.25), 0 3px 6px rgba(0, 0, 0, 0.45);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover {
+    color: #60a5fa;
+    transform: rotate(35deg) scale(1.05);
+  }
+
+  svg {
+    width: 19px;
+    height: 19px;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    fill: none;
+  }
+}

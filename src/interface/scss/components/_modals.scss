@@ -1,0 +1,292 @@
+// ==============================================================================
+// SOLARIS NEXUS STUDIO - SASS 7-1: COMPONENTS / MODALS
+// Ventana modal de edición y utilidades de diálogo
+// ==============================================================================
+
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(15, 23, 42, 0.55);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  z-index: 99999;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  overflow-y: auto;
+
+  &.active {
+    display: flex !important;
+  }
+}
+
+.modal-card {
+  background: var(--neu-window-bg);
+  box-shadow: var(--neu-shadow-floating);
+  border-radius: 24px;
+  width: 90%;
+  max-width: 640px;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 24px 26px;
+  border: 1px solid var(--neu-border-subtle);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  animation: paneFadeSlideIn 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+
+  &-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &-title {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: var(--text-blue, #1a73e8);
+  }
+
+  &-close {
+    font-size: 1.2rem;
+  }
+
+  &-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+  }
+
+  &-orig-text {
+    background: var(--neu-slot-bg);
+    box-shadow: var(--neu-shadow-inset);
+    padding: 10px 14px;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    margin-top: 4px;
+    color: var(--text-main);
+  }
+
+  &-textarea {
+    width: 100%;
+    height: 90px;
+    margin-top: 4px;
+    resize: vertical;
+  }
+
+  &-feedback {
+    font-size: 0.84rem;
+    padding: 10px 14px;
+    border-radius: 12px;
+    display: none;
+  }
+
+  &-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 6px;
+  }
+
+  &-btn-tm {
+    font-size: 0.8rem;
+  }
+
+  &-btn-group {
+    display: flex;
+    gap: 10px;
+
+    &--right {
+      justify-content: flex-end;
+    }
+  }
+
+  .modal-body {
+    margin: 14px 0;
+  }
+}
+
+// Variantes de ancho para ventanas modales
+.modal-card--lg {
+  max-width: 720px;
+  width: 95%;
+}
+
+.modal-card--md {
+  max-width: 540px;
+  width: 92%;
+}
+
+.modal-card--sm {
+  max-width: 440px;
+  width: 90%;
+}
+
+// Elementos de peligro y confirmación crítica de borrado
+.modal-danger-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 0.65rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.modal-target-box {
+  background: var(--neu-slot-bg);
+  box-shadow: var(--neu-shadow-inset);
+  border-radius: 12px;
+  padding: 12px 14px;
+  font-size: 0.74rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  color: var(--text-main);
+
+  code {
+    font-family: var(--font-mono);
+    color: var(--text-blue, #1a73e8);
+    font-size: 0.70rem;
+    word-break: break-all;
+  }
+}
+
+.modal-delete-options-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.modal-delete-opt-card {
+  background: var(--neu-card-bg);
+  box-shadow: var(--neu-shadow-card-sm);
+  border: 1px solid var(--neu-border-subtle);
+  border-radius: 14px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  &--digital {
+    border-left: 4px solid #d97706;
+  }
+
+  &--physical {
+    border-left: 4px solid #dc2626;
+  }
+
+  .opt-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .opt-title {
+      font-size: 0.82rem;
+      font-weight: 800;
+      color: var(--text-main);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+  }
+
+  .opt-desc {
+    font-size: 0.72rem;
+    color: var(--text-secondary);
+    line-height: 1.4;
+    margin: 0;
+  }
+
+  .opt-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 2px;
+
+    .btn-reagle {
+      font-size: 0.72rem;
+      padding: 6px 14px;
+      font-weight: 700;
+      min-width: 175px;
+      justify-content: center;
+
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+    }
+  }
+}
+
+// Formulario de creación de proyectos .str
+.modal-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+
+  .modal-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    &--full {
+      grid-column: span 2;
+    }
+
+    label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--text-secondary);
+    }
+
+    .reagle-input, select.reagle-input {
+      font-size: 0.76rem;
+      padding: 8px 12px;
+      border-radius: 10px;
+    }
+  }
+}
+
+.modal-header-danger {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  .modal-card-title {
+    color: var(--text-danger, #dc2626);
+    margin: 0;
+  }
+}
+
+.modal-delete-notice {
+  font-size: 0.74rem;
+  color: var(--text-secondary);
+  margin: 8px 0 0 0;
+}
+
+.modal-card-footer--right {
+  justify-content: flex-end;
+}
+
+.target-id-highlight {
+  font-weight: 700;
+  color: var(--text-blue);
+}
+
+.badge-recommended {
+  font-size: 0.62rem;
+}
+
+.opt-title--danger {
+  color: var(--text-danger, #dc2626);
+}
+

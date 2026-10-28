@@ -1,0 +1,8 @@
+{
+  "name": "Solaris Nexus Studio",
+  "description": "Enterprise mod creation, localization, entity inspection, and galaxy topologist studio for Sins of a Solar Empire.",
+  "permissions": [],
+  "capabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

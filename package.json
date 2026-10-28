@@ -1,0 +1,31 @@
+{
+  "name": "solaris-nexus-studio",
+  "version": "0.4.1-alpha",
+  "private": true,
+  "description": "Enterprise UI & TypeScript Frontend for Solaris Nexus Studio",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx server.ts",
+    "start": "tsx server.ts",
+    "build": "npm run build:ts && npm run build:sass && tsx scripts/build-html.ts",
+    "build:ts": "esbuild src/frontend/main.ts --bundle --outfile=public/assets/js/bundle.js --format=esm --target=esnext --tsconfig=./tsconfig.json && esbuild src/frontend/modules/translation-studio.ts --bundle --outfile=public/assets/js/modules/translation-studio.js --format=iife --target=esnext --tsconfig=./tsconfig.json",
+    "build:sass": "sass src/interface/scss/main.scss public/assets/css/main-theme.css --no-source-map --style=compressed",
+    "watch:sass": "sass --watch src/interface/scss/main.scss:public/assets/css/main-theme.css",
+    "typecheck": "tsc --noEmit",
+    "lint": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/node": "^26.6.5",
+    "esbuild": "^0.21.5",
+    "sass": "^1.77.8",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2",
+    "vite": "^5.4.2"
+  },
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^5.3.0"
+  }
+}

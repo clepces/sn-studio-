@@ -1,0 +1,26 @@
+// ==============================================================================
+// SOLARIS NEXUS STUDIO - SASS 7-1: LAYOUT / WORKSPACE
+// Contenedor principal de vistas (<main class="reagle-workspace">)
+// ==============================================================================
+
+.reagle-workspace {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 14px 18px;
+  gap: 10px;
+  background: var(--neu-window-bg);
+  min-width: 0;
+
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba(160, 168, 180, 0.4);
+    border-radius: 4px;
+  }
+}

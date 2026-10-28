@@ -1,0 +1,41 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# Text files with explicit LF line endings
+*.ts text eol=lf
+*.js text eol=lf
+*.json text eol=lf
+*.scss text eol=lf
+*.css text eol=lf
+*.html text eol=lf
+*.php text eol=lf
+*.md text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.xml text eol=lf
+*.neon text eol=lf
+
+# Game-specific files (Windows CRLF required by Ironclad C++ engine)
+*.str text eol=crlf
+*.entity text eol=crlf
+*.galaxy text eol=crlf
+*.scenario text eol=crlf
+*.brushes text eol=crlf
+*.setting text eol=crlf
+
+# Binary files
+*.exe binary
+*.dll binary
+*.bin binary
+*.sqlite binary
+*.db binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.woff binary
+*.woff2 binary
+*.dds binary
+*.mesh binary
+*.particle binary

@@ -1,0 +1,57 @@
+{
+  "compilerOptions": {
+    /* Target y Modulos */
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "baseUrl": ".",
+
+    /* Control de Compilacion y Salida */
+    "rootDir": ".",
+    "outDir": "./dist",
+    "noEmit": true,
+
+    /* Chequeo Estricto de Tipos */
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+
+    /* Calidad y Linter Interno */
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedIndexedAccess": true,
+
+    /* Interoperabilidad y Modulos */
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+
+    /* Rutas de Modulos (Aliases) */
+    "paths": {
+      "@/*": ["./src/frontend/*"],
+      "@shared/*": ["./src/shared/*"]
+    }
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "server.ts",
+    "scripts/**/*.ts",
+    "vite.config.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "build",
+    "vendor",
+    "storage",
+    "public/assets/js/bundle.js"
+  ]
+}

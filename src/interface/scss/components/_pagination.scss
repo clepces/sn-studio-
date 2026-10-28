@@ -1,0 +1,95 @@
+// =============================================================================
+// SOLARIS NEXUS STUDIO - SASS 7-1: COMPONENTS / PAGINATION
+// =============================================================================
+@use "../abstracts/variables" as *;
+
+.nexus-pagination-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  background: #ffffff;
+  border-top: 1px solid #e2e8f0;
+  border-radius: 0 0 12px 12px;
+  margin-top: 8px;
+  gap: 12px;
+  flex-wrap: wrap;
+
+  &.single-page {
+    justify-content: flex-end;
+  }
+
+  .nexus-pagination-info {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: #64748b;
+    font-family: var(--font-mono, monospace);
+  }
+
+  .nexus-pagination-controls {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .nexus-pagination-pages {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .nexus-pagination-btn,
+  .nexus-pagination-page {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    color: #475569;
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    transition: all 0.15s ease;
+    -webkit-user-select: none;
+    user-select: none;
+    min-width: 28px;
+    justify-content: center;
+    height: 28px;
+
+    svg {
+      width: 14px;
+      height: 14px;
+      stroke: currentColor;
+      stroke-width: 2;
+      fill: none;
+    }
+
+    &:hover:not(:disabled) {
+      background: #e2e8f0;
+      color: #0f172a;
+      border-color: #cbd5e1;
+    }
+
+    &:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+
+    &.active {
+      background: #1a73e8;
+      color: #ffffff;
+      border-color: #1a73e8;
+      font-weight: 700;
+      box-shadow: 0 1px 3px rgba(26, 115, 232, 0.3);
+    }
+  }
+
+  .nexus-pagination-ellipsis {
+    padding: 0 4px;
+    color: #94a3b8;
+    font-size: 0.72rem;
+  }
+}

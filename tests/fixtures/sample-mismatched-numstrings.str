@@ -1,0 +1,11 @@
+TXT
+NumStrings 12
+StringInfo
+	ID "IDS_PLANET_NAME_EARTH"
+	Value "Terra Prime - Capital Sector"
+StringInfo
+	ID "IDS_FLEET_ORDER_ATTACK"
+	Value "Engage target coordinates immediately."
+StringInfo
+	ID "IDS_RESEARCH_SHIELDS_TIER1"
+	Value "Increase phase shield absorption by [VALUE0]%."

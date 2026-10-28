@@ -1,0 +1,11 @@
+TXT
+NumStrings 3
+StringInfo
+	ID "IDS_MENU_NEW_CAMPAIGN"
+	Value "Iniciar Nueva Campaña Galáctica"
+StringInfo
+	ID "IDS_ALERT_UNDER_ATTACK"
+	Value "¡Alerta Roja! Estructura orbital bajo ataque enemigo"
+StringInfo
+	ID "IDS_CREDITS_AUTHOR"
+	Value "Diseñado por el Escuadrón Tecnológico Clepces"

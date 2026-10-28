@@ -1,0 +1,142 @@
+// ==============================================================================
+// SOLARIS NEXUS STUDIO - SASS 7-1: PAGES / CONVERT
+// Estilos del Pipeline de Conversión DirectX (ConvertData CLI)
+// ==============================================================================
+
+.convert-card-wrapper {
+  max-width: 720px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 18px 22px;
+}
+
+.convert-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 8px;
+
+  h3 {
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: var(--text-main);
+    margin: 0;
+  }
+
+  p {
+    font-size: 0.74rem;
+    color: var(--text-muted);
+    margin-top: 2px;
+  }
+}
+
+.convert-form-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.convert-grid-selectors {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 10px;
+}
+
+.convert-label {
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  display: block;
+  margin-bottom: 3px;
+}
+
+.convert-presets-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.convert-presets-list {
+  display: flex;
+  gap: 4px;
+  font-size: 0.68rem;
+  color: var(--text-muted);
+}
+
+.btn-preset-link {
+  background: transparent;
+  border: none;
+  color: var(--color-blue);
+  font-size: 0.68rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.convert-input-path {
+  width: 100%;
+  margin-top: 3px;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+}
+
+.convert-btn-submit {
+  align-self: flex-start;
+  margin-top: 2px;
+}
+
+.convert-result-box {
+  display: none;
+  background: var(--neu-slot-bg);
+  box-shadow: var(--neu-shadow-inset);
+  border-radius: 12px;
+  padding: 12px;
+  border: 1px solid var(--neu-border-subtle);
+  margin-top: 4px;
+
+  &.active {
+    display: block;
+  }
+}
+
+.cli-output-log {
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+}
+
+.cli-output-success {
+  color: var(--text-success, #059669);
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.cli-output-error {
+  color: var(--text-danger, #dc2626);
+  font-weight: 700;
+}
+
+.cli-output-meta {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+
+  .cli-output-sub {
+    margin-top: 3px;
+    color: var(--text-secondary);
+  }
+
+  .cli-output-checksum {
+    margin-top: 3px;
+
+    .checksum-hash {
+      color: var(--text-blue);
+    }
+  }
+}
+

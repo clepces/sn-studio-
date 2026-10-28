@@ -1,0 +1,329 @@
+// ==============================================================================
+// SOLARIS NEXUS STUDIO - SASS: COMPONENTS / GLOBAL TABS NAVIGATION
+// Sistema Global de Navegación de Pestañas con Desplazamiento Fluido,
+// Flechas de Navegación Neumórficas, Animaciones y Barra de Búsqueda Homogénea
+// ==============================================================================
+
+.reagle-tabs-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  box-sizing: border-box;
+  border-bottom: 1px solid var(--neu-border-subtle);
+  padding-bottom: 8px;
+  margin-top: 4px;
+  margin-bottom: 12px;
+  flex-wrap: nowrap;
+  position: relative;
+  z-index: 10;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+// Contenedor del encabezado + carrusel de pestañas
+.tabs-heading-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  flex: 1;
+  overflow: hidden;
+}
+
+.section-subheading-title {
+  font-size: 0.96rem;
+  font-weight: 800;
+  color: var(--text-main);
+  letter-spacing: -0.02em;
+  margin: 0;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+// Wrapper del carrusel con flechas de desplazamiento interno
+.tab-carousel-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  overflow: hidden;
+  min-width: 0;
+  flex: 1;
+  padding: 2px 0;
+
+  // Botones de flecha neumórficos (← / →)
+  .tab-carousel-nav-btn {
+    width: 26px;
+    height: 26px;
+    border-radius: 9999px;
+    background: var(--neu-card-bg);
+    box-shadow: var(--neu-shadow-card-sm);
+    border: 1px solid var(--neu-border-subtle);
+    color: var(--text-secondary);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 5;
+    padding: 0;
+    outline: none;
+
+    svg {
+      width: 13px;
+      height: 13px;
+      stroke: currentColor;
+      stroke-width: 2.2;
+      fill: none;
+      transition: transform 0.15s ease;
+    }
+
+    &:hover:not(:disabled) {
+      color: var(--text-blue);
+      box-shadow: var(--neu-shadow-pill-active);
+      transform: scale(1.06);
+
+      svg {
+        stroke: var(--text-blue);
+      }
+    }
+
+    &:active:not(:disabled) {
+      box-shadow: var(--neu-shadow-inset-soft);
+      transform: scale(0.94);
+    }
+
+    &:disabled,
+    &.disabled {
+      opacity: 0.28;
+      cursor: not-allowed;
+      pointer-events: none;
+      box-shadow: none;
+      border-color: transparent;
+    }
+
+    &.prev {
+      margin-right: 2px;
+    }
+
+    &.next {
+      margin-left: 2px;
+    }
+  }
+}
+
+// Pista de desplazamiento horizontal de pestañas (Scroll Track)
+.tab-carousel-scroll,
+.reagle-segmented-tabs {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--neu-segmented-bg);
+  box-shadow: var(--neu-shadow-inset);
+  border: 1px solid var(--neu-border-subtle);
+  padding: 3px 5px;
+  border-radius: 9999px;
+  height: 32px;
+  box-sizing: border-box;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; // Firefox
+  flex: 1;
+  min-width: 0;
+
+  &::-webkit-scrollbar {
+    display: none; // Chrome, Safari, Edge
+  }
+}
+
+// Botones individuales de pestaña con animación y estados
+.tab-link-btn {
+  background: transparent;
+  border: none;
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 0 12px;
+  height: 24px;
+  border-radius: 9999px;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  user-select: none;
+  outline: none;
+
+  svg {
+    width: 13px;
+    height: 13px;
+    stroke: currentColor;
+    stroke-width: 2;
+    fill: none;
+    flex-shrink: 0;
+    transition: transform 0.2s ease, stroke 0.2s ease;
+  }
+
+  &:hover {
+    color: var(--text-main);
+    background: rgba(255, 255, 255, 0.45);
+
+    svg {
+      transform: translateY(-0.5px);
+    }
+  }
+
+  &.active {
+    color: var(--text-main);
+    background: var(--neu-card-bg);
+    box-shadow: var(--neu-shadow-pill-active);
+    font-weight: 700;
+    border: 1px solid var(--neu-border-subtle);
+    animation: tabPop 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+
+    svg {
+      stroke: var(--text-blue);
+    }
+  }
+}
+
+// Barra de Búsqueda Neumórfica Homogénea (Alineada estrictamente a la derecha)
+.reagle-search-bar,
+.reagle-search-full {
+  background: var(--neu-segmented-bg);
+  box-shadow: var(--neu-shadow-inset);
+  border: 1px solid var(--neu-border-subtle);
+  border-radius: 9999px;
+  padding: 0 12px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 230px;
+  min-width: 160px;
+  max-width: 100%;
+  flex-shrink: 0;
+  margin-left: auto;
+  box-sizing: border-box;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+
+  svg {
+    width: 13px;
+    height: 13px;
+    stroke: var(--text-muted);
+    stroke-width: 2.2;
+    fill: none;
+    flex-shrink: 0;
+    transition: stroke 0.2s ease;
+  }
+
+  input {
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 0.76rem;
+    color: var(--text-main);
+    width: 100%;
+    font-family: inherit;
+
+    &::placeholder {
+      color: var(--text-muted);
+      opacity: 0.85;
+      font-size: 0.74rem;
+    }
+  }
+
+  &:focus-within {
+    background: var(--neu-card-bg);
+    border-color: var(--text-blue);
+    box-shadow: var(--neu-shadow-card-sm), 0 0 0 2px rgba(37, 99, 235, 0.16);
+    width: 260px;
+
+    svg {
+      stroke: var(--text-blue);
+    }
+  }
+}
+
+// Paneles de contenido con animaciones de entrada y salida
+.dash-pane,
+.tab-content-pane {
+  display: none;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.22s cubic-bezier(0.16, 1, 0.3, 1), transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+
+  &.active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+    animation: paneFadeSlideIn 0.24s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+}
+
+// Keyframes para animaciones de tabs y paneles
+@keyframes tabPop {
+  0% {
+    transform: scale(0.95);
+  }
+  60% {
+    transform: scale(1.02);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes paneFadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Adaptabilidad Responsive
+@media (max-width: 1024px) {
+  .reagle-search-bar {
+    width: 190px;
+
+    &:focus-within {
+      width: 210px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .reagle-tabs-row {
+    flex-wrap: wrap;
+    gap: 8px;
+    padding-bottom: 10px;
+  }
+
+  .tabs-heading-group {
+    width: 100%;
+    flex: 1 1 100%;
+  }
+
+  .reagle-search-bar {
+    width: 100%;
+    min-width: 100%;
+    margin-left: 0;
+    margin-top: 4px;
+
+    &:focus-within {
+      width: 100%;
+    }
+  }
+}

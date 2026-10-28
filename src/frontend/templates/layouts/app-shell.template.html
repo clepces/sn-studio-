@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es" data-mode="light" data-theme="base">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solaris Nexus Studio - Clepces org. ltd</title>
+  <script>
+    (function() {
+      try {
+        const mode = localStorage.getItem('solaris_color_mode') || 'light';
+        const theme = localStorage.getItem('solaris_surface_theme') || 'base';
+        document.documentElement.setAttribute('data-mode', mode);
+        document.documentElement.setAttribute('data-theme', theme);
+      } catch (e) {}
+    })();
+  </script>
+  <link rel="stylesheet" href="assets/css/main-theme.css?v=0.4.1">
+</head>
+<body>
+  <!-- DOCK DE ESTADO INFERIOR -->
+  {{dock}}
+
+  <div class="reagle-window">
+    <!-- MENÚ LATERAL UNIFICADO -->
+    {{sidebar}}
+
+    <!-- ESPACIO DE TRABAJO PRINCIPAL -->
+    <main class="reagle-workspace">
+      <!-- CABECERA UNIVERSAL -->
+      {{header}}
+
+      <!-- TELEMETRÍA DE LA APLICACIÓN -->
+      {{telemetry}}
+
+      <!-- VISTAS DE LA APLICACIÓN -->
+      {{views}}
+    </main>
+  </div>
+
+  <!-- MODAL GLOBAL GENÉRICO -->
+  {{modal}}
+
+  <!-- SCRIPTS DEL SISTEMA (ARQUITECTURA 100% TYPESCRIPT) -->
+  <script src="assets/js/modules/translation-studio.js?v=0.4.2"></script>
+  <script type="module" src="assets/js/bundle.js?v=0.4.2"></script>
+</body>
+</html>

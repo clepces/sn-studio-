@@ -1,0 +1,50 @@
+// =============================================================================
+// SOLARIS NEXUS STUDIO - SASS 7-1: ABSTRACTS / VARIABLES
+// Enterprise AIPA Constitucion v2.24.0
+// =============================================================================
+
+// --- Color Palette: Nexus Sci-Fi & Clean Tech ---
+$color-bg-base: #f8fafc;
+$color-bg-surface: #ffffff;
+$color-bg-panel: rgba(255, 255, 255, 0.85);
+$color-bg-dark: #0b0f19;
+$color-bg-dark-surface: #111827;
+
+$color-primary: #1a73e8;
+$color-primary-hover: #1557b0;
+$color-primary-glow: rgba(26, 115, 232, 0.25);
+
+$color-accent-cyan: #06b6d4;
+$color-accent-purple: #8b5cf6;
+$color-accent-green: #10b981;
+$color-accent-amber: #f59e0b;
+$color-accent-red: #ef4444;
+
+$color-text-main: #0f172a;
+$color-text-muted: #64748b;
+$color-text-subtle: #94a3b8;
+$color-text-inverse: #ffffff;
+
+$color-border-subtle: #e2e8f0;
+$color-border-medium: #cbd5e1;
+$color-border-focus: #1a73e8;
+
+// --- Typography ---
+$font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+$font-mono: 'JetBrains Mono', 'Fira Code', 'Roboto Mono', Consolas, monospace;
+
+// --- Layout & Spacings ---
+$header-height: 56px;
+$sidebar-width: 250px;
+$dock-height: 48px;
+$radius-sm: 6px;
+$radius-md: 10px;
+$radius-lg: 14px;
+$radius-full: 9999px;
+
+// --- Transitions & Shadows ---
+$transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+$transition-smooth: 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+$shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+$shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+$shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);

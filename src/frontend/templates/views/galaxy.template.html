@@ -1,0 +1,56 @@
+      <!-- ======================================================================
+           VISTA 5: GALAXY FORGE & TOPOLOGY VIEWER
+           ====================================================================== -->
+      <section id="tab-galaxy" class="view-panel">
+        <div class="galaxy-workspace-layout">
+          <!-- Lienzo Táctico -->
+          <div class="reagle-card-panel galaxy-panel-card">
+            <div class="galaxy-header">
+              <h3 class="galaxy-title">Lienzo Táctico de Topología Estelar</h3>
+              <div class="galaxy-btn-group">
+                <button class="btn-reagle" data-action="galaxy:generate" data-players="8">8P</button>
+                <button class="btn-reagle btn-reagle-primary" data-action="galaxy:generate" data-players="12">12P</button>
+                <button class="btn-reagle" data-action="galaxy:generate" data-players="16">16P</button>
+              </div>
+            </div>
+
+            <div class="galaxy-canvas-container">
+              <canvas id="galaxy-canvas" width="680" height="420"></canvas>
+            </div>
+
+            <!-- Leyenda Táctica -->
+            <div class="galaxy-legend">
+              <span><span class="galaxy-legend-dot galaxy-legend-dot--star"></span>Estrella</span>
+              <span><span class="galaxy-legend-dot galaxy-legend-dot--terran"></span>Terran</span>
+              <span><span class="galaxy-legend-dot galaxy-legend-dot--desert"></span>Desert</span>
+              <span><span class="galaxy-legend-dot galaxy-legend-dot--ice"></span>Ice</span>
+              <span><span class="galaxy-legend-dot galaxy-legend-dot--volcanic"></span>Volcanic</span>
+              <span><span class="galaxy-legend-dot galaxy-legend-dot--line"></span>Línea de Fase</span>
+            </div>
+          </div>
+
+          <!-- Inspector y Nodos -->
+          <div class="galaxy-sidebar-col">
+            <div class="reagle-card-panel galaxy-stats-card">
+              <div class="galaxy-scenario-name" id="galaxy-scenario-name">Solaris_Ring_12P</div>
+              <div class="galaxy-stats-grid">
+                <div>Estrellas: <strong id="galaxy-star-count" class="galaxy-stat-val">1</strong></div>
+                <div>Planetas: <strong id="galaxy-planet-count" class="galaxy-stat-val">12</strong></div>
+                <div>Líneas: <strong id="galaxy-lane-count" class="galaxy-stat-val">13</strong></div>
+              </div>
+              <div class="galaxy-badge-wrap">
+                <span class="metric-badge-pill" id="galaxy-connectivity-badge">● Grafo 100% Conexo (BFS OK)</span>
+              </div>
+            </div>
+
+            <div class="reagle-card-panel galaxy-inspector-card">
+              <div class="galaxy-section-subtitle">Inspector de Planeta Seleccionado</div>
+              <div id="galaxy-selected-info" class="galaxy-selected-info">
+                <em>Haz clic en un planeta del listado o lienzo para inspeccionarlo.</em>
+              </div>
+              <div class="galaxy-section-subtitle">Listado de Nodos</div>
+              <div class="galaxy-nodes-scroll" id="galaxy-nodes-list"></div>
+            </div>
+          </div>
+        </div>
+      </section>

@@ -1,0 +1,55 @@
+// ==============================================================================
+// SOLARIS NEXUS STUDIO - SASS MASTER COMPILER (ARQUITECTURA ATÓMICA 7-1)
+// Constitución Corporativa A.I.P.A. Enterprise v2.24.0
+//
+// 100% Modular, 0 Monolitos:
+// 1. Modos de Color: Light (diurno) y Dark (nocturno) - Capa de Luminancia
+// 2. Temas de Superficie: Base (Flat), Neumorphism (Soft UI), Glassmorphism (Glass)
+// 3. Sistema 7-1: Base, Layout, Components, Pages
+// ==============================================================================
+
+// 0. Modos de Color (Luminancia Base: Light / Dark)
+@use "modes" as modes;
+
+// 0.1. Temas Visuales (Base Flat / Neumorphism / Glassmorphism)
+@use "themes" as themes;
+
+// 1. Base y Fundamentos
+@use "base/reset";
+@use "base/typography";
+@use "base/animations";
+@use "base/scrollbar";
+@use "base/utilities";
+
+// 2. Estructura y Layout Macro
+@use "layout/dock";
+@use "layout/window";
+@use "layout/sidebar";
+@use "layout/header";
+@use "layout/workspace";
+
+// 3. Componentes Atómicos Modulares
+@use "components/metrics";
+@use "components/buttons";
+@use "components/cards";
+@use "components/inputs";
+@use "components/tabs-nav";
+@use "components/progress";
+@use "components/empty-state";
+@use "components/modals";
+@use "components/datatable-virtual";
+@use "components/pagination";
+
+// 4. Páginas y Vistas Especializadas
+@use "pages/dashboard";
+@use "pages/convert";
+@use "pages/mods";
+@use "pages/entities";
+@use "pages/galaxy";
+@use "pages/translation";
+@use "pages/studio";
+@use "pages/system";
+@use "pages/vault";
+@use "pages/pipeline";
+@use "pages/swarm";
+@use "pages/network";

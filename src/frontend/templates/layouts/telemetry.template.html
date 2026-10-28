@@ -1,0 +1,145 @@
+      <!-- ==========================================================================
+           TELEMETRÍA GLOBAL DE LA APLICACIÓN (CARRUSEL FLEXBOX / GRID)
+           ========================================================================== -->
+      <section class="reagle-metric-container-wrapper">
+        <div class="reagle-telemetry-carousel-header">
+          <div class="telemetry-carousel-title">
+            <span>[ Control de Vista / Scroll Lateral ]</span>
+          </div>
+          <div class="telemetry-carousel-controls">
+            <button class="btn-reagle btn-icon-only" id="btn-global-telemetry-prev" data-action="global-telemetry:scroll-left" title="Desplazar a la izquierda">◄</button>
+            <button class="btn-reagle btn-icon-only" id="btn-global-telemetry-next" data-action="global-telemetry:scroll-right" title="Desplazar a la derecha">►</button>
+          </div>
+        </div>
+
+        <div class="reagle-metric-card-container" id="global-telemetry-carousel">
+          <!-- Tarjeta Principal Dinámica -->
+          <div class="reagle-metric-card">
+            <div class="metric-card-top-row">
+              <span class="metric-title-small" id="hero-metric-label">Cadenas Rebellion</span>
+              <span class="metric-badge-pill" id="hero-metric-badge">✓ 100% Real</span>
+            </div>
+            <div class="metric-value-row">
+              <span class="metric-huge-number" id="hero-metric-number">7.828</span>
+              <span class="metric-unit-text" id="hero-metric-unit">cadenas</span>
+            </div>
+            <div class="metric-footer-row">
+              <span id="hero-metric-subtext">Localizations/es/String/English.str</span>
+              <a class="metric-report-link" id="hero-metric-link" data-tab="tab-translation">Ver Cadenas →</a>
+            </div>
+          </div>
+
+          <!-- Tarjeta 1: Token Guard -->
+          <div class="reagle-metric-card mini-neu-card" title="Token Guard &amp; Variables">
+            <div class="metric-card-top-row">
+              <span class="metric-title-small">🛡️ Token Guard</span>
+              <span class="metric-badge-pill success">Seguro</span>
+            </div>
+            <div class="metric-value-row">
+              <span class="metric-huge-number">0 Errores</span>
+            </div>
+            <div class="metric-footer-row">
+              <span class="metric-footer-text">Format: %s | {0} | \n</span>
+            </div>
+          </div>
+
+          <!-- Tarjeta 2: Codificación BOM -->
+          <div class="reagle-metric-card mini-neu-card" title="Codificación y BOM Canónico">
+            <div class="metric-card-top-row">
+              <span class="metric-title-small">📑 Codificación</span>
+              <span class="metric-badge-pill success">BOM Certificado</span>
+            </div>
+            <div class="metric-value-row">
+              <span class="metric-huge-number">UTF-8 BOM</span>
+            </div>
+            <div class="metric-footer-row">
+              <span class="metric-footer-text">CRLF Windows (0xEF...)</span>
+            </div>
+          </div>
+
+          <!-- Tarjeta 3: Latencia Regex -->
+          <div class="reagle-metric-card mini-neu-card" title="Rendimiento de Inyección Regex">
+            <div class="metric-card-top-row">
+              <span class="metric-title-small">⚡ Latencia Regex</span>
+              <span class="metric-badge-pill success">Óptimo</span>
+            </div>
+            <div class="metric-value-row">
+              <span class="metric-huge-number value--blue">2.4 ms</span>
+            </div>
+            <div class="metric-footer-row">
+              <span class="metric-footer-text">7,828 ops/sec en memoria</span>
+            </div>
+          </div>
+
+          <!-- Tarjeta 4: Glosario Oficial -->
+          <div class="reagle-metric-card mini-neu-card" title="Cumplimiento de Glosario">
+            <div class="metric-card-top-row">
+              <span class="metric-title-small">📚 Glosario Oficial</span>
+              <span class="metric-badge-pill indigo">14 Protegidos</span>
+            </div>
+            <div class="metric-value-row">
+              <span class="metric-huge-number value--success">98.2%</span>
+            </div>
+            <div class="metric-footer-row">
+              <span class="metric-footer-text">Facciones OK (TEC, Vasari)</span>
+            </div>
+          </div>
+
+          <!-- Tarjeta 5: Conflictos de Mods -->
+          <div class="reagle-metric-card mini-neu-card" title="Control de Conflictos de Mods">
+            <div class="metric-card-top-row">
+              <span class="metric-title-small">⚙️ Conflictos Mods</span>
+              <span class="metric-badge-pill neutral">LAA Compatible</span>
+            </div>
+            <div class="metric-value-row">
+              <span class="metric-huge-number">0 Conflictos</span>
+            </div>
+            <div class="metric-footer-row">
+              <span class="metric-footer-text">Prioridad Base &gt; Mod</span>
+            </div>
+          </div>
+
+          <!-- Mini Métrica: Memoria 32-bit -->
+          <div class="reagle-metric-card mini-neu-card" data-tab="tab-mods" title="Inspeccionar Presupuesto de Memoria LAA">
+            <div class="metric-card-top-row">
+              <span class="metric-title-small">Memoria 32-bit</span>
+              <span class="metric-badge-pill" id="mini-metric-ram-badge">LAA Seguro</span>
+            </div>
+            <div class="metric-value-row">
+              <span class="metric-huge-number" id="mini-metric-ram">1.400 MB</span>
+            </div>
+            <div class="metric-footer-row">
+              <span class="metric-footer-text success" id="mini-metric-ram-desc">1.850 MB libre</span>
+            </div>
+          </div>
+
+          <!-- Mini Métrica: Mods Activos -->
+          <div class="reagle-metric-card mini-neu-card" data-tab="tab-mods" title="Gestionar Cascada VFS">
+            <div class="metric-card-top-row">
+              <span class="metric-title-small">Mods Activos</span>
+              <span class="metric-badge-pill neutral" id="mini-metric-mods-badge">0 Activos</span>
+            </div>
+            <div class="metric-value-row">
+              <span class="metric-huge-number" id="mini-metric-mods">0 Mods</span>
+            </div>
+            <div class="metric-footer-row">
+              <span class="metric-footer-text muted" id="mini-metric-mod-top">Vanilla</span>
+            </div>
+          </div>
+
+          <!-- Mini Métrica: Entidades -->
+          <div class="reagle-metric-card mini-neu-card" data-tab="tab-entities" title="Catálogo de Entidades del Juego">
+            <div class="metric-card-top-row">
+              <span class="metric-title-small">Entidades GameInfo</span>
+              <span class="metric-badge-pill" id="mini-metric-entities-badge">Vanilla</span>
+            </div>
+            <div class="metric-value-row">
+              <span class="metric-huge-number" id="mini-metric-entities">1.872</span>
+            </div>
+            <div class="metric-footer-row">
+              <span class="metric-footer-text muted" id="mini-metric-entities-desc">GameInfo VFS</span>
+            </div>
+          </div>
+
+        </div>
+      </section>

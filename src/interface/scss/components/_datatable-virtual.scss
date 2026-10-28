@@ -1,0 +1,171 @@
+// ==============================================================================
+// VIRTUAL GRID / DATATABLE STYLES
+// Migrado desde: public/assets/css/datatable-virtual.css
+// ==============================================================================
+@use "../abstracts/variables" as *;
+
+.virtual-grid-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  max-height: 100%;
+  background: var(--neu-card-bg);
+  box-shadow: inset 3px 3px 7px #b8bdc7, inset -3px -3px 7px #ffffff;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  min-width: 0;
+  width: 100%;
+  position: relative;
+}
+
+.grid-header {
+  display: grid;
+  grid-template-columns: minmax(140px, 1.2fr) minmax(150px, 1.5fr) minmax(150px, 1.5fr) 95px 52px;
+  background: #cfd4db;
+  padding: 10px 16px;
+  font-weight: 800;
+  font-size: 0.70rem;
+  color: var(--text-secondary);
+  border-bottom: 1px solid rgba(160, 168, 180, 0.35);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  min-width: 0;
+  flex-shrink: 0;
+  z-index: 5;
+
+  > div {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+.virtual-viewport {
+  flex: 1;
+  min-height: 180px;
+  max-height: 480px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
+  background: transparent;
+}
+
+.virtual-runway {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  position: relative;
+}
+
+.virtual-row,
+.grid-row {
+  display: grid;
+  grid-template-columns: minmax(140px, 1.2fr) minmax(150px, 1.5fr) minmax(150px, 1.5fr) 95px 52px;
+  padding: 8px 16px;
+  min-height: 44px;
+  align-items: center;
+  border-bottom: 1px solid rgba(160, 168, 180, 0.15);
+  font-size: 0.78rem;
+  min-width: 0;
+  box-sizing: border-box;
+  width: 100%;
+  transition: background 0.12s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.45);
+  }
+
+  > div {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding-right: 8px;
+  }
+}
+
+.col-id,
+.col-key {
+  font-weight: 700;
+  color: var(--text-main);
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+}
+
+.col-text,
+.col-original,
+.col-translated {
+  color: var(--text-secondary);
+  font-size: 0.76rem;
+  line-height: 1.35;
+}
+
+.col-translated {
+  color: var(--text-blue);
+  font-weight: 500;
+}
+
+.col-status .metric-badge-pill {
+  font-size: 0.64rem;
+  padding: 2px 8px;
+}
+
+.token-pill {
+  background: #f1f5f9;
+  color: #475569;
+  font-size: 0.68rem;
+  padding: 2px 6px;
+  border-radius: 6px;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  border: 1px solid #cbd5e1;
+  display: inline-flex;
+  align-items: center;
+
+  &.token-var {
+    background: #ede9fe;
+    color: #6d28d9;
+    border-color: rgba(109, 40, 217, 0.25);
+  }
+
+  &.token-num {
+    background: #fef3c7;
+    color: #b45309;
+    border-color: rgba(180, 83, 9, 0.25);
+  }
+}
+
+.col-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn-icon-reagle {
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  background: var(--neu-card-bg);
+  box-shadow: 3px 3px 6px #bcc1cb, -3px -3px 6px #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+
+  &:hover {
+    color: var(--text-blue);
+    box-shadow: 4px 4px 8px #b4b9c3, -4px -4px 8px #ffffff;
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    box-shadow: inset 2px 2px 4px #b8bdc7, inset -2px -2px 4px #ffffff;
+    transform: translateY(1px);
+  }
+}

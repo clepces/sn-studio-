@@ -1,0 +1,183 @@
+      <!-- ======================================================================
+           VISTA 4: EDITOR E INSPECTOR DE ENTIDADES (MODERNIZADO - DATOS REALES)
+           ====================================================================== -->
+      <section id="tab-entities" class="view-panel">
+        <div class="entity-layout-grid">
+          <!-- Columna Izquierda: Catálogo de la Flota Espacial -->
+          <div class="reagle-card-panel entity-catalog-card">
+            <div class="entity-catalog-header">
+              <h3 class="entity-catalog-title">
+                🚀 Flota Espacial
+              </h3>
+              <span class="metric-badge-pill" id="entity-count-badge">5 Naves</span>
+            </div>
+
+            <!-- Búsqueda Rápida -->
+            <div class="reagle-search-inset entity-search-wrap">
+              <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              <input type="text" id="entity-search-input" aria-label="Buscar por nave o rol" placeholder="Buscar por nave o rol...">
+            </div>
+
+            <!-- Filtro de Facción -->
+            <div class="entity-faction-filter-bar">
+              <button class="entity-faction-btn active" data-faction="ALL">Todas</button>
+              <button class="entity-faction-btn" data-faction="TEC">TEC</button>
+              <button class="entity-faction-btn" data-faction="ADV">Advent</button>
+              <button class="entity-faction-btn" data-faction="VAS">Vasari</button>
+            </div>
+
+            <!-- Listado con Scroll -->
+            <div class="entity-catalog-column" id="entity-catalog-list"></div>
+          </div>
+
+          <!-- Columna Derecha: Inspector & Editor Táctico -->
+          <div class="reagle-card-panel entity-form-container" id="entity-editor-form-panel">
+            <!-- Encabezado de la Nave Seleccionada -->
+            <div class="entity-header-row">
+              <div class="entity-header-left">
+                <div class="entity-header-title-row">
+                  <h3 id="selected-entity-title" class="entity-title-main">Acorazado Kol (TEC)</h3>
+                  <span class="entity-faction-tag tag-tec" id="selected-entity-faction-tag">TEC</span>
+                  <span class="metric-badge-pill" id="selected-entity-badge">CANÓNICO 1.85</span>
+                </div>
+                <div id="selected-entity-role" class="entity-role-text">TEC Loyalists · Nave Insignia de Combate Pesado</div>
+                <div id="selected-entity-filepath" class="entity-filepath-text">GameInfo/CAPITALSHIP_TECHBATTLESHIP.entity</div>
+              </div>
+
+              <!-- Acciones Superiores -->
+              <div class="entity-header-actions">
+                <button class="btn-reagle" id="btn-reset-entity" title="Restablecer valores vanilla de fábrica">🔄 Vanilla</button>
+                <button class="btn-reagle btn-reagle-success" id="btn-save-entity-action">💾 Guardar Sandbox</button>
+              </div>
+            </div>
+
+            <!-- Aviso de Cheksum Multijugador -->
+            <div class="entity-checksum-alert">
+              <span>⚠️</span>
+              <div>
+                <strong>AVISO DE CHECKSUM:</strong> Modificar atributos altera el hash SHA-256 en partidas multijugador online. Válido para escaramuzas Sandbox y desarrollo de Mods.
+              </div>
+            </div>
+
+            <!-- Subpestañas del Editor Táctico -->
+            <div class="entity-subtab-bar">
+              <button class="entity-subtab-btn active" data-subtab="survival">🛡️ Supervivencia & Casco</button>
+              <button class="entity-subtab-btn" data-subtab="weapons">⚔️ Baterías de Armas</button>
+              <button class="entity-subtab-btn" data-subtab="abilities">✨ Habilidades Tácticas</button>
+              <button class="entity-subtab-btn" data-subtab="logistics">💰 Costes & Logística</button>
+            </div>
+
+            <!-- Panel 1: Supervivencia & Casco -->
+            <div class="entity-subtab-content active" id="subtab-panel-survival">
+              <div class="entity-param-grid">
+                <!-- Casco -->
+                <div class="entity-param-box">
+                  <div class="entity-param-label-row">
+                    <label for="entity-input-hull">Puntos de Casco (HullPoints)</label>
+                    <span class="entity-param-sub" id="lbl-hull-regen">Regen: 1.80 HP/s</span>
+                  </div>
+                  <input type="number" id="entity-input-hull" class="reagle-input entity-input-field">
+                  <div class="entity-param-sub entity-param-help">+144 HP por cada nivel de experiencia ganado</div>
+                </div>
+
+                <!-- Escudos -->
+                <div class="entity-param-box">
+                  <div class="entity-param-label-row">
+                    <label for="entity-input-shield">Puntos de Escudo (ShieldPoints)</label>
+                    <span class="entity-param-sub" id="lbl-shield-regen">Regen: 3.60 HP/s</span>
+                  </div>
+                  <input type="number" id="entity-input-shield" class="reagle-input entity-input-field">
+                  <div class="entity-param-sub entity-param-help">+162 Pts por nivel · Matriz reflectora integrada</div>
+                </div>
+
+                <!-- Blindaje -->
+                <div class="entity-param-box">
+                  <div class="entity-param-label-row">
+                    <label for="entity-input-armor">Blindaje Táctico (ArmorPoints)</label>
+                    <span class="entity-param-sub" id="lbl-armor-level">+0.54 / Nivel</span>
+                  </div>
+                  <input type="number" step="0.5" id="entity-input-armor" class="reagle-input entity-input-field">
+                  <div class="entity-param-sub entity-param-help">Tipo: CapitalShip · Mitigación límite: 65%</div>
+                </div>
+
+                <!-- Antimateria -->
+                <div class="entity-param-box">
+                  <div class="entity-param-label-row">
+                    <label for="entity-input-antimatter">Reserva Antimateria (AntiMatter)</label>
+                    <span class="entity-param-sub" id="lbl-antimatter-regen">Regen: 0.75 /s</span>
+                  </div>
+                  <input type="number" id="entity-input-antimatter" class="reagle-input entity-input-field">
+                  <div class="entity-param-sub entity-param-help">+20 AM por nivel · Alimenta habilidades activas</div>
+                </div>
+              </div>
+
+              <!-- Telemetría HUD de Supervivencia -->
+              <div class="entity-telemetry-hud entity-search-wrap">
+                <div class="entity-telemetry-hud-title">
+                  Telemetría de Supervivencia en Combate (EHP)
+                </div>
+                <div class="entity-telemetry-grid">
+                  <div class="entity-telemetry-metric">
+                    <span class="entity-metric-label">EHP Estimado</span>
+                    <span class="val value--blue" id="hud-calc-ehp">6.180 HP</span>
+                  </div>
+                  <div class="entity-telemetry-metric">
+                    <span class="entity-metric-label">Mitigación Pasiva</span>
+                    <span class="val value--success" id="hud-calc-mitigation">+23.1%</span>
+                  </div>
+                  <div class="entity-telemetry-metric">
+                    <span class="entity-metric-label">Ratio Escudo/Casco</span>
+                    <span class="val" id="hud-calc-ratio">0.42</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Panel 2: Armamento & Baterías -->
+            <div class="entity-subtab-content" id="subtab-panel-weapons">
+              <div class="entity-weapons-grid" id="entity-weapons-container"></div>
+            </div>
+
+            <!-- Panel 3: Habilidades Tácticas -->
+            <div class="entity-subtab-content" id="subtab-panel-abilities">
+              <div class="entity-abilities-grid" id="entity-abilities-container"></div>
+            </div>
+
+            <!-- Panel 4: Costes & Logística -->
+            <div class="entity-subtab-content" id="subtab-panel-logistics">
+              <div class="entity-costs-grid">
+                <div class="entity-cost-item">
+                  <div class="entity-cost-label entity-cost-label--credits">🪙 CRÉDITOS</div>
+                  <div class="cost-num cost-num--credits" id="cost-credits">3.000</div>
+                  <div class="entity-cost-desc">Coste de Adquisición</div>
+                </div>
+                <div class="entity-cost-item">
+                  <div class="entity-cost-label entity-cost-label--metal">🔩 METAL</div>
+                  <div class="cost-num cost-num--metal" id="cost-metal">400</div>
+                  <div class="entity-cost-desc">Lingotes Aleados</div>
+                </div>
+                <div class="entity-cost-item">
+                  <div class="entity-cost-label entity-cost-label--crystal">💎 CRISTAL</div>
+                  <div class="cost-num cost-num--crystal" id="cost-crystal">250</div>
+                  <div class="entity-cost-desc">Cristal Refinado</div>
+                </div>
+                <div class="entity-cost-item">
+                  <div class="entity-cost-label entity-cost-label--buildtime">⏱️ TIEMPO ENSAMBLAJE</div>
+                  <div class="cost-num cost-num--buildtime" id="cost-buildtime">75 seg</div>
+                  <div class="entity-cost-desc">En Astillero Orbital</div>
+                </div>
+                <div class="entity-cost-item">
+                  <div class="entity-cost-label entity-cost-label--supply">⚓ SUMINISTRO FLOTA</div>
+                  <div class="cost-num cost-num--supply" id="cost-supply">50 Pts</div>
+                  <div class="entity-cost-desc">Fleet Supply SlotCount</div>
+                </div>
+                <div class="entity-cost-item">
+                  <div class="entity-cost-label entity-cost-label--research">🔬 INVESTIGACIÓN</div>
+                  <div class="cost-num cost-num--research">Nivel 0</div>
+                  <div class="entity-cost-desc">Nave Inicial Disponible</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>

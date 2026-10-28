@@ -1,0 +1,19 @@
+// ==============================================================================
+// SOLARIS NEXUS STUDIO - SASS 7-1: LAYOUT / WINDOW
+// Ventana Principal (.reagle-window)
+// ==============================================================================
+
+.reagle-window {
+  flex: 1;
+  height: calc(100vh - 16px);
+  max-height: calc(100vh - 16px);
+  background: var(--neu-window-bg);
+  box-shadow: var(--neu-shadow-canvas);
+  border-radius: 24px;
+  display: flex;
+  overflow: hidden;
+  border: 1px solid var(--neu-border-subtle);
+  position: relative;
+  min-width: 0;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}

@@ -1,0 +1,11 @@
+node_modules/
+vendor/
+dist/
+build/
+storage/
+public/assets/js/bundle.js
+public/assets/css/main-theme.css
+public/assets/js/modules/
+composer.lock
+package-lock.json
+.git/

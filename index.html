@@ -1,0 +1,2281 @@
+<!DOCTYPE html>
+<html lang="es" data-mode="light" data-theme="base">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Solaris Nexus Studio</title>
+  <meta name="description" content="Enterprise mod creation, localization, entity inspection, and galaxy topologist studio for Sins of a Solar Empire." />
+  <meta property="og:title" content="Solaris Nexus Studio" />
+  <meta property="og:description" content="Enterprise mod creation, localization, entity inspection, and galaxy topologist studio for Sins of a Solar Empire." />
+  <script>
+    (function() {
+      try {
+        const mode = localStorage.getItem('solaris_color_mode') || 'light';
+        const theme = localStorage.getItem('solaris_surface_theme') || 'base';
+        document.documentElement.setAttribute('data-mode', mode);
+        document.documentElement.setAttribute('data-theme', theme);
+      } catch (e) {}
+    })();
+  </script>
+  <link rel="stylesheet" href="assets/css/main-theme.css?v=0.4.1">
+</head>
+<body>
+  <!-- DOCK DE ESTADO INFERIOR -->
+    <!-- ==========================================================================
+       1. DOCK LATERAL FLOTANTE (ESTILO CÁPSULA REAGLE)
+       ========================================================================== -->
+  <aside class="reagle-dock-column">
+    <div class="dock-top-capsule">
+      <div class="dock-inner-dark-pill">
+        <!-- Logo Asterisco / Clepces Core -->
+        <button class="dock-btn" id="dock-core-btn" title="Clepces Core Engine" data-tab="tab-dashboard">
+          <svg viewBox="0 0 24 24"><line x1="12" y1="2" x2="12" y2="22"></line><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line><line x1="2" y1="12" x2="22" y2="12"></line><line x1="4.93" y1="19.07" x2="19.07" y2="4.93"></line></svg>
+        </button>
+
+        <!-- 1. Dashboard (Métricas Globales) -->
+        <button class="dock-btn active" data-tab="tab-dashboard" title="Dashboard - Métricas Globales">
+          <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+        </button>
+
+        <!-- 2. Solaris Studio Suite (Herramientas del Juego) -->
+        <button class="dock-btn" id="dock-btn-studio" data-tab="tab-translation" title="Solaris Studio Suite (Herramientas)">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"></rect><rect x="14" y="3" width="7" height="7" rx="1.5"></rect><rect x="14" y="14" width="7" height="7" rx="1.5"></rect><rect x="3" y="14" width="7" height="7" rx="1.5"></rect></svg>
+        </button>
+
+        <!-- 3. Red Galáctica & Workshop (Distribución Remota) -->
+        <button class="dock-btn" data-tab="tab-network" title="Red Galáctica &amp; Workshop (En Desarrollo)">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+        </button>
+
+        <!-- 4. Pipeline Gráfico & Shaders (Capas de Assets) -->
+        <button class="dock-btn" data-tab="tab-pipeline" title="Pipeline de Shaders &amp; Texturas (En Desarrollo)">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+        </button>
+
+        <!-- 5. Swarm Event Bus & Sincronización P2P -->
+        <button class="dock-btn" data-tab="tab-swarm" title="Swarm Bus &amp; Sincronización P2P (En Desarrollo)">
+          <svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
+        </button>
+
+        <!-- 6. Bóveda de Resguardos & Empaquetador Canónico -->
+        <button class="dock-btn" data-tab="tab-vault" title="Bóveda de Resguardos (.bak) &amp; Archivo (En Desarrollo)">
+          <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+        </button>
+      </div>
+
+      <!-- Texto vertical rotado -->
+      <span class="dock-vertical-label">SOLARIS 2026 NAV</span>
+    </div>
+
+    <!-- Cápsula inferior independiente para Configuración -->
+    <div class="dock-bottom-capsule">
+      <span class="dock-bottom-label">REAGLE SETTINGS</span>
+      <button class="dock-settings-btn" data-tab="tab-system" title="Configuración &amp; Diagnóstico de Sistema">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+      </button>
+    </div>
+  </aside>
+
+
+  <div class="reagle-window">
+    <!-- MENÚ LATERAL UNIFICADO -->
+        <!-- ==========================================================================
+         2. SUB-SIDEBAR DE NAVEGACIÓN Y EXPLORADOR VFS / LOCAL
+         ========================================================================== -->
+    <nav class="reagle-sidebar">
+      <!-- Semáforo Mac-like superior -->
+      <div class="sidebar-top-bar">
+        <div class="traffic-dots-group">
+          <div class="traffic-dot dot-red"></div>
+          <div class="traffic-dot dot-yellow"></div>
+          <div class="traffic-dot dot-green"></div>
+        </div>
+        <button class="window-view-icon" id="btn-toggle-sidebar" title="Colapsar panel lateral" type="button" aria-label="Toggle Sidebar"></button>
+      </div>
+
+      <!-- Perfil de Usuario Corporativo -->
+      <div class="user-profile-row">
+        <div class="user-avatar-circle">CN</div>
+        <div class="user-info">
+          <div class="user-title-wrap">
+            <span class="user-name-text">Clepces org. ltd</span>
+            <span class="user-dropdown-arrow">▼</span>
+          </div>
+          <span class="user-subtext">solaris.nexus@clepces.com</span>
+        </div>
+      </div>
+
+      <!-- Sección: Core Workspace (Plataforma Principal) -->
+      <div class="sidebar-section-title">Core Workspace</div>
+      <div class="sidebar-items-list">
+
+        <!-- Dashboard -->
+        <button class="sidebar-nav-item active" data-tab="tab-dashboard">
+          <div class="sidebar-nav-left">
+            <svg viewBox="0 0 24 24"><line x1="6" y1="3" x2="6" y2="15"></line><circle cx="18" cy="6" r="3"></circle><circle cx="6" cy="18" r="3"></circle><path d="M18 9a9 9 0 0 1-9 9"></path></svg>
+            <span>Dashboard</span>
+          </div>
+          <span class="sidebar-pill-badge" id="sidebar-count-dashboard">7.828</span>
+        </button>
+
+        <!-- Studio Edition (Insignia Master) -->
+        <button class="sidebar-nav-item" data-tab="tab-studio">
+          <div class="sidebar-nav-left">
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+            <span>Studio Edition</span>
+          </div>
+          <span class="sidebar-pill-badge sidebar-pill-badge--primary">PRO</span>
+        </button>
+      </div>
+
+      <!-- Sección: Vistas Especializadas (Legacy) -->
+      <div class="sidebar-section-title">Vistas Especializadas</div>
+      <div class="sidebar-items-list">
+        <!-- Estudio de Traducción (.str) -->
+        <button class="sidebar-nav-item" data-tab="tab-translation">
+          <div class="sidebar-nav-left">
+            <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+            <span>Traducción (.str)</span>
+          </div>
+          <span class="sidebar-pill-badge" id="sidebar-count-strings">7.828</span>
+        </button>
+
+        <!-- Library (VFS Mods) -->
+        <button class="sidebar-nav-item" data-tab="tab-mods">
+          <div class="sidebar-nav-left">
+            <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+            <span>Library (VFS Mods)</span>
+          </div>
+          <span class="sidebar-pill-badge" id="sidebar-count-mods">0</span>
+        </button>
+
+        <!-- Shared Entities -->
+        <button class="sidebar-nav-item" data-tab="tab-entities">
+          <div class="sidebar-nav-left">
+            <svg viewBox="0 0 24 24"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path><polyline points="16 6 12 2 8 6"></polyline><line x1="12" y1="2" x2="12" y2="15"></line></svg>
+            <span>Shared Entities</span>
+          </div>
+          <span class="sidebar-pill-badge" id="sidebar-count-entities">1.872</span>
+        </button>
+
+        <!-- Galaxy Forge -->
+        <button class="sidebar-nav-item" data-tab="tab-galaxy">
+          <div class="sidebar-nav-left">
+            <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 1 10 10c0 5.52-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2z"></path></svg>
+            <span>Galaxy Forge</span>
+          </div>
+          <span class="sidebar-pill-badge" id="sidebar-count-galaxy">126</span>
+        </button>
+
+        <!-- ConvertData CLI -->
+        <button class="sidebar-nav-item" data-tab="tab-convert">
+          <div class="sidebar-nav-left">
+            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            <span>ConvertData CLI</span>
+          </div>
+          <span class="sidebar-pill-badge">BIN</span>
+        </button>
+      </div>
+
+      <!-- Sección: Status -->
+      <div class="sidebar-section-title">Status</div>
+      <div class="sidebar-items-list">
+
+        <button class="sidebar-nav-item" data-tab="tab-system">
+          <div class="sidebar-nav-left">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="3"></circle></svg>
+            <span>System Health</span>
+          </div>
+          <span class="sidebar-pill-badge">OK</span>
+        </button>
+
+      </div>
+
+      <!-- Sección: History (Conectada a Bóveda & Diálogos Contextuales) -->
+      <div class="sidebar-section-title">History</div>
+      <div class="sidebar-items-list">
+
+        <div class="sidebar-nav-item u-cursor-pointer" id="btn-sidebar-recent" title="Ver archivos modificados recientemente">
+          <div class="sidebar-nav-left">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            <span>Recently Edited</span>
+          </div>
+          <span class="sidebar-pill-badge">HIST</span>
+        </div>
+
+
+
+      </div>
+
+      <!-- Sección: Data -->
+      <div class="sidebar-section-title">Data</div>
+      <div class="sidebar-items-list">
+
+        <button class="sidebar-nav-item" data-tab="tab-vault" title="Abrir Bóveda de Resguardos .bak">
+          <div class="sidebar-nav-left">
+            <svg viewBox="0 0 24 24"><path d="M21 8v13H3V8"></path><path d="M1 3h22v5H1z"></path><line x1="10" y1="12" x2="14" y2="12"></line></svg>
+            <span>Archive (.bak)</span>
+          </div>
+          <span class="sidebar-pill-badge sidebar-pill-badge--success">VAULT</span>
+        </button>
+        
+      </div>
+
+
+      <!-- ======================================================================
+           EXPLORADOR REAL DE RUTAS Y ARCHIVOS (VFS & JUEGO LOCAL)
+           ====================================================================== -->
+      <div class="sidebar-section-title">
+        <span>Explorador VFS &amp; Local</span>
+        <span class="section-add-btn" id="btn-sidebar-scan-vfs" title="Re-escanear Directorios">+</span>
+      </div>
+
+      <div class="reagle-search-inset">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <input type="text" id="vfs-tree-search-input" aria-label="Buscar mod o archivo" placeholder="Buscar mod o archivo...">
+      </div>
+
+      <!-- Árbol Jerárquico con Despliegue Suave y Selección Determinista -->
+      <div class="folder-tree" id="sidebar-real-vfs-tree">
+        <!-- Rama 1: Carpeta de Mods VFS (Colapsable) -->
+        <div class="tree-node tree-folder-toggle active" data-folder="mods" title="Directorio de mods de Rebellion">
+          <div class="tree-node-left">
+            <span class="tree-caret">▼</span>
+            <svg viewBox="0 0 24 24"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+            <span>Mods-Rebellion v1.85</span>
+          </div>
+          <span class="sidebar-pill-badge" id="tree-badge-mods-count">0</span>
+        </div>
+
+        <div class="tree-sub-group" id="tree-group-mods">
+          <div class="tree-node tree-file-item" data-file-type="txt" data-target="EnabledMods.txt" title="Lista de mods habilitados (0 activos)">
+            <div class="tree-node-left">
+              <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+              <span>EnabledMods.txt</span>
+            </div>
+            <span class="sidebar-pill-badge sidebar-pill-badge--muted">0 ACT</span>
+          </div>
+        </div>
+
+        <!-- Rama 2: Carpeta de Instalación Local Vanilla (Colapsable) -->
+        <div class="tree-node tree-folder-toggle active" data-folder="vanilla" title="Archivos del juego base y localización">
+          <div class="tree-node-left">
+            <span class="tree-caret">▼</span>
+            <svg viewBox="0 0 24 24"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+            <span>Sins Rebellion (Vanilla)</span>
+          </div>
+          <span class="sidebar-pill-badge sidebar-pill-badge--success">INSTALADO</span>
+        </div>
+
+        <div class="tree-sub-group" id="tree-group-vanilla">
+          <div class="tree-node tree-file-item" data-file-type="str" data-target="English.str" title="Localización Española (7.828 cadenas)">
+            <div class="tree-node-left">
+              <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+              <span>Localizations/es/English.str</span>
+            </div>
+            <span class="sidebar-pill-badge">7.828</span>
+          </div>
+
+          <div class="tree-node tree-file-item" data-file-type="entity" data-target="Kol Battleship" title="Catálogo de 1.872 entidades GameInfo">
+            <div class="tree-node-left">
+              <svg viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline></svg>
+              <span>GameInfo (*.entity)</span>
+            </div>
+            <span class="sidebar-pill-badge">1.872</span>
+          </div>
+
+          <div class="tree-node tree-file-item" data-file-type="galaxy" data-target="Galaxy Maps" title="126 mapas de galaxias oficiales">
+            <div class="tree-node-left">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+              <span>Galaxy (*.galaxy)</span>
+            </div>
+            <span class="sidebar-pill-badge">126</span>
+          </div>
+        </div>
+
+        <!-- Panel Informativo de Inspección del Árbol (Sin saltos de vista desordenados) -->
+        <div id="tree-selection-inspector" class="tree-selection-inspector">
+          <div><strong>Elemento:</strong> <span id="tree-sel-name" class="tree-sel-name">-</span></div>
+          <div class="tree-sel-meta">
+            <span id="tree-sel-type" class="tree-sel-type">-</span>
+            <button class="btn-reagle btn-tree-open" id="btn-tree-open-target">Abrir en Módulo →</button>
+          </div>
+        </div>
+
+      </div>
+    </nav>
+
+
+    <!-- ESPACIO DE TRABAJO PRINCIPAL -->
+    <main class="reagle-workspace">
+      <!-- CABECERA UNIVERSAL -->
+            <!-- ==========================================================================
+           3. ENCABEZADO CONTEXTUAL Y TELEMETRÍA (ESTILO GOOGLE AI STUDIO)
+           ========================================================================== -->
+      <header class="reagle-header">
+        <div class="header-left-wrap">
+          <button class="btn-restore-sidebar" id="btn-restore-sidebar" title="Expandir menú lateral" type="button" aria-label="Expand Sidebar">
+            <svg viewBox="0 0 24 24"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+          </button>
+          <div class="header-title-box">
+            <h1 id="view-main-title">Dashboard</h1>
+            <p id="view-main-subtitle">Entorno y telemetría en tiempo real del juego</p>
+          </div>
+        </div>
+        <div class="header-actions-group" id="header-actions-container">
+          <!-- Botones contextuales inyectados dinámicamente con SVGs -->
+        </div>
+      </header>
+
+      <!-- FILA DE MÉTRICAS GLOBALES (ESTILO GOOGLE AI STUDIO) -->
+      <section class="reagle-metric-card-container">
+        <!-- Tarjeta Principal Dinámica -->
+        <div class="reagle-metric-card">
+          <div class="metric-card-top-row">
+            <span class="metric-title-small" id="hero-metric-label">Cadenas Rebellion</span>
+            <span class="metric-badge-pill" id="hero-metric-badge">✓ 100% Real</span>
+          </div>
+          <div class="metric-value-row">
+            <span class="metric-huge-number" id="hero-metric-number">7.828</span>
+            <span class="metric-unit-text" id="hero-metric-unit">cadenas</span>
+          </div>
+          <div class="metric-footer-row">
+            <span id="hero-metric-subtext">Localizations/es/String/English.str</span>
+            <a class="metric-report-link" id="hero-metric-link" data-tab="tab-translation">Ver Cadenas →</a>
+          </div>
+        </div>
+
+        <!-- Fila de Mini Métricas Secundarias (Conectadas al Estado Real) -->
+        <div class="secondary-metrics-row" id="secondary-metrics-row">
+          <div class="mini-neu-card" data-tab="tab-mods" title="Inspeccionar Presupuesto de Memoria LAA">
+            <div class="metric-card-top-row">
+              <span class="mini-card-label">Memoria 32-bit</span>
+              <span class="metric-badge-pill" id="mini-metric-ram-badge">LAA Seguro</span>
+            </div>
+            <div class="metric-value-row">
+              <span class="mini-card-value" id="mini-metric-ram">1.400 MB</span>
+            </div>
+            <div class="metric-footer-row">
+              <span class="metric-footer-text success" id="mini-metric-ram-desc">1.850 MB margen libre</span>
+            </div>
+          </div>
+
+          <div class="mini-neu-card" data-tab="tab-mods" title="Gestionar Cascada VFS">
+            <div class="metric-card-top-row">
+              <span class="mini-card-label">Mods Activos</span>
+              <span class="metric-badge-pill neutral" id="mini-metric-mods-badge">0 Activos</span>
+            </div>
+            <div class="metric-value-row">
+              <span class="mini-card-value" id="mini-metric-mods">0 Mods</span>
+            </div>
+            <div class="metric-footer-row">
+              <span class="metric-footer-text muted" id="mini-metric-mod-top">Vanilla (Sin mods)</span>
+            </div>
+          </div>
+
+          <div class="mini-neu-card" data-tab="tab-entities" title="Catálogo de Entidades del Juego">
+            <div class="metric-card-top-row">
+              <span class="mini-card-label">Entidades GameInfo</span>
+              <span class="metric-badge-pill" id="mini-metric-entities-badge">Vanilla</span>
+            </div>
+            <div class="metric-value-row">
+              <span class="mini-card-value" id="mini-metric-entities">1.872</span>
+            </div>
+            <div class="metric-footer-row">
+              <span class="metric-footer-text muted" id="mini-metric-entities-desc">Directorio GameInfo</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- VISTAS DE LA APLICACIÓN -->
+      
+      <!-- ======================================================================
+           VISTA 0: DASHBOARD / EXECUTIONS (ESTUDIO CENTRAL REAGLE)
+           ====================================================================== -->
+      <section id="tab-dashboard" class="view-panel active">
+        <!-- Fila de Tabs de Ejecuciones y Búsqueda Global -->
+        <div class="reagle-tabs-row">
+
+          <div class="tabs-heading-group">
+            <h2 class="section-subheading-title">Executions</h2>
+            <div class="tab-carousel-wrapper" id="dash-tabs-carousel">
+
+              <button class="tab-carousel-nav-btn prev" 
+                data-carousel-nav="prev" 
+                aria-label="Desplazar a la izquierda" 
+                title="Ver pestañas anteriores" type="button">
+                <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>
+              </button>
+
+              <div class="tab-carousel-scroll reagle-segmented-tabs">
+                <button class="tab-link-btn active" data-dash-tab="workflows" type="button">
+                  <svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h7"/></svg>
+                  <span>Workflows</span>
+                </button>
+                <button class="tab-link-btn" data-dash-tab="permissions" type="button">
+                  <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                  <span>Permissions</span>
+                </button>
+                <button class="tab-link-btn" data-dash-tab="executions" type="button">
+                  <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                  <span>Executions (<span id="dash-exec-count">0</span>)</span>
+                </button>
+              </div>
+
+              <button class="tab-carousel-nav-btn next" data-carousel-nav="next" aria-label="Desplazar a la derecha" title="Ver más pestañas" type="button">
+                <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              </button>
+              
+            </div>
+          </div>
+
+          <div class="reagle-search-bar">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <input type="text" id="dashboard-search-input" aria-label="Buscar flujo o registro" placeholder="Buscar flujo o registro...">
+          </div>
+
+        </div>
+
+        <!-- Matriz de Tareas y Workflows con Paneles Conmutables -->
+        <div class="reagle-card-panel dash-workflow-panel">
+          <!-- 1. PANE WORKFLOWS -->
+          <div id="pane-dash-workflows" class="dash-pane active">
+            <div class="dash-grid-header">
+              <div>WORKFLOW / TAREA</div>
+              <div>ESTADO CANÓNICO</div>
+              <div>ACCIÓN</div>
+            </div>
+
+            <div class="dash-pane-empty"></div>
+
+            <div class="dash-task-list">
+
+              <!-- Tarea 1: Traducción -->
+              <div class="workflow-task-item">
+                <div class="workflow-col-main">
+                  <div class="task-icon-circle task-icon-circle--str">STR</div>
+                  <div class="main-text">
+                    <div class="main-title">Diccionario de Traducción Rebellion</div>
+                    <div class="main-desc">Localizations/es/String/English.str (UTF-8 BOM)</div>
+                  </div>
+                </div>
+                <div class="workflow-col-badge">
+                  <span class="metric-badge-pill" id="dash-str-badge">7.828 Cadenas (0 Errores)</span>
+                </div>
+                <div class="workflow-col-action">
+                  <button class="btn-row-action" data-tab="tab-translation" type="button">Abrir Editor .str →</button>
+                </div>
+              </div>
+
+              <!-- Tarea 2: VFS Mods -->
+              <div class="workflow-task-item">
+                <div class="workflow-col-main">
+                  <div class="task-icon-circle task-icon-circle--vfs">VFS</div>
+                  <div class="main-text">
+                    <div class="main-title">Gestor de Mods y Prioridades VFS</div>
+                    <div class="main-desc">EnabledMods.txt (Directorio Mods-Rebellion v1.85)</div>
+                  </div>
+                </div>
+                <div class="workflow-col-badge">
+                  <span class="metric-badge-pill neutral" id="dash-vfs-badge">0 Mods Activos (Vanilla)</span>
+                </div>
+                <div class="workflow-col-action">
+                  <button class="btn-row-action" data-tab="tab-mods" type="button">Gestionar Mods →</button>
+                </div>
+              </div>
+
+              <!-- Tarea 3: ConvertData CLI -->
+              <div class="workflow-task-item">
+                <div class="workflow-col-main">
+                  <div class="task-icon-circle task-icon-circle--bin">BIN</div>
+                  <div class="main-text">
+                    <div class="main-title">ConvertData CLI Native Engine</div>
+                    <div class="main-desc">Conversor bidireccional binario DirectX / texto plano</div>
+                  </div>
+                </div>
+                <div class="workflow-col-badge">
+                  <span class="metric-badge-pill">DirectX 9 OK</span>
+                </div>
+                <div class="workflow-col-action">
+                  <button class="btn-row-action" data-tab="tab-convert" type="button">Conversor CLI →</button>
+                </div>
+              </div>
+
+              <!-- Tarea 4: GameInfo Entities -->
+              <div class="workflow-task-item">
+                <div class="workflow-col-main">
+                  <div class="task-icon-circle task-icon-circle--ent">ENT</div>
+                  <div class="main-text">
+                    <div class="main-title">Catálogo de Flota GameInfo</div>
+                    <div class="main-desc">Archivos .entity oficiales de Rebellion</div>
+                  </div>
+                </div>
+                <div class="workflow-col-badge">
+                  <span class="metric-badge-pill" id="dash-wf-entities-badge">1.872 Archivos .entity</span>
+                </div>
+                <div class="workflow-col-action">
+                  <button class="btn-row-action" data-tab="tab-entities" type="button">Explorar Flota →</button>
+                </div>
+              </div>
+
+              <!-- Tarea 5: Galaxy Forge -->
+              <div class="workflow-task-item">
+                <div class="workflow-col-main">
+                  <div class="task-icon-circle task-icon-circle--gal">GAL</div>
+                  <div class="main-text">
+                    <div class="main-title">Galaxy Forge Companion</div>
+                    <div class="main-desc">Modelador de topologías estelares y grafos conexos</div>
+                  </div>
+                </div>
+                <div class="workflow-col-badge">
+                  <span class="metric-badge-pill" id="dash-wf-galaxy-badge">126 Mapas Conexos</span>
+                </div>
+                <div class="workflow-col-action">
+                  <button class="btn-row-action" data-tab="tab-galaxy" type="button">Ver Mapas →</button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- 2. PANE PERMISSIONS (DINÁMICO Y VERIFICADO FÍSICAMENTE) -->
+          <div id="pane-dash-permissions" class="dash-pane">
+            <div class="dash-grid-header">
+              <div>RECURSO / SUBSISTEMA</div>
+              <div>PERMISOS DISCO</div>
+              <div>ESTADO</div>
+            </div>
+            <div class="dash-pane-empty"></div>
+            <div id="dash-permissions-list" class="dash-task-list">
+              <!-- Renderizado dinámico desde /api/system/permissions -->
+            </div>
+          </div>
+
+          <!-- 3. PANE EXECUTIONS (HISTORIAL PERSISTIDO EN SQLITE + LOCALSTORAGE) -->
+          <div id="pane-dash-executions" class="dash-pane">
+            <div class="dash-grid-header">
+              <div>REGISTRO DE EJECUCIÓN</div>
+              <div>FECHA / HORA</div>
+              <div>RESULTADO</div>
+            </div>
+            <div id="dash-executions-empty" class="dash-pane-empty"></div>
+            <div id="dash-executions-list" class="dash-task-list">
+              <!-- Renderizado reactivo persistido -->
+            </div>
+            <div id="dash-executions-pagination"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================================================
+           VISTA MASTER: STUDIO EDITION (WORKSPACE INTEGRADO)
+           ====================================================================== -->
+      <section id="tab-studio" class="view-panel">
+        <!-- Barra de Herramientas Superior del Studio -->
+        <div class="reagle-tabs-row studio-toolbar">
+          <div class="tabs-heading-group studio-heading-group">
+            <div class="studio-title-wrap">
+              <h2 class="section-subheading-title">Studio Edition</h2>
+              <span class="metric-badge-pill studio-badge-pro">
+                UNIFIED WORKSPACE
+              </span>
+            </div>
+            <div class="reagle-segmented-tabs">
+              <button class="tab-link-btn active" data-studio-mode="str">Diccionario (.str)</button>
+              <button class="tab-link-btn" data-studio-mode="entities">Entidades (.entity)</button>
+              <button class="tab-link-btn" data-studio-mode="galaxy">Galaxias (.galaxy)</button>
+            </div>
+          </div>
+
+          <div class="studio-actions-wrap">
+            <button class="btn-row-action" data-tab="tab-translation" title="Abrir vista completa de traducción">
+              <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+              <span>Vista Extendida</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Banner Informativo del Studio -->
+        <div class="studio-banner">
+          <div>
+            <h3 class="studio-banner-title">
+              Entorno Unificado de Ingeniería Inversa y Modding
+            </h3>
+            <p class="studio-banner-desc">
+              Edición en tiempo real con aislamiento de memoria virtual (LAA) y sincronización atómica de manifiestos.
+            </p>
+          </div>
+          <div class="studio-banner-metrics">
+            <div>
+              <span class="studio-metric-label">MODS ACTIVOS</span>
+              <strong class="studio-metric-val" id="studio-active-mods-count">1 Mod</strong>
+            </div>
+            <div>
+              <span class="studio-metric-label">PRESUPUESTO RAM</span>
+              <strong class="studio-metric-val studio-metric-val--safe">SEGURO (1.8 GB)</strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contenedores Dinámicos del Studio -->
+        <div id="studio-mode-str" class="studio-mode-panel active">
+          <div class="reagle-card-panel studio-card">
+            <div class="studio-card-header">
+              <h4 class="studio-card-title">Vista Rápida: Cadenas Léxicas Recientes</h4>
+              <button class="btn-row-action" data-tab="tab-translation">Abrir Editor Completo →</button>
+            </div>
+            <div class="studio-card-info">
+              Diccionario activo: <code>Localizations/es/String/English.str</code> · 7.828 cadenas protegidas por Token Guard.
+            </div>
+          </div>
+        </div>
+
+        <div id="studio-mode-entities" class="studio-mode-panel">
+          <div class="reagle-card-panel studio-card">
+            <div class="studio-card-header">
+              <h4 class="studio-card-title">Vista Rápida: Entidades de Flota y Estructuras</h4>
+              <button class="btn-row-action" data-tab="tab-entities">Abrir Inspector de Entidades →</button>
+            </div>
+            <div class="studio-card-info">
+              Base de datos <code>GameInfo/</code> · 1.872 entidades indexadas · Validación de bancos de armas contra mallas .mesh.
+            </div>
+          </div>
+        </div>
+
+        <div id="studio-mode-galaxy" class="studio-mode-panel">
+          <div class="reagle-card-panel studio-card">
+            <div class="studio-card-header">
+              <h4 class="studio-card-title">Vista Rápida: Topología Galáctica</h4>
+              <button class="btn-row-action" data-tab="tab-galaxy">Abrir Galaxy Forge →</button>
+            </div>
+            <div class="studio-card-info">
+              Mapas estelares <code>Galaxy/</code> · 126 escenarios disponibles · Generador topológico procedural.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================================================
+           VISTA 1: ESTUDIO DE TRADUCCIÓN (.STR) - ARQUITECTURA MODULAR
+           Workspace | Editor en Vivo | Telemetría | Memoria Cruzada | Mods | Agents
+           ====================================================================== -->
+      <section id="tab-translation" class="view-panel">
+        <!-- 1. Barra de Subpestañas del Editor STR y Navegación Contextual Live -->
+                <!-- Subpestañas del Editor STR (Modo Normal vs Modo Contextual Editor Live) -->
+        <div class="str-subtab-bar" id="str-subtab-bar">
+
+          <!-- Modo 1: Navegación General (Visible por defecto) -->
+          <div class="str-nav-normal-group" id="str-nav-normal-group">
+            <div class="tab-carousel-wrapper" id="dash-tabs-carousel">
+
+              <button class="tab-carousel-nav-btn prev" 
+                data-carousel-nav="prev" 
+                aria-label="Desplazar a la izquierda" 
+                title="Ver pestañas anteriores" type="button">
+                <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>
+              </button>
+
+              <div class="tab-carousel-scroll reagle-segmented-tabs">
+
+                <button class="str-subtab-btn active" data-subtab="subtab-str-workspace" id="subtab-btn-workspace">
+                  <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+                  <span>Workspace</span>
+                </button>
+
+                <button class="str-subtab-btn" data-subtab="subtab-str-telemetry" id="subtab-btn-telemetry">
+                  <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                  <span>Telemetría</span>
+                </button>
+                <button class="str-subtab-btn" data-subtab="subtab-str-expansion" id="subtab-btn-expansion">
+                  <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                  <span>Memoria Cruzada</span>
+                </button>
+                <button class="str-subtab-btn" data-subtab="subtab-str-galaxy" id="subtab-btn-galaxy">
+                  <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                  <span>Galacia</span>
+                  <span class="metric-badge-pill str-badge-beta">En Desarrollo</span>
+                </button>
+                <button class="str-subtab-btn" data-subtab="subtab-str-mod" id="subtab-btn-mod">
+                  <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                  <span>Mods</span>
+                  <span class="metric-badge-pill str-badge-beta">beta</span>
+                </button>
+                <button class="str-subtab-btn" data-subtab="subtab-str-agents" id="subtab-btn-agents">
+                  <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                  <span>Agents</span>
+                  <span class="metric-badge-pill str-badge-beta">Experimentales</span>
+                </button>
+
+              </div>
+
+              <button class="tab-carousel-nav-btn next" 
+                data-carousel-nav="next" 
+                aria-label="Desplazar a la derecha" 
+                title="Ver más pestañas" type="button">
+                <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              </button>
+
+            </div>
+          </div>
+
+          <!-- Modo 2: Navegación Contextual del Editor en Vivo (Se activa solo al editar un archivo) -->
+          <div class="str-nav-contextual-group" id="str-nav-contextual-group">
+            
+            <div class="str-ctx-left">
+
+              <button class="btn-reagle btn-reagle-back" id="btn-str-exit-live" data-action="exit-live-editor" title="Salir del editor en vivo y volver al Workspace">
+                <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                <span>Salir</span>
+              </button>
+
+              <div class="str-breadcrumb-pill">
+
+                <button class="breadcrumb-crumb" data-action="exit-live-editor" title="Regresar al Workspace">
+                  <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+                  <span>Workspace</span>
+                </button>
+
+                <span class="breadcrumb-sep">|</span>
+
+                <div class="breadcrumb-active" title="Archivo activo en edición">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line>
+                  </svg>
+                  <span class="active-badge">Live:</span>
+                  <strong id="live-nav-mod-name" class="crumb-mod">Sins Base</strong>
+                  <span class="crumb-divider">|</span>
+                  <span id="live-nav-file-name" class="crumb-file">English.str</span>
+                </div>
+
+              </div>
+
+            </div>
+
+            <div class="str-ctx-actions">
+              <button class="btn-reagle btn-live-tool" id="btn-live-auto-propagate" data-action="live:auto-propagate" title="Autocompletar cadenas usando la Memoria de Traducción (TM)">
+                🧠 Auto-Propagar
+              </button>
+              <button class="btn-reagle btn-reagle-success" id="btn-live-export" data-action="live:export-str" title="Exportar diccionario canónico listo para el juego">
+                💾 Exportar <span class="export-accent">.str</span>
+              </button>
+              <button class="btn-reagle btn-live-settings" id="btn-live-settings" data-action="live:open-settings" title="Ajustes y metadatos del proyecto .str">
+                ⚙️ Ajustes
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+
+        <!-- 2. Subpestaña: Workspace (Escritorio de Gestión, Proyectos y Diccionarios) -->
+                <!-- ====================================================================
+             1. SUBPESTAÑA: WORKSPACE (ESCRITORIO DE GESTIÓN Y CARGA)
+             ==================================================================== -->
+        <div class="str-subtab-pane active" id="subtab-str-workspace">
+          <!-- Hero de Bienvenida y Acciones Rápidas -->
+          <div class="str-workspace-hero">
+            <div class="str-workspace-greeting">
+              <div class="title">
+                <span>📚 Escritorio de Localización Léxica (.str)</span>
+                <span class="metric-badge-pill" id="workspace-db-badge">SQLite3 Conectada</span>
+              </div>
+              <p class="desc">
+                Carga, gestiona y audita múltiples archivos de traducción de <em>Sins of a Solar Empire</em>. Cada archivo cuenta con supervisión de variables Token Guard y sincronización con la base de datos local.
+              </p>
+            </div>
+            <div class="str-workspace-actions">
+              <button class="btn-reagle btn-reagle-primary" id="btn-workspace-new-str" data-action="workspace:new-str">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+                <span>Nuevo .str</span>
+              </button>
+              <button class="btn-reagle" id="btn-workspace-upload" data-action="workspace:upload">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M9 16h6v-6h4l-7-7-7 7h4zm-4 2h14v2H5z"/></svg>
+                <span>Importar Archivo</span>
+              </button>
+              <button class="btn-reagle" id="btn-workspace-refresh" data-action="workspace:refresh">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M17.65 6.35A7.958 7.958 0 0 0 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0 1 12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg>
+                <span>Actualizar</span>
+              </button>
+              <input type="file" id="file-input-str" accept=".str,.txt" class="str-file-input-hidden">
+            </div>
+          </div>
+
+          <!-- Distribución Dual Responsiva: Proyectos Registrados (Izq) vs. Archivos Físicos (Der) -->
+          <div class="str-workspace-dual-layout">
+            <!-- Columna Principal: Proyectos .str Activos en SQLite -->
+            <div class="str-workspace-col-main">
+              <div class="reagle-card-panel str-section-card">
+                <div class="str-section-header">
+                  <div>
+                    <h3 class="str-section-title">Proyectos de Traducción Registrados</h3>
+                    <p class="str-section-desc">Archivos persistidos en la base de datos SQLite relacional.</p>
+                  </div>
+                  <span class="metric-badge-pill" id="workspace-projects-count">0 Proyectos</span>
+                </div>
+
+                <div class="str-workspace-grid" id="str-projects-container">
+                  <!-- Renderizado dinámico desde /api/strings/workspace -->
+                  <div class="str-project-card">
+                    <div class="str-project-header">
+                      <div>
+                        <div class="name">Cargando proyectos reales...</div>
+                        <div class="path">Conectando con storage/database.sqlite</div>
+                      </div>
+                      <span class="metric-badge-pill">Verificando</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Columna Lateral: Diccionario .str Detectados (Categorizado) -->
+            <div class="str-workspace-col-side">
+              <div class="str-discovered-card">
+                <div class="str-section-header">
+                  <div>
+                    <h4 class="str-section-title">Diccionario .str</h4>
+                    <p class="str-section-desc">Exploración de diccionarios de instalación base, mods y fixtures.</p>
+                  </div>
+                  <span class="metric-badge-pill neutral" id="workspace-discovered-count">0 Diccionarios</span>
+                </div>
+
+                <!-- Barra de Navegación Segmentada Homogénea (Mismo diseño de pestañas) -->
+                <div class="reagle-segmented-tabs str-disc-segmented-tabs" id="str-disc-segmented-tabs">
+                  <button class="tab-link-btn str-disc-tab active" data-action="switch-disc-tab" data-disc-tab="base-langs" id="disc-tab-base">
+                    <span>🌐 Idiomas Base</span>
+                    <span class="disc-tab-count" id="disc-tab-base-count">0</span>
+                  </button>
+                  <button class="tab-link-btn str-disc-tab" data-action="switch-disc-tab" data-disc-tab="mods" id="disc-tab-mods">
+                    <span>🧩 Mods</span>
+                    <span class="disc-tab-count" id="disc-tab-mods-count">0</span>
+                  </button>
+                  <button class="tab-link-btn str-disc-tab" data-action="switch-disc-tab" data-disc-tab="tests" id="disc-tab-tests">
+                    <span>🧪 Test STR</span>
+                    <span class="disc-tab-count" id="disc-tab-tests-count">0</span>
+                  </button>
+                </div>
+
+                <div class="str-files-slot-container">
+                  <!-- Panel 1: Idiomas Base -->
+                  <div id="str-disc-pane-base-langs" class="str-disc-pane active">
+                    <div id="str-base-langs-list" class="str-files-list">
+                      <!-- Poblado dinámicamente con diseño de item unificado -->
+                    </div>
+                  </div>
+                  <!-- Panel 2: Diccionarios de Mods -->
+                  <div id="str-disc-pane-mods" class="str-disc-pane">
+                    <div id="str-mods-list" class="str-files-list">
+                      <!-- Poblado dinámicamente con diseño de item unificado -->
+                    </div>
+                  </div>
+                  <!-- Panel 3: Test STR Fixtures -->
+                  <div id="str-disc-pane-tests" class="str-disc-pane">
+                    <div id="str-test-fixtures-list" class="str-files-list">
+                      <!-- Poblado dinámicamente con diseño de item unificado -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Panel Guía y Reglas del Formato .str de Iron Engine -->
+          <div class="str-guide-panel">
+            <h3 class="str-guide-panel-title">
+              📖 Guía de Arquitectura Léxica IronEngine
+            </h3>
+            <p class="str-guide-panel-desc">
+              Estándares técnicos para prevenir cuelgues (CTD) en Sins of a Solar Empire: Rebellion:
+            </p>
+            <div class="str-guide-grid">
+              <div class="str-guide-card">
+                <h4>🔢 Cabecera NumStrings</h4>
+                <p>La primera línea debe ser exactamente <code>TXT</code> o <code>BIN</code> seguida de <code>NumStrings X</code>. Si este número no coincide con el total de cadenas parseadas, el motor abortará la carga.</p>
+              </div>
+              <div class="str-guide-card">
+                <h4>🛡️ Token Guard</h4>
+                <p>Las variables como <code>{0}</code>, <code>{1}</code>, <code>%s</code> o <code>[VALUE0]</code> son inyectadas en tiempo de ejecución por el ejecutable de 32 bits. Token Guard impide borrarlas o corromperlas.</p>
+              </div>
+              <div class="str-guide-card">
+                <h4>🔤 Codificación UTF-8 / UTF-16LE</h4>
+                <p>El juego requiere una cabecera Byte Order Mark (BOM) obligatoria para no desfasar los acentos y caracteres especiales del español.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- 3. Subpestaña: Editor en Vivo (Virtual Grid, Paginación y Token Guard) -->
+                <!-- ====================================================================
+             2. SUBPESTAÑA: EDITOR EN VIVO (LIVE EDITOR GRID)
+             ==================================================================== -->
+        <div class="str-subtab-pane" id="subtab-str-live">
+          <!-- Fila de Filtros y Búsqueda -->
+          <div class="reagle-tabs-row" id="translation-filter-row">
+            <div class="tabs-heading-group">
+              <div class="reagle-segmented-tabs">
+                <button class="tab-link-btn active" data-filter="all">Todas</button>
+                <button class="tab-link-btn" data-filter="untranslated">Pendientes</button>
+                <button class="tab-link-btn" data-filter="translated">Traducidas</button>
+                <button class="tab-link-btn" data-filter="tokens">Con Tokens</button>
+              </div>
+            </div>
+
+            <div class="reagle-search-bar">
+              <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              <input type="text" id="grid-search-input" aria-label="Buscar clave o texto" placeholder="Buscar por clave IDS_ o contenido...">
+            </div>
+          </div>
+
+          <!-- Contenedor Virtual Grid de Alto Rendimiento -->
+          <div class="virtual-grid-container">
+            <div class="grid-header">
+              <div>ID de Cadena (Clave)</div>
+              <div>Texto Original (EN)</div>
+              <div>Traducción Activa (ES)</div>
+              <div>Tokens</div>
+              <div class="str-grid-col-action">Acción</div>
+            </div>
+            <div class="virtual-viewport" id="virtual-viewport">
+              <div class="virtual-runway" id="virtual-runway"></div>
+            </div>
+
+            <!-- Barra de Paginación Reactiva Neumórfica -->
+            <div class="nexus-pagination-bar" id="str-grid-pagination">
+              <div class="nexus-pagination-info" id="str-pagination-info">
+                Cargando cadenas...
+              </div>
+              <div class="nexus-pagination-controls">
+                <button class="nexus-pagination-btn" id="btn-page-prev" data-action="page:prev" title="Página anterior">
+                  ‹ Anterior
+                </button>
+                <div class="nexus-pagination-pages" id="str-pagination-pages"></div>
+                <button class="nexus-pagination-btn" id="btn-page-next" data-action="page:next" title="Página siguiente">
+                  Siguiente ›
+                </button>
+                <div class="pagination-size-selector">
+                  <span class="pagination-size-label">Filas:</span>
+                  <select id="str-page-size-select" class="pagination-size-select">
+                    <option value="10">10</option>
+                    <option value="25" selected>25</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                    <option value="all">Todas</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="grid-footer-hud" id="grid-footer-hud">
+              <span id="hud-status-text">Cargando cadenas reales de SQLite...</span>
+              <span class="hud-badge">TOKEN GUARD PROTEGIDO</span>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- 4. Subpestaña: Telemetría e Integridad Léxica (Métricas Reales e Historial) -->
+                <!-- ====================================================================
+             3. SUBPESTAÑA: TELEMETRÍA (MÉTRICAS REALES E INTEGRIDAD LÉXICA)
+             ==================================================================== -->
+        <div class="str-subtab-pane" id="subtab-str-telemetry">
+          <div class="reagle-card-panel str-card-panel">
+            <div class="str-panel-header">
+              <div>
+                <h3 class="str-panel-title">Telemetría e Integridad Léxica</h3>
+                <p class="str-panel-desc">Monitoreo estricto de variables, estructura CRLF y cobertura de traducción.</p>
+              </div>
+              <button class="btn-reagle btn-reagle-primary" id="btn-telemetry-recheck" data-action="telemetry:recheck">
+                🔄 Re-auditar Diccionario
+              </button>
+            </div>
+
+            <div class="str-telemetry-grid">
+              <div class="str-telemetry-box">
+                <span class="label">NumStrings Canónico</span>
+                <span class="value" id="telemetry-total-strings">--</span>
+                <span class="desc" id="telemetry-numstrings-desc">Conteo certificado por StrParser</span>
+              </div>
+              <div class="str-telemetry-box">
+                <span class="label">Cobertura de Traducción</span>
+                <span class="value value--blue" id="telemetry-coverage-percent">--%</span>
+                <span class="desc" id="telemetry-coverage-desc">0 pendientes</span>
+              </div>
+              <div class="str-telemetry-box">
+                <span class="label">Token Guard</span>
+                <span class="value value--success" id="telemetry-tokens-count">100% Blindado</span>
+                <span class="desc" id="telemetry-tokens-desc">Variables dinámicas protegidas</span>
+              </div>
+              <div class="str-telemetry-box">
+                <span class="label">Formato &amp; Codificación</span>
+                <span class="value">UTF-8 BOM</span>
+                <span class="desc">CRLF Estándar Windows (0xEF 0xBB 0xBF)</span>
+              </div>
+              <div class="str-telemetry-box">
+                <span class="label">Hash de Integridad (SHA-256)</span>
+                <span class="value font-mono" id="telemetry-hash-val">Calculando...</span>
+                <span class="desc">Checksum criptográfico del archivo .str</span>
+              </div>
+              <div class="str-telemetry-box">
+                <span class="label">Uso de Heap en Memoria</span>
+                <span class="value value--blue" id="telemetry-heap-val">-- KB</span>
+                <span class="desc">Estructuras VFS en buffer activo</span>
+              </div>
+              <div class="str-telemetry-box str-telemetry-box--wide">
+                <span class="label">Desglose de Variables de Motor</span>
+                <span class="value value--sm" id="telemetry-tokens-breakdown">[VALUE]: -- | %s: -- | {0}: --</span>
+                <span class="desc">Distribución exacta de tokens detectados en cadenas originales</span>
+              </div>
+            </div>
+
+            <!-- Registro de Cambios y Auditoría de Guardado -->
+            <div class="str-telemetry-history-wrap">
+              <h4 class="str-telemetry-history-title">
+                📜 Historial de Cambios Recientes (Persistencia SQLite3)
+              </h4>
+              <div class="reagle-card-panel str-telemetry-history-card">
+                <div id="telemetry-change-history-list" class="str-telemetry-history-list">
+                  <div class="str-telemetry-empty-msg">No hay modificaciones pendientes en esta sesión.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- 5. Subpestaña: Memoria Cruzada (Banco Relacional TM y Búsqueda) -->
+                <!-- ====================================================================
+             4. SUBPESTAÑA: MEMORIA CRUZADA (BANCO RELACIONAL TM)
+             ==================================================================== -->
+        <div class="str-subtab-pane" id="subtab-str-expansion">
+          <div class="str-tm-card">
+            <div class="str-panel-header">
+              <div>
+                <h3 class="str-panel-title">
+                  🌐 Banco Relacional de Memoria de Traducción (TM)
+                </h3>
+                <p class="str-panel-desc">
+                  Reutilización inteligente de segmentos traducidos entre el juego base y diferentes mods.
+                </p>
+              </div>
+              <span class="metric-badge-pill" id="tm-total-segments-badge">SQLite3 TM Activa</span>
+            </div>
+
+            <!-- Métricas de la Memoria de Traducción -->
+            <div class="str-telemetry-grid str-telemetry-grid--tm">
+              <div class="str-telemetry-box">
+                <span class="label">Segmentos Memorizados</span>
+                <span class="value" id="tm-stat-segments">--</span>
+                <span class="desc">Entradas únicas con hash SHA-256</span>
+              </div>
+              <div class="str-telemetry-box">
+                <span class="label">Reutilizaciones Totales</span>
+                <span class="value value--blue" id="tm-stat-reuses">--</span>
+                <span class="desc">Veces que se autopropagaron</span>
+              </div>
+              <div class="str-telemetry-box">
+                <span class="label">Segmentos Verificados</span>
+                <span class="value value--success" id="tm-stat-verified">--</span>
+                <span class="desc">Revisados por control de calidad</span>
+              </div>
+            </div>
+
+            <!-- Buscador de Concordancias en la Memoria -->
+            <div class="str-tm-search-box">
+              <label for="tm-search-input" class="str-tm-search-label">
+                Buscar Concordancia en la Memoria (Fuzzy &amp; Exact):
+              </label>
+              <div class="str-tm-search-row">
+                <input type="text" id="tm-search-input" class="reagle-input str-tm-search-input" placeholder="Introduce una frase o término en inglés o español...">
+                <button class="btn-reagle btn-reagle-primary" id="btn-tm-search-action" data-action="tm:search">
+                  🔍 Buscar
+                </button>
+              </div>
+            </div>
+
+            <div id="tm-search-results" class="str-tm-results-list">
+              <!-- Se puebla con los resultados de la búsqueda -->
+            </div>
+          </div>
+        </div>
+
+
+        <!-- 6. Subpestaña: Mods Especializados -->
+                <!-- ====================================================================
+             5. SUBPESTAÑA: MODS ESPECIALIZADOS
+             ==================================================================== -->
+        <div class="str-subtab-pane" id="subtab-str-mod">
+          <div class="reagle-card-panel str-card-panel">
+
+            <div class="str-panel-header">
+              <div>
+                <h3 class="str-panel-title">⚡ Mods Especializados</h3>
+                <p class="str-panel-desc">Móds desarrollado con inteligencia asistida con estricta preservación léxica de variables y tokens.</p>
+              </div>
+              <span class="metric-badge-pill str-badge-warning">Fase Experimental</span>
+            </div>
+
+            <div class="str-agents-notice">
+              <span class="str-notice-icon">🛡️</span>
+              <div>
+                <strong>PROTOCOLO DE INTEGRIDAD IA:</strong> Todo mods creado por agente debe revisarce por bajo el supervisor <code>ModGuardService</code>. Se asegura de que no exista variables de sustitución <code>{0}</code>, <code>%s</code> o modificadores de color hexadecimal <code>[VALUE]</code> Erroneas.
+              </div>
+            </div>
+
+            <div class="str-agents-grid">
+              <div class="str-agent-card beta-agent">
+                <div class="str-agent-header">
+                  <span class="title">MODS COPILADOR GLOBAL DE IDIOMA</span>
+                  <span class="metric-badge-pill str-badge-beta">BETA</span>
+                </div>
+                <p class="str-agent-desc">
+                  Traducción TOTAL de todo los strings de idioma de cada mod existen en el directorio de instalacion de mod
+                  los mods se traduce de forma automatica si se agrega al directorio de forma intantanea esto es peligroso ya
+                  que genera gasto por IA los consumo de api esta bajo su supervicion
+                </p>
+                <div class="str-agent-footer">
+                  <span class="str-meta-text">Modelo: Transformer Mod Local / API</span>
+                  <button class="btn-reagle" data-action="agent:deepl-configure">Configurar Clave</button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+
+        <!-- 7. Subpestaña: Agentes & Traductores Neurales -->
+                <!-- ====================================================================
+             6. SUBPESTAÑA: AGENTS (MÓDULOS EXPERIMENTALES)
+             ==================================================================== -->
+        <div class="str-subtab-pane" id="subtab-str-agents">
+          <div class="reagle-card-panel str-card-panel">
+            <div class="str-panel-header">
+              <div>
+                <h3 class="str-panel-title">
+                  ⚡ Agentes Especializados &amp; Traductores Neurales
+                </h3>
+                <p class="str-panel-desc">
+                  Módulos de inteligencia asistida con estricta preservación léxica de variables y tokens.
+                </p>
+              </div>
+              <span class="metric-badge-pill str-badge-warning">Fase Experimental</span>
+            </div>
+
+            <!-- Aviso de Seguridad para Modelos de IA -->
+            <div class="str-agents-notice">
+              <span class="str-notice-icon">🛡️</span>
+              <div>
+                <strong>PROTOCOLO DE INTEGRIDAD IA:</strong> Todo agente o traductor neural debe operar bajo el wrapper de <code>TokenGuardService</code>. Queda prohibida la traducción literal de variables de sustitución <code>{0}</code>, <code>%s</code> o modificadores de color hexadecimal <code>[VALUE]</code>.
+              </div>
+            </div>
+
+            <!-- Grilla de Tarjetas de Agentes -->
+            <div class="str-agents-grid">
+
+              <!-- Agente 1: DeepL / Neural MT -->
+              <div class="str-agent-card beta-agent">
+                <div class="str-agent-header">
+                  <span class="title">DeepL &amp; Neural MT Asistido</span>
+                  <span class="metric-badge-pill str-badge-beta">BETA</span>
+                </div>
+                <p class="str-agent-desc">
+                  Traducción por lotes de cadenas en espera utilizando motores neuronales con máscara de tokens protegidos para prevenir distorsión sintáctica.
+                </p>
+                <div class="str-agent-footer">
+                  <span class="str-meta-text">Modelo: Transformer Local / API</span>
+                  <button class="btn-reagle" data-action="agent:deepl-configure">Configurar Clave</button>
+                </div>
+              </div>
+
+              <!-- Agente 2: Glosario Semántico JIT -->
+              <div class="str-agent-card">
+                <div class="str-agent-header">
+                  <span class="title">Glosario Semántico JIT IronEngine</span>
+                  <span class="metric-badge-pill neutral">SANDBOX</span>
+                </div>
+                <p class="str-agent-desc">
+                  Ontología canónica de términos del universo de Sins (TEC Loyalists, Advent Rebels, Vasari Exodus, Phase Missiles, antimateria).
+                </p>
+                <div class="str-agent-footer">
+                  <span class="str-meta-text">Glosario: 420 Términos</span>
+                  <button class="btn-reagle" data-action="agent:glossary-view">Explorar Glosario</button>
+                </div>
+              </div>
+
+              <!-- Agente 3: Exportador PO / GetText -->
+              <div class="str-agent-card">
+                <div class="str-agent-header">
+                  <span class="title">Exportador PO / GetText / Crowdin</span>
+                  <span class="metric-badge-pill str-badge-warning">EN DESARROLLO</span>
+                </div>
+                <p class="str-agent-desc">
+                  Conversor bidireccional entre el formato <code>.str</code> de Rebellion y el estándar industrial <code>.po</code> para traducción colaborativa en Weblate.
+                </p>
+                <div class="str-agent-footer">
+                  <span class="str-meta-text">Formato: GNU GetText</span>
+                  <button class="btn-reagle" data-action="agent:po-export">Próximamente</button>
+                </div>
+              </div>
+
+              <!-- Agente 4: Empaquetador Automático de Parche -->
+              <div class="str-agent-card">
+                <div class="str-agent-header">
+                  <span class="title">Agente Empaquetador de Minimod</span>
+                  <span class="metric-badge-pill str-badge-indigo">PRÓXIMAMENTE</span>
+                </div>
+                <p class="str-agent-desc">
+                  Inyecta automáticamente el diccionario traducido como Minimod P999 en <code>EnabledMods.txt</code> con respaldo atómico <code>.bak</code> sin tocar archivos base.
+                </p>
+                <div class="str-agent-footer">
+                  <span class="str-meta-text">Integración: VFS Pipeline</span>
+                  <button class="btn-reagle" data-action="agent:minimod-pack">Activar Flujo</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- Modales Específicos del Estudio de Traducción -->
+        <!-- ==========================================================================
+       MODALES ESPECÍFICOS DEL ESTUDIO DE TRADUCCIÓN (.STR)
+       ========================================================================== -->
+
+  <!-- MODAL: AJUSTES Y PROPIEDADES DEL PROYECTO .STR -->
+  <div class="modal-overlay" id="modal-str-project-settings">
+    <div class="modal-card modal-card--lg">
+      <div class="modal-card-header">
+        <h3 class="modal-card-title">⚙️ Ajustes y Propiedades del Proyecto .str</h3>
+        <button class="btn-icon-reagle modal-card-close" id="modal-settings-close" data-action="live:close-settings" title="Cerrar modal">&times;</button>
+      </div>
+
+      <div class="modal-card-body">
+        <div class="str-settings-grid">
+          <div class="str-settings-box">
+            <span class="str-settings-label">Proyecto / Mod</span>
+            <span class="str-settings-val str-settings-val--blue" id="modal-set-project-name">Sins Base</span>
+            <span class="str-settings-sub" id="modal-set-version-info">Versión: v1.85 Rebellion</span>
+          </div>
+          <div class="str-settings-box">
+            <span class="str-settings-label">Total Cadenas (NumStrings)</span>
+            <span class="str-settings-val" id="modal-set-total-strings">0</span>
+            <span class="str-settings-sub" id="modal-set-translated-summary">0 traducidas (0%)</span>
+          </div>
+          <div class="str-settings-box">
+            <span class="str-settings-label">Codificación &amp; Formato</span>
+            <span class="str-settings-val str-settings-val--mono">UTF-8 con BOM</span>
+            <span class="str-settings-sub">Salto de línea canónico CRLF (\r\n)</span>
+          </div>
+          <div class="str-settings-box">
+            <span class="str-settings-label">Token Guard Integrity</span>
+            <span class="str-settings-val str-settings-val--success" id="modal-set-token-status">100% Protegido</span>
+            <span class="str-settings-sub" id="modal-set-tokens-count">0 tokens detectados</span>
+          </div>
+        </div>
+
+        <div class="str-settings-details">
+          <div class="str-settings-detail-row">
+            <span class="detail-label">Ruta Canónica del Archivo:</span>
+            <span class="detail-val" id="modal-set-canonical-path">--</span>
+          </div>
+          <div class="str-settings-detail-row">
+            <span class="detail-label">Consumo Estimado de Memoria:</span>
+            <span class="detail-val" id="modal-set-ram-usage">--</span>
+          </div>
+          <div class="str-settings-detail-row">
+            <span class="detail-label">Firma de Integridad (SHA-256):</span>
+            <span class="str-settings-hash" id="modal-set-sha256" title="Hash SHA-256 de integridad">--</span>
+          </div>
+          <div class="str-settings-detail-row">
+            <span class="detail-label">Repositorio de Persistencia:</span>
+            <span class="detail-val">SQLite3 (tbl_projects &amp; tbl_string_entries)</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-card-footer">
+        <button class="btn-reagle btn-reagle-danger" id="btn-settings-delete-project" data-action="live:open-delete-modal" title="Eliminar este proyecto de la base de datos">
+          🗑️ Eliminar Proyecto
+        </button>
+        <div class="modal-card-btn-group">
+          <button class="btn-reagle" data-action="live:close-settings">Cerrar</button>
+          <button class="btn-reagle btn-reagle-primary" data-action="live:export-str" title="Exportar archivo .str compilado">
+            💾 Exportar .str
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: CREAR NUEVO PROYECTO .STR -->
+  <div class="modal-overlay" id="modal-str-create-project">
+    <div class="modal-card modal-card--lg">
+      <div class="modal-card-header">
+        <h3 class="modal-card-title">📄 Crear Nuevo Proyecto de Traducción .str</h3>
+        <button class="btn-icon-reagle modal-card-close" id="modal-create-close" data-action="create-str:cancel" title="Cerrar modal">&times;</button>
+      </div>
+
+      <div class="modal-card-body">
+        <div class="modal-form-grid">
+          <div class="modal-form-group modal-form-group--full">
+            <label for="create-str-name">Nombre del Proyecto / Mod:</label>
+            <input type="text" id="create-str-name" class="reagle-input" placeholder="Ej: Sins of a Solar Empire - Spanish Mod" required>
+          </div>
+
+          <div class="modal-form-group">
+            <label for="create-str-version">Versión del Motor / Juego:</label>
+            <input type="text" id="create-str-version" class="reagle-input" value="v1.85 Rebellion">
+          </div>
+
+          <div class="modal-form-group">
+            <label for="create-str-type">Tipo de Diccionario:</label>
+            <select id="create-str-type" class="reagle-input">
+              <option value="base">Idioma Base Vanilla (English.str)</option>
+              <option value="mod" selected>Mod VFS (.str en Mod/String)</option>
+              <option value="minimod">Minimod Parche P999</option>
+              <option value="empty">Diccionario Vacío Canónico</option>
+            </select>
+          </div>
+
+          <div class="modal-form-group modal-form-group--full">
+            <label for="create-str-path">Ruta Canónica del Archivo .str:</label>
+            <input type="text" id="create-str-path" class="reagle-input" value="Localizations/es/String/English.str" placeholder="Localizations/es/String/English.str">
+          </div>
+        </div>
+
+        <div class="str-settings-details str-settings-details--spaced">
+          <div class="str-settings-detail-row">
+            <span class="detail-label">Codificación Mandatoria:</span>
+            <span class="metric-badge-pill success">UTF-8 con BOM (\xEF\xBB\xBF)</span>
+          </div>
+          <div class="str-settings-detail-row">
+            <span class="detail-label">Terminación de Línea:</span>
+            <span class="metric-badge-pill">CRLF (\r\n) Canónico</span>
+          </div>
+          <div class="str-settings-detail-row">
+            <span class="detail-label">Integridad de Sintaxis:</span>
+            <span class="detail-val">Token Guard activo con validación en tiempo real</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-card-footer">
+        <button class="btn-reagle" data-action="create-str:cancel">Cancelar</button>
+        <button class="btn-reagle btn-reagle-primary" id="btn-create-str-submit" data-action="create-str:submit">
+          ✨ Crear Proyecto Canónico
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: CONFIRMACIÓN CRÍTICA DE ELIMINACIÓN DE PROYECTO .STR -->
+  <div class="modal-overlay" id="modal-str-delete-confirm">
+    <div class="modal-card modal-card--md">
+      <div class="modal-card-header">
+        <div class="modal-header-danger">
+          <span class="modal-danger-badge">CRÍTICO / SEGURIDAD VFS</span>
+          <h3 class="modal-card-title">⚠️ Eliminar Proyecto .str</h3>
+        </div>
+        <button class="btn-icon-reagle modal-card-close" id="modal-delete-close" data-action="delete:cancel" title="Cerrar modal">&times;</button>
+      </div>
+
+      <div class="modal-card-body">
+        <div class="modal-target-box">
+          <div>Proyecto Objetivo: <strong id="delete-target-name">--</strong></div>
+          <div>Identificador: <span id="delete-target-id" class="target-id-highlight">--</span></div>
+          <div>Ubicación: <code id="delete-target-path">--</code></div>
+        </div>
+
+        <p class="modal-delete-notice">
+          Selecciona el protocolo de eliminación. Por supervivencia del kernel y seguridad perimetral, los botones se habilitarán al finalizar el temporizador de confirmación.
+        </p>
+
+        <div class="modal-delete-options-grid">
+          <!-- Opción 1: Borrado Digital -->
+          <div class="modal-delete-opt-card modal-delete-opt-card--digital">
+            <div class="opt-header">
+              <span class="opt-title">🛡️ Borrado Digital (Base de Datos)</span>
+              <span class="metric-badge-pill badge-recommended">RECOMENDADO</span>
+            </div>
+            <p class="opt-desc">
+              Desvincula y elimina el proyecto y sus cadenas de SQLite3. El archivo físico <code>.str</code> permanece <strong>100% INTACTO</strong> en el disco para resguardo.
+            </p>
+            <div class="opt-actions">
+              <button class="btn-reagle btn-reagle-warning" id="btn-delete-digital" data-action="delete:digital" disabled>
+                ⏳ Espera (5s)...
+              </button>
+            </div>
+          </div>
+
+          <!-- Opción 2: Borrado Físico + Digital -->
+          <div class="modal-delete-opt-card modal-delete-opt-card--physical">
+            <div class="opt-header">
+              <span class="opt-title opt-title--danger">🔥 Borrado Físico + Digital</span>
+              <span class="modal-danger-badge">DESTRUCTIVO</span>
+            </div>
+            <p class="opt-desc">
+              Elimina los registros en SQLite3 y <strong>BORRA DEFINITIVAMENTE</strong> el archivo <code>.str</code> del disco. Acción irreversible.
+            </p>
+            <div class="opt-actions">
+              <button class="btn-reagle btn-reagle-danger" id="btn-delete-physical" data-action="delete:physical" disabled>
+                ⏳ Espera (5s)...
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-card-footer modal-card-footer--right">
+        <button class="btn-reagle" data-action="delete:cancel">Cancelar y Volver</button>
+      </div>
+    </div>
+  </div>
+
+
+      <!-- ======================================================================
+           VISTA 2: GESTOR DE MODS Y ORQUESTADOR VFS
+           ====================================================================== -->
+      <section id="tab-mods" class="view-panel">
+        <!-- Subpestañas Distribuidas del Gestor VFS (5 Tabs Ejecutivas) -->
+        <div class="mod-subtab-bar">
+          <button class="mod-subtab-btn active" data-subtab="subtab-mods-hierarchy">
+            <svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10"/></svg>
+            <span>Jerarquía</span>
+          </button>
+          <button class="mod-subtab-btn" data-subtab="subtab-mods-paths">
+            <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            <span>Rutas &amp; Detección</span>
+          </button>
+          <button class="mod-subtab-btn" data-subtab="subtab-mods-collisions">
+            <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-1 6h2v5h-2V7zm0 6h2v2h-2v-2z"/></svg>
+            <span>Colisiones VFS</span>
+          </button>
+          <button class="mod-subtab-btn" data-subtab="subtab-mods-injector">
+            <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            <span>Inyector Minimod</span>
+          </button>
+          <button class="mod-subtab-btn" data-subtab="subtab-mods-ram">
+            <svg viewBox="0 0 24 24"><path d="M6 2v6h.01L6 8.01 10 12l-4 4 .01.01H6V22h12v-5.99h-.01L18 16l-4-4 4-3.99-.01-.01H18V2H6z"/></svg>
+            <span>Monitor RAM LAA</span>
+          </button>
+        </div>
+
+        <!-- 1. SUBPESTAÑA: JERARQUÍA EN ENABLEDMODS.TXT -->
+        <div class="mod-subtab-pane active" id="subtab-mods-hierarchy">
+          <div class="reagle-card-panel mod-card-panel">
+            <div class="mod-card-header">
+              <div>
+                <h3 class="mod-card-title">Jerarquía Canónica en EnabledMods.txt</h3>
+                <p class="mod-card-desc">
+                  Orden secuencial de carga en la cascada virtualizada. Prioridad 999 se superpone en la cúspide sin alterar archivos base.
+                </p>
+              </div>
+              <div class="mod-btn-group">
+                <button class="btn-row-action" data-action="mod:scan" title="Escanear mods instalados">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M10 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"/></svg>
+                  Escanear Directorio
+                </button>
+                <button class="btn-row-action" data-action="mod:restore-vanilla" title="Restaurar a Vanilla oficial">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"/></svg>
+                  Restaurar Vanilla
+                </button>
+                <button class="btn-reagle-action btn-reagle-primary" data-action="mod:save-vfs" title="Guardar cambios con respaldo atómico .bak">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M17 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V7l-4-4zm-5 16c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm3-10H5V5h10v4z"/></svg>
+                  <span>Guardar VFS (.bak)</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Lista de mods o estado vacío canónico -->
+            <div id="mod-active-list" class="mod-active-list">
+              <!-- Inyectado dinámicamente -->
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. SUBPESTAÑA: DETECCIÓN DE RUTAS & DIRECTORIO PERSONALIZADO -->
+        <div class="mod-subtab-pane" id="subtab-mods-paths">
+          <!-- Tarjeta de Directorio Personalizado -->
+          <div class="reagle-card-panel mod-card-panel">
+            <div class="mod-card-header mod-card-header--top">
+              <div>
+                <h3 class="mod-card-title">Directorio Personalizado de Instalación del Juego</h3>
+                <p class="mod-card-desc">
+                  Define la ruta donde instalaste el juego fuera de plataformas convencionales (ej. <code>C:\Games\Sins of a Solar Empire Rebellion</code>).
+                </p>
+              </div>
+              <span class="metric-badge-pill" id="custom-path-badge">Directorio Local</span>
+            </div>
+
+            <div class="mod-input-row">
+              <input type="text" id="input-custom-game-path" aria-label="Introduce la ruta física del juego" class="reagle-input" value="C:\Games\Sins of a Solar Empire Rebellion" placeholder="Introduce la ruta física del juego...">
+              <button class="btn-reagle-action btn-reagle-primary" id="btn-validate-custom-path" data-action="mod:validate-custom-path">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg>
+                <span>Validar y Vincular Ruta</span>
+              </button>
+            </div>
+
+            <!-- Tarjeta de Resultados de Validación -->
+            <div id="custom-path-result-box" class="mod-validation-box">
+              <div class="mod-badge-row">
+                <span class="metric-badge-pill" id="res-badge-rw">✓ Permisos RW</span>
+                <span class="metric-badge-pill" id="res-badge-exe">✓ Rebellion.exe</span>
+                <span class="metric-badge-pill" id="res-badge-loc">✓ Localizations (es)</span>
+                <span class="metric-badge-pill neutral" id="res-badge-ent">1.872 .entity</span>
+              </div>
+              <span class="mod-status-text" id="custom-path-status-msg">Ruta canónica verificada en disco local.</span>
+            </div>
+          </div>
+
+          <!-- Tarjeta de Detección Multiplataforma Estándar -->
+          <div class="reagle-card-panel mod-card-panel">
+            <div class="mod-card-header">
+              <div>
+                <h3 class="mod-card-title">Detección Automática de Rutas de Mods (Steam / GOG / Stardock)</h3>
+                <p class="mod-card-desc">
+                  Escaneo automático de rutas estándar registradas en el perfil de usuario del sistema operativo.
+                </p>
+              </div>
+              <button class="btn-row-action" id="btn-scan-platforms" data-action="mod:detect-platforms">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M17.65 6.35A7.958 7.958 0 0 0 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0 1 12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg>
+                Re-escanear Plataformas
+              </button>
+            </div>
+            <div id="platform-detection-list" class="mod-platform-grid"></div>
+          </div>
+        </div>
+
+        <!-- 3. SUBPESTAÑA: AUDITORÍA DE COLISIONES VFS -->
+        <div class="mod-subtab-pane" id="subtab-mods-collisions">
+          <div class="reagle-card-panel mod-card-panel">
+            <div class="mod-card-header">
+              <div>
+                <h3 class="mod-card-title">Auditoría de Colisiones VFS (Archivos Compartidos)</h3>
+                <p class="mod-card-desc">
+                  Matriz de resolución de colisiones entre mods y el juego base. Supervisa qué mod prevalece en cada recurso.
+                </p>
+              </div>
+              <div class="mod-btn-group">
+                <button class="btn-row-action" data-action="mod:check-collisions">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                  Re-auditar Colisiones
+                </button>
+              </div>
+            </div>
+
+            <!-- Barra de Métricas de Colisión -->
+            <div class="mod-collision-metrics">
+              <div class="mod-collision-metric-box">
+                <div class="mod-collision-metric-label">Archivos Auditados</div>
+                <div class="mod-collision-metric-value">9.826</div>
+              </div>
+              <div class="mod-collision-metric-box">
+                <div class="mod-collision-metric-label">Sobrescrituras VFS</div>
+                <div class="mod-collision-metric-value primary" id="vfs-override-count">2 Activas</div>
+              </div>
+              <div class="mod-collision-metric-box">
+                <div class="mod-collision-metric-label">Conflictos Cíclicos</div>
+                <div class="mod-collision-metric-value success">0 (Limpio)</div>
+              </div>
+              <div class="mod-collision-metric-box">
+                <div class="mod-collision-metric-label">Estado de Cascada</div>
+                <div class="mod-collision-metric-value">P0 ➔ P999</div>
+              </div>
+            </div>
+
+            <!-- Lista de Colisiones Auditadas -->
+            <div id="vfs-conflicts-container" class="mod-collision-list">
+              <!-- Tarjeta de Colisión 1 -->
+              <div class="vfs-collision-card resolved">
+                <div class="mod-collision-row">
+                  <span class="mod-collision-file">Localizations/es/String/English.str</span>
+                  <span class="metric-badge-pill">✓ Override Canónico Seguro</span>
+                </div>
+                <div class="mod-collision-desc">
+                  Ganador VFS: <strong>[ES] Traducción Rebellion (P999)</strong> ➔ Prevalece sobre Vanilla Base (P0) (7.828 cadenas).
+                </div>
+              </div>
+
+              <!-- Tarjeta de Colisión 2 -->
+              <div class="vfs-collision-card resolved">
+                <div class="mod-collision-row">
+                  <span class="mod-collision-file">Window/main.brushes</span>
+                  <span class="metric-badge-pill neutral">Texturas en Caché</span>
+                </div>
+                <div class="mod-collision-desc">
+                  Ganador VFS: <strong>Sins Rebellion Vanilla (P0)</strong> ➔ Texturas DirectX 9 oficiales activas.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. SUBPESTAÑA: INYECTOR DE MINIMOD (P999) -->
+        <div class="mod-subtab-pane" id="subtab-mods-injector">
+          <div class="reagle-card-panel mod-card-panel">
+            <div class="mod-injector-header">
+              <h3 class="mod-card-title">Inyección Quirúrgica de Minimod (P999)</h3>
+              <span class="metric-badge-pill neutral" id="minimod-active-status-badge">○ STANDBY (Vanilla)</span>
+            </div>
+            <p class="mod-injector-desc">
+              Virtualiza un minimod en la cúspide de <code>EnabledMods.txt</code>. Permite traducir mods de gran escala (ej. Star Wars Interregnum, Sins Plus) prevaleciendo sin alterar sus carpetas.
+            </p>
+
+            <!-- Panel de Control del Minimod -->
+            <div class="minimod-status-panel" id="minimod-status-panel">
+              <div>
+                <div class="mod-minimod-title" id="minimod-current-title">Minimod: [ES] Idioma Español Rebellion</div>
+                <div class="mod-minimod-detail" id="minimod-current-desc">Prioridad asignada: P999 · Consumo estimado: 15 MB RAM</div>
+              </div>
+              <button class="btn-row-action" id="btn-toggle-minimod-p999" data-action="mod:toggle-minimod">
+                ⚡ Inyectar Minimod
+              </button>
+            </div>
+
+            <div class="mod-custom-name-group">
+              <label for="input-minimod-name" class="mod-custom-name-label">Nombre Personalizado del Minimod:</label>
+              <input type="text" id="input-minimod-name" class="reagle-input" value="Sins Rebellion Traduccion Espanol" placeholder="Nombre de mod...">
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. SUBPESTAÑA: MONITOR DE MEMORIA RAM LAA (32-BIT) -->
+        <div class="mod-subtab-pane" id="subtab-mods-ram">
+          <div class="reagle-card-panel mod-card-panel">
+            <div class="mod-injector-header">
+              <h3 class="mod-card-title">Presupuesto de Memoria LAA (Techo 3.250 MB)</h3>
+              <span class="metric-badge-pill" id="ram-margin-badge">1.850 MB Margen</span>
+            </div>
+            <p class="mod-injector-desc">
+              Supervisa el consumo acumulado de memoria RAM para evitar caídas MiniDump causadas por el límite de direccionamiento de 32 bits de Rebellion.
+            </p>
+
+            <div class="mod-ram-info">
+              <div class="mod-ram-row">
+                <span>Consumo Actual Estimado:</span>
+                <span id="ram-meter-text">0 MB / 3250 MB (0%)</span>
+              </div>
+              <div class="mod-ram-track">
+                <div class="mod-ram-fill" id="ram-meter-fill"></div>
+              </div>
+              <div id="ram-risk-badge" class="mod-ram-risk safe">
+                ESTADO: SEGURO (Bajo riesgo de desbordamiento de memoria de 32 bits)
+              </div>
+            </div>
+
+            <!-- Desglose por Subsistema -->
+            <div class="ram-breakdown-grid">
+              <div class="ram-subsystem-item">
+                <span>Texturas DirectX 9:</span>
+                <strong>520 MB</strong>
+              </div>
+              <div class="ram-subsystem-item">
+                <span>Entidades de Flota:</span>
+                <strong>480 MB</strong>
+              </div>
+              <div class="ram-subsystem-item">
+                <span>Partículas &amp; Audio:</span>
+                <strong>260 MB</strong>
+              </div>
+              <div class="ram-subsystem-item">
+                <span>Cadenas &amp; VFS:</span>
+                <strong>140 MB</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================================================
+           VISTA 3: DIAGNÓSTICO & SALUD DEL SISTEMA
+           ====================================================================== -->
+      <section id="tab-system" class="view-panel">
+        <div class="reagle-card-panel system-card-panel">
+          <div class="system-card-header">
+            <div>
+              <h3 class="system-card-title">Diagnóstico de Entorno y Protocolo UUID Safety</h3>
+              <p class="system-card-desc">
+                Auditoría fail-fast del servidor WAMP, módulos Apache, PHP 8.2 y blindaje de errores en producción.
+              </p>
+            </div>
+            <button class="btn-reagle btn-reagle-primary" data-action="system:run-audit">🔄 Actualizar Salud</button>
+          </div>
+          <div id="health-report-content"></div>
+        </div>
+      </section>
+
+      <!-- ======================================================================
+           VISTA 4: EDITOR E INSPECTOR DE ENTIDADES (MODERNIZADO - DATOS REALES)
+           ====================================================================== -->
+      <section id="tab-entities" class="view-panel">
+        <div class="entity-layout-grid">
+          <!-- Columna Izquierda: Catálogo de la Flota Espacial -->
+          <div class="reagle-card-panel entity-catalog-card">
+            <div class="entity-catalog-header">
+              <h3 class="entity-catalog-title">
+                🚀 Flota Espacial
+              </h3>
+              <span class="metric-badge-pill" id="entity-count-badge">5 Naves</span>
+            </div>
+
+            <!-- Búsqueda Rápida -->
+            <div class="reagle-search-inset entity-search-wrap">
+              <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              <input type="text" id="entity-search-input" aria-label="Buscar por nave o rol" placeholder="Buscar por nave o rol...">
+            </div>
+
+            <!-- Filtro de Facción -->
+            <div class="entity-faction-filter-bar">
+              <button class="entity-faction-btn active" data-faction="ALL">Todas</button>
+              <button class="entity-faction-btn" data-faction="TEC">TEC</button>
+              <button class="entity-faction-btn" data-faction="ADV">Advent</button>
+              <button class="entity-faction-btn" data-faction="VAS">Vasari</button>
+            </div>
+
+            <!-- Listado con Scroll -->
+            <div class="entity-catalog-column" id="entity-catalog-list"></div>
+          </div>
+
+          <!-- Columna Derecha: Inspector & Editor Táctico -->
+          <div class="reagle-card-panel entity-form-container" id="entity-editor-form-panel">
+            <!-- Encabezado de la Nave Seleccionada -->
+            <div class="entity-header-row">
+              <div class="entity-header-left">
+                <div class="entity-header-title-row">
+                  <h3 id="selected-entity-title" class="entity-title-main">Acorazado Kol (TEC)</h3>
+                  <span class="entity-faction-tag tag-tec" id="selected-entity-faction-tag">TEC</span>
+                  <span class="metric-badge-pill" id="selected-entity-badge">CANÓNICO 1.85</span>
+                </div>
+                <div id="selected-entity-role" class="entity-role-text">TEC Loyalists · Nave Insignia de Combate Pesado</div>
+                <div id="selected-entity-filepath" class="entity-filepath-text">GameInfo/CAPITALSHIP_TECHBATTLESHIP.entity</div>
+              </div>
+
+              <!-- Acciones Superiores -->
+              <div class="entity-header-actions">
+                <button class="btn-reagle" id="btn-reset-entity" title="Restablecer valores vanilla de fábrica">🔄 Vanilla</button>
+                <button class="btn-reagle btn-reagle-success" id="btn-save-entity-action">💾 Guardar Sandbox</button>
+              </div>
+            </div>
+
+            <!-- Aviso de Cheksum Multijugador -->
+            <div class="entity-checksum-alert">
+              <span>⚠️</span>
+              <div>
+                <strong>AVISO DE CHECKSUM:</strong> Modificar atributos altera el hash SHA-256 en partidas multijugador online. Válido para escaramuzas Sandbox y desarrollo de Mods.
+              </div>
+            </div>
+
+            <!-- Subpestañas del Editor Táctico -->
+            <div class="entity-subtab-bar">
+              <button class="entity-subtab-btn active" data-subtab="survival">🛡️ Supervivencia & Casco</button>
+              <button class="entity-subtab-btn" data-subtab="weapons">⚔️ Baterías de Armas</button>
+              <button class="entity-subtab-btn" data-subtab="abilities">✨ Habilidades Tácticas</button>
+              <button class="entity-subtab-btn" data-subtab="logistics">💰 Costes & Logística</button>
+            </div>
+
+            <!-- Panel 1: Supervivencia & Casco -->
+            <div class="entity-subtab-content active" id="subtab-panel-survival">
+              <div class="entity-param-grid">
+                <!-- Casco -->
+                <div class="entity-param-box">
+                  <div class="entity-param-label-row">
+                    <label for="entity-input-hull">Puntos de Casco (HullPoints)</label>
+                    <span class="entity-param-sub" id="lbl-hull-regen">Regen: 1.80 HP/s</span>
+                  </div>
+                  <input type="number" id="entity-input-hull" class="reagle-input entity-input-field">
+                  <div class="entity-param-sub entity-param-help">+144 HP por cada nivel de experiencia ganado</div>
+                </div>
+
+                <!-- Escudos -->
+                <div class="entity-param-box">
+                  <div class="entity-param-label-row">
+                    <label for="entity-input-shield">Puntos de Escudo (ShieldPoints)</label>
+                    <span class="entity-param-sub" id="lbl-shield-regen">Regen: 3.60 HP/s</span>
+                  </div>
+                  <input type="number" id="entity-input-shield" class="reagle-input entity-input-field">
+                  <div class="entity-param-sub entity-param-help">+162 Pts por nivel · Matriz reflectora integrada</div>
+                </div>
+
+                <!-- Blindaje -->
+                <div class="entity-param-box">
+                  <div class="entity-param-label-row">
+                    <label for="entity-input-armor">Blindaje Táctico (ArmorPoints)</label>
+                    <span class="entity-param-sub" id="lbl-armor-level">+0.54 / Nivel</span>
+                  </div>
+                  <input type="number" step="0.5" id="entity-input-armor" class="reagle-input entity-input-field">
+                  <div class="entity-param-sub entity-param-help">Tipo: CapitalShip · Mitigación límite: 65%</div>
+                </div>
+
+                <!-- Antimateria -->
+                <div class="entity-param-box">
+                  <div class="entity-param-label-row">
+                    <label for="entity-input-antimatter">Reserva Antimateria (AntiMatter)</label>
+                    <span class="entity-param-sub" id="lbl-antimatter-regen">Regen: 0.75 /s</span>
+                  </div>
+                  <input type="number" id="entity-input-antimatter" class="reagle-input entity-input-field">
+                  <div class="entity-param-sub entity-param-help">+20 AM por nivel · Alimenta habilidades activas</div>
+                </div>
+              </div>
+
+              <!-- Telemetría HUD de Supervivencia -->
+              <div class="entity-telemetry-hud entity-search-wrap">
+                <div class="entity-telemetry-hud-title">
+                  Telemetría de Supervivencia en Combate (EHP)
+                </div>
+                <div class="entity-telemetry-grid">
+                  <div class="entity-telemetry-metric">
+                    <span class="entity-metric-label">EHP Estimado</span>
+                    <span class="val value--blue" id="hud-calc-ehp">6.180 HP</span>
+                  </div>
+                  <div class="entity-telemetry-metric">
+                    <span class="entity-metric-label">Mitigación Pasiva</span>
+                    <span class="val value--success" id="hud-calc-mitigation">+23.1%</span>
+                  </div>
+                  <div class="entity-telemetry-metric">
+                    <span class="entity-metric-label">Ratio Escudo/Casco</span>
+                    <span class="val" id="hud-calc-ratio">0.42</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Panel 2: Armamento & Baterías -->
+            <div class="entity-subtab-content" id="subtab-panel-weapons">
+              <div class="entity-weapons-grid" id="entity-weapons-container"></div>
+            </div>
+
+            <!-- Panel 3: Habilidades Tácticas -->
+            <div class="entity-subtab-content" id="subtab-panel-abilities">
+              <div class="entity-abilities-grid" id="entity-abilities-container"></div>
+            </div>
+
+            <!-- Panel 4: Costes & Logística -->
+            <div class="entity-subtab-content" id="subtab-panel-logistics">
+              <div class="entity-costs-grid">
+                <div class="entity-cost-item">
+                  <div class="entity-cost-label entity-cost-label--credits">🪙 CRÉDITOS</div>
+                  <div class="cost-num cost-num--credits" id="cost-credits">3.000</div>
+                  <div class="entity-cost-desc">Coste de Adquisición</div>
+                </div>
+                <div class="entity-cost-item">
+                  <div class="entity-cost-label entity-cost-label--metal">🔩 METAL</div>
+                  <div class="cost-num cost-num--metal" id="cost-metal">400</div>
+                  <div class="entity-cost-desc">Lingotes Aleados</div>
+                </div>
+                <div class="entity-cost-item">
+                  <div class="entity-cost-label entity-cost-label--crystal">💎 CRISTAL</div>
+                  <div class="cost-num cost-num--crystal" id="cost-crystal">250</div>
+                  <div class="entity-cost-desc">Cristal Refinado</div>
+                </div>
+                <div class="entity-cost-item">
+                  <div class="entity-cost-label entity-cost-label--buildtime">⏱️ TIEMPO ENSAMBLAJE</div>
+                  <div class="cost-num cost-num--buildtime" id="cost-buildtime">75 seg</div>
+                  <div class="entity-cost-desc">En Astillero Orbital</div>
+                </div>
+                <div class="entity-cost-item">
+                  <div class="entity-cost-label entity-cost-label--supply">⚓ SUMINISTRO FLOTA</div>
+                  <div class="cost-num cost-num--supply" id="cost-supply">50 Pts</div>
+                  <div class="entity-cost-desc">Fleet Supply SlotCount</div>
+                </div>
+                <div class="entity-cost-item">
+                  <div class="entity-cost-label entity-cost-label--research">🔬 INVESTIGACIÓN</div>
+                  <div class="cost-num cost-num--research">Nivel 0</div>
+                  <div class="entity-cost-desc">Nave Inicial Disponible</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================================================
+           VISTA 5: GALAXY FORGE & TOPOLOGY VIEWER
+           ====================================================================== -->
+      <section id="tab-galaxy" class="view-panel">
+        <div class="galaxy-workspace-layout">
+          <!-- Lienzo Táctico -->
+          <div class="reagle-card-panel galaxy-panel-card">
+            <div class="galaxy-header">
+              <h3 class="galaxy-title">Lienzo Táctico de Topología Estelar</h3>
+              <div class="galaxy-btn-group">
+                <button class="btn-reagle" data-action="galaxy:generate" data-players="8">8P</button>
+                <button class="btn-reagle btn-reagle-primary" data-action="galaxy:generate" data-players="12">12P</button>
+                <button class="btn-reagle" data-action="galaxy:generate" data-players="16">16P</button>
+              </div>
+            </div>
+
+            <div class="galaxy-canvas-container">
+              <canvas id="galaxy-canvas" width="680" height="420"></canvas>
+            </div>
+
+            <!-- Leyenda Táctica -->
+            <div class="galaxy-legend">
+              <span><span class="galaxy-legend-dot galaxy-legend-dot--star"></span>Estrella</span>
+              <span><span class="galaxy-legend-dot galaxy-legend-dot--terran"></span>Terran</span>
+              <span><span class="galaxy-legend-dot galaxy-legend-dot--desert"></span>Desert</span>
+              <span><span class="galaxy-legend-dot galaxy-legend-dot--ice"></span>Ice</span>
+              <span><span class="galaxy-legend-dot galaxy-legend-dot--volcanic"></span>Volcanic</span>
+              <span><span class="galaxy-legend-dot galaxy-legend-dot--line"></span>Línea de Fase</span>
+            </div>
+          </div>
+
+          <!-- Inspector y Nodos -->
+          <div class="galaxy-sidebar-col">
+            <div class="reagle-card-panel galaxy-stats-card">
+              <div class="galaxy-scenario-name" id="galaxy-scenario-name">Solaris_Ring_12P</div>
+              <div class="galaxy-stats-grid">
+                <div>Estrellas: <strong id="galaxy-star-count" class="galaxy-stat-val">1</strong></div>
+                <div>Planetas: <strong id="galaxy-planet-count" class="galaxy-stat-val">12</strong></div>
+                <div>Líneas: <strong id="galaxy-lane-count" class="galaxy-stat-val">13</strong></div>
+              </div>
+              <div class="galaxy-badge-wrap">
+                <span class="metric-badge-pill" id="galaxy-connectivity-badge">● Grafo 100% Conexo (BFS OK)</span>
+              </div>
+            </div>
+
+            <div class="reagle-card-panel galaxy-inspector-card">
+              <div class="galaxy-section-subtitle">Inspector de Planeta Seleccionado</div>
+              <div id="galaxy-selected-info" class="galaxy-selected-info">
+                <em>Haz clic en un planeta del listado o lienzo para inspeccionarlo.</em>
+              </div>
+              <div class="galaxy-section-subtitle">Listado de Nodos</div>
+              <div class="galaxy-nodes-scroll" id="galaxy-nodes-list"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================================================
+           VISTA 6: CONVERTDATA CLI & ENGINE TOOLS
+           ====================================================================== -->
+      <section id="tab-convert" class="view-panel">
+        <div class="reagle-card-panel convert-card-wrapper">
+          <div class="convert-card-header">
+            <div>
+              <h3>ConvertData CLI - Pipeline DirectX ↔ Texto</h3>
+              <p>
+                Subproceso nativo ConvertData_Rebellion.exe con cálculo de integridad SHA-256.
+              </p>
+            </div>
+            <span class="metric-badge-pill" id="cli-status-badge">CLI NATIVO DISPONIBLE</span>
+          </div>
+
+          <div class="convert-form-body">
+            <!-- Selectores de Tipo y Dirección -->
+            <div class="convert-grid-selectors">
+              <div>
+                <label for="convert-resource-type" class="convert-label">Tipo de Recurso:</label>
+                <select id="convert-resource-type" class="reagle-input u-w-full">
+                  <option value="entity">Entidad (.entity)</option>
+                  <option value="mesh">Malla 3D (.mesh)</option>
+                  <option value="particle">Efecto Partícula (.particle)</option>
+                </select>
+              </div>
+
+              <div>
+                <label for="convert-direction" class="convert-label">Dirección:</label>
+                <select id="convert-direction" class="reagle-input u-w-full">
+                  <option value="bin_to_txt">Binario DirectX ➔ Texto Editable (TXT)</option>
+                  <option value="txt_to_bin">Texto Editable ➔ Binario DirectX (BIN)</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Entrada de Ruta de Archivo -->
+            <div>
+              <div class="convert-presets-row">
+                <label for="convert-file-path" class="convert-label">Ruta del Archivo Objetivo:</label>
+                <div class="convert-presets-list">
+                  <span>Presets:</span>
+                  <button type="button" class="btn-preset-link" data-action="set-input-value" data-target="#convert-file-path" data-value="C:/Games/Sins of a Solar Empire Rebellion/GameInfo/CAPITALSHIP_TECHBATTLESHIP.entity">Kol</button> |
+                  <button type="button" class="btn-preset-link" data-action="set-input-value" data-target="#convert-file-path" data-value="C:/Games/Sins of a Solar Empire Rebellion/GameInfo/CAPITALSHIP_TECHSUPPORT.entity">Dunov</button> |
+                  <button type="button" class="btn-preset-link" data-action="set-input-value" data-target="#convert-file-path" data-value="tests/fixtures/sample_demo.entity">Fixture</button>
+                </div>
+              </div>
+              <input type="text" id="convert-file-path" class="reagle-input convert-input-path" value="C:/Games/Sins of a Solar Empire Rebellion/GameInfo/CAPITALSHIP_TECHBATTLESHIP.entity">
+            </div>
+
+            <!-- Botón de Ejecución -->
+            <button class="btn-reagle btn-reagle-primary convert-btn-submit" id="btn-run-cli-main" type="button">
+              ⚡ Ejecutar Conversión Nativa
+            </button>
+
+            <!-- Terminal / Caja de Salida -->
+            <div id="convert-result-box" class="convert-result-box"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================================================
+           VISTA: RED GALÁCTICA & WORKSHOP (DOCK ITEM 3)
+           ====================================================================== -->
+      <section id="tab-network" class="view-panel">
+        <div class="reagle-card-panel network-card-panel">
+          <div class="network-header">
+            <div>
+              <div class="network-header-title-wrap">
+                <span class="network-header-icon">🌐</span>
+                <h3 class="network-header-title">Red Galáctica &amp; ModDB Workshop</h3>
+              </div>
+              <p class="network-header-desc">
+                Ecosistema de distribución remota y repositorio global para mods de Sins of a Solar Empire: Rebellion.
+              </p>
+            </div>
+            <span class="metric-badge-pill neutral network-badge-dev">EN DESARROLLO · ROADMAP V0.4</span>
+          </div>
+
+          <div class="network-body">
+            <div class="network-purpose-card">
+              <h4 class="network-purpose-title">Propósito y Alcance del Módulo:</h4>
+              <p class="network-purpose-text">
+                Permitirá publicar, actualizar y descargar paquetes de mods y traducciones directamente desde repositorios comunitarios verificados (ModDB, NexusMods y Steam Workshop API), resolviendo dependencias y conflictos de VFS antes de la instalación local.
+              </p>
+            </div>
+
+            <div class="network-grid">
+              <div class="network-grid-item">
+                <div class="network-item-title">1. Sincronización Remota SHA-256</div>
+                <div class="network-item-desc">Verificación delta de archivos para descargar únicamente los binarios modificados.</div>
+              </div>
+              <div class="network-grid-item">
+                <div class="network-item-title">2. Perfiles Multijugador Idénticos</div>
+                <div class="network-item-desc">Garantiza que todos los jugadores en la sala tengan el mismo checksum para prevenir desincronizaciones (Desync Crash).</div>
+              </div>
+            </div>
+
+            <div class="network-footer">
+              <span class="network-footer-info">Integración planificada con protocolo HTTPS seguro.</span>
+              <button class="btn-reagle" data-tab="tab-dashboard">← Volver al Dashboard</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================================================
+           VISTA: PIPELINE GRÁFICO & SHADERS (DOCK ITEM 4)
+           ====================================================================== -->
+      <section id="tab-pipeline" class="view-panel">
+        <div class="reagle-card-panel pipeline-card-panel">
+          <div class="pipeline-header">
+            <div>
+              <div class="pipeline-header-title-wrap">
+                <span class="pipeline-header-icon">🥞</span>
+                <h3 class="pipeline-header-title">Pipeline Gráfico &amp; Shaders por Capas</h3>
+              </div>
+              <p class="pipeline-header-desc">
+                Motor de optimización de texturas DirectX 9, generación de MIP-maps y linter de shaders HLSL.
+              </p>
+            </div>
+            <span class="metric-badge-pill neutral pipeline-badge-dev">EN DESARROLLO · ROADMAP V0.4</span>
+          </div>
+
+          <div class="pipeline-body">
+            <div class="pipeline-purpose-card">
+              <h4 class="pipeline-purpose-title">Propósito y Alcance del Módulo:</h4>
+              <p class="pipeline-purpose-text">
+                Procesador gráfico automatizado para convertir texturas .TGA y .PNG a formato .DDS DXT1 (difusas opacas) y DXT5 (con canal alfa para escudos y luces de emisión). Optimizará texturas 4K para mantener el consumo dentro del techo seguro LAA de 3.250 MB de Sins Rebellion.
+              </p>
+            </div>
+
+            <div class="pipeline-grid">
+              <div class="pipeline-grid-item">
+                <div class="pipeline-item-title">1. Compresión DXT1 / DXT5 Automática</div>
+                <div class="pipeline-item-desc">Reduce hasta un 75% el peso en VRAM sin degradar la nitidez de naves capitales.</div>
+              </div>
+              <div class="pipeline-grid-item">
+                <div class="pipeline-item-title">2. Generador de MIP-Maps de Precisión</div>
+                <div class="pipeline-item-desc">Genera niveles de detalle piramidales para evitar parpadeos visuales al alejar el zoom táctico.</div>
+              </div>
+            </div>
+
+            <div class="pipeline-footer">
+              <span class="pipeline-footer-info">Compatible con bibliotecas DirectX Tex y CLI nvcompress.</span>
+              <button class="btn-reagle" data-tab="tab-dashboard">← Volver al Dashboard</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================================================
+           VISTA: SWARM EVENT BUS & SINCRONIZACIÓN P2P (DOCK ITEM 5)
+           ====================================================================== -->
+      <section id="tab-swarm" class="view-panel">
+        <div class="reagle-card-panel swarm-card-panel">
+          <div class="swarm-header">
+            <div>
+              <div class="swarm-header-title-wrap">
+                <span class="swarm-header-icon">⚡</span>
+                <h3 class="swarm-header-title">Swarm Event Bus &amp; Modding Cooperativo P2P</h3>
+              </div>
+              <p class="swarm-header-desc">
+                Bus de eventos reactivo para colaboración en tiempo real y gobernanza distribuida de enjambre.
+              </p>
+            </div>
+            <span class="metric-badge-pill neutral swarm-badge-dev">EN DESARROLLO · ROADMAP V0.4</span>
+          </div>
+
+          <div class="swarm-body">
+            <div class="swarm-purpose-card">
+              <h4 class="swarm-purpose-title">Propósito y Alcance del Módulo:</h4>
+              <p class="swarm-purpose-text">
+                Conforme al Principio Nivel 5 de la Constitución A.I.P.A., este bus permitirá a múltiples desarrolladores o agentes de IA co-editar el mismo mod simultáneamente (ejemplo: mientras un traductor redacta cadenas .str, un balanceador ajusta atributos de naves capitales en .entity sin provocar sobreescrituras destructivas).
+              </p>
+            </div>
+
+            <div class="swarm-grid">
+              <div class="swarm-grid-item">
+                <div class="swarm-item-title">1. Bus de Eventos Desacoplado</div>
+                <div class="swarm-item-desc">Transmisión mediante WebSockets locales con cero dependencias circulares.</div>
+              </div>
+              <div class="swarm-grid-item">
+                <div class="swarm-item-title">2. Resolución de Conflictos CRDT</div>
+                <div class="swarm-item-desc">Estructuras de datos libres de conflictos para fusionar cambios de balance en vivo.</div>
+              </div>
+            </div>
+
+            <div class="swarm-footer">
+              <span class="swarm-footer-info">Arquitectura orientada a eventos conforme a la norma corporativa A.I.P.A.</span>
+              <button class="btn-reagle" data-tab="tab-dashboard">← Volver al Dashboard</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================================================
+           VISTA: BÓVEDA DE RESGUARDOS ATÓMICOS & EMPAQUETADOR (DOCK ITEM 6)
+           ====================================================================== -->
+      <section id="tab-vault" class="view-panel">
+        <div class="reagle-card-panel vault-card-panel">
+          <div class="vault-header">
+            <div>
+              <div class="vault-header-title-wrap">
+                <span class="vault-header-icon">🛡️</span>
+                <h3 class="vault-header-title">Bóveda de Resguardos Atómicos &amp; Empaquetador (.zip)</h3>
+              </div>
+              <p class="vault-header-desc">
+                Almacén inmutable de copias de seguridad .bak, empaquetador ZIP canónico y verificación SHA-256.
+              </p>
+            </div>
+            <span class="metric-badge-pill vault-badge-active">PROTECCIÓN ATÓMICA ACTIVA</span>
+          </div>
+
+          <div class="vault-body">
+            <div class="vault-purpose-card">
+              <h4 class="vault-purpose-title">Propósito y Funcionalidad de la Bóveda:</h4>
+              <p class="vault-purpose-text">
+                Cumpliendo la regla Nivel 4 (Disaster Recovery) de la Constitución, todo guardado de archivos de configuración (.str, .entity, EnabledMods.txt) genera copias timestamped inmutables en <code>storage/backups/</code>. Desde esta bóveda se pueden auditar los respaldos, restaurar versiones anteriores en caso de error y empaquetar mods listos para distribución en un solo clic.
+              </p>
+            </div>
+
+            <!-- Tabla de Respaldos Recientes en storage/backups/ -->
+            <div class="vault-table-wrap">
+              <div class="vault-table-header">
+                <span class="vault-table-title">Puntos de Restauración Disponibles (.bak)</span>
+                <span class="sidebar-pill-badge" id="vault-backups-count">3 Archivos</span>
+              </div>
+
+              <div class="vault-items-list">
+                <div class="workflow-task-item">
+                  <div>
+                    <div class="vault-item-title">EnabledMods.txt.20261020_014850.bak</div>
+                    <div class="vault-item-desc">Copia de seguridad previa a la inyección del minimod P999</div>
+                  </div>
+                  <div><span class="metric-badge-pill">✓ SHA-256 Verificado</span></div>
+                  <button class="btn-reagle" data-action="vault:audit-hash" data-message="Respaldo íntegro verificado en storage/backups/.">Auditar Hash</button>
+                </div>
+
+                <div class="workflow-task-item">
+                  <div>
+                    <div class="vault-item-title">CAPITALSHIP_TECHBATTLESHIP.entity.bak</div>
+                    <div class="vault-item-desc">Parámetros de combate de fábrica del Acorazado Kol</div>
+                  </div>
+                  <div><span class="metric-badge-pill">✓ VFS Canónico</span></div>
+                  <button class="btn-reagle" data-action="vault:audit-hash" data-message="Copia de fábrica protegida contra escritura.">Auditar Hash</button>
+                </div>
+
+                <div class="workflow-task-item">
+                  <div>
+                    <div class="vault-item-title">String_table.str.original.bak</div>
+                    <div class="vault-item-desc">Diccionario de traducción original en inglés de Rebellion v1.85</div>
+                  </div>
+                  <div><span class="metric-badge-pill">✓ 7.828 Cadenas</span></div>
+                  <button class="btn-reagle" data-action="vault:audit-hash" data-message="Diccionario original preservado en UTF-8 con BOM.">Auditar Hash</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="vault-footer-row">
+              <button class="btn-reagle btn-reagle-primary" data-action="vault:package-mod" data-message="Empaquetador ZIP en desarrollo: generará el paquete estándar para ModDB/NexusMods.">
+                📦 Empaquetar Mod en Archivo Canónico (.zip)
+              </button>
+              <button class="btn-reagle" data-tab="tab-dashboard">← Volver al Dashboard</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- MODAL GLOBAL GENÉRICO -->
+    <!-- ==========================================================================
+       MODAL DE EDICIÓN CON TOKEN GUARD EN TIEMPO REAL
+       ========================================================================== -->
+  <div class="modal-overlay" id="edit-modal">
+    <div class="modal-card">
+      <div class="modal-card-header">
+        <h3 id="modal-string-id" class="modal-card-title">IDS_SAMPLE_KEY</h3>
+        <button class="btn-icon-reagle modal-card-close" id="modal-close">&times;</button>
+      </div>
+
+      <div>
+        <label class="modal-card-label">Texto Original en Inglés:</label>
+        <div id="modal-original-text" class="modal-card-orig-text"></div>
+      </div>
+
+      <div>
+        <label for="modal-translated-input" class="modal-card-label">Traducción al Español:</label>
+        <textarea id="modal-translated-input" class="reagle-input modal-card-textarea"></textarea>
+      </div>
+
+      <div id="modal-token-feedback" class="modal-card-feedback"></div>
+
+      <div class="modal-card-footer">
+        <button class="btn-reagle modal-card-btn-tm" id="btn-suggest-tm">
+          🧠 Autocompletar con Memoria (TM)
+        </button>
+        <div class="modal-card-btn-group">
+          <button class="btn-reagle" id="modal-cancel">Cancelar</button>
+          <button class="btn-reagle btn-reagle-success" id="modal-save">Guardar Cambios</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- SCRIPTS DEL SISTEMA -->
+  <script src="assets/js/nexus-core.js?v=0.4.2"></script>
+  <script src="assets/js/modules/nexus-components.js?v=0.4.2"></script>
+  <script src="assets/js/modules/contextual-actions.js?v=0.4.2"></script>
+  <script src="assets/js/modules/dashboard-handler.js?v=0.4.2"></script>
+  <script src="assets/js/modules/sidebar-tree.js?v=0.4.2"></script>
+  <script src="assets/js/modules/platform-detector.js?v=0.4.2"></script>
+  <script src="assets/js/modules/minimod-injector.js?v=0.4.2"></script>
+  <script src="assets/js/modules/view-navigator.js?v=0.4.2"></script>
+  <script src="assets/js/modules/translation-studio.js?v=0.4.2"></script>
+  <script src="assets/js/modules/mod-manager.js?v=0.4.2"></script>
+  <script src="assets/js/modules/entity-editor.js?v=0.4.2"></script>
+  <script src="assets/js/modules/galaxy-forge.js?v=0.4.2"></script>
+  <script src="assets/js/modules/convert-cli.js?v=0.4.2"></script>
+  <script src="assets/js/modules/system-health.js?v=0.4.2"></script>
+  <script src="assets/js/nexus-ui.js?v=0.4.2"></script>
+  <script type="module" src="assets/js/bundle.js?v=0.4.2"></script>
+</body>
+</html>

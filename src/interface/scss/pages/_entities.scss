@@ -1,0 +1,577 @@
+// ==============================================================================
+// ENTITY EDITOR & INSPECTOR STYLES
+// Migrado desde: public/assets/css/modules/entity-editor.css
+// ==============================================================================
+
+.entity-layout-grid {
+  display: grid;
+  grid-template-columns: minmax(220px, 260px) 1fr;
+  gap: 14px;
+  flex: 1;
+  min-height: 0;
+  min-width: 0;
+  width: 100%;
+
+  > div {
+    min-width: 0;
+  }
+}
+
+.entity-catalog-column {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  overflow-y: auto;
+  max-height: calc(100vh - 240px);
+  padding-right: 4px;
+}
+
+// Filtros por facción
+.entity-faction-filter-bar {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+
+.entity-faction-btn {
+  background: var(--neu-card-bg);
+  box-shadow: var(--neu-shadow-button);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 8px;
+  padding: 3px 8px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  flex: 1;
+  text-align: center;
+
+  &:hover {
+    color: var(--text-main);
+    transform: translateY(-1px);
+  }
+
+  &.active {
+    background: var(--text-blue);
+    color: #ffffff;
+    box-shadow: var(--neu-shadow-button-pressed);
+    border-color: transparent;
+  }
+}
+
+// Tarjeta en catálogo
+.entity-card-item {
+  background: var(--neu-card-bg);
+  box-shadow: var(--neu-shadow-card-sm);
+  border-radius: 12px;
+  padding: 10px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  transition: all 0.15s ease;
+
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--neu-shadow-card);
+  }
+
+  &.selected {
+    border: 1.5px solid var(--text-blue);
+    box-shadow: var(--neu-shadow-inset);
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.06), rgba(255, 255, 255, 0.5));
+  }
+}
+
+.entity-faction-tag {
+  font-size: 0.62rem;
+  font-weight: 800;
+  padding: 1px 6px;
+  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+
+  &.tag-tec {
+    background: rgba(59, 130, 246, 0.15);
+    color: #2563eb;
+    border: 1px solid rgba(59, 130, 246, 0.3);
+  }
+
+  &.tag-adv {
+    background: rgba(168, 85, 247, 0.15);
+    color: #7c3aed;
+    border: 1px solid rgba(168, 85, 247, 0.3);
+  }
+
+  &.tag-vas {
+    background: rgba(16, 185, 129, 0.15);
+    color: #059669;
+    border: 1px solid rgba(16, 185, 129, 0.3);
+  }
+}
+
+.entity-mini-stat-bar {
+  display: flex;
+  gap: 8px;
+  font-size: 0.66rem;
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  margin-top: 3px;
+  padding-top: 3px;
+  border-top: 1px solid rgba(160, 168, 180, 0.15);
+}
+
+// Panel de edición principal
+.entity-form-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: calc(100vh - 160px);
+}
+
+// Sub-pestañas del editor
+.entity-subtab-bar {
+  display: flex;
+  gap: 6px;
+  border-bottom: 1px solid rgba(160, 168, 180, 0.25);
+  padding-bottom: 6px;
+  overflow-x: auto;
+}
+
+.entity-subtab-btn {
+  background: transparent;
+  border: none;
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+
+  &:hover {
+    color: var(--text-main);
+    background: rgba(255, 255, 255, 0.5);
+  }
+
+  &.active {
+    background: #ffffff;
+    color: var(--text-blue);
+    box-shadow: var(--neu-shadow-pill-active);
+  }
+}
+
+// Rejilla de parámetros interactivos
+.entity-param-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.entity-param-box {
+  background: var(--neu-card-bg);
+  box-shadow: var(--neu-shadow-card-sm);
+  border-radius: 12px;
+  padding: 12px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.entity-param-label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+.entity-param-sub {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+}
+
+// Telemetría EHP
+.entity-telemetry-hud {
+  background: var(--neu-card-bg);
+  box-shadow: var(--neu-shadow-inset);
+  border-radius: 14px;
+  padding: 12px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.entity-telemetry-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.entity-telemetry-metric {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+
+  .val {
+    font-size: 1.15rem;
+    font-weight: 800;
+    font-family: var(--font-mono);
+  }
+}
+
+.entity-catalog-card {
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+}
+
+.entity-catalog-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.entity-catalog-title {
+  font-size: 0.90rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.entity-search-wrap {
+  margin-bottom: 8px;
+}
+
+.entity-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-bottom: 1px solid rgba(160, 168, 180, 0.2);
+  padding-bottom: 10px;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.entity-header-left {
+  min-width: 0;
+  flex: 1;
+}
+
+.entity-header-title-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.entity-title-main {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--text-main);
+  margin: 0;
+}
+
+.entity-role-text {
+  font-size: 0.74rem;
+  color: var(--text-secondary);
+  margin-top: 3px;
+}
+
+.entity-filepath-text {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  margin-top: 2px;
+}
+
+.entity-header-actions {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.entity-checksum-alert {
+  background: rgba(220, 38, 38, 0.08);
+  border: 1px solid rgba(220, 38, 38, 0.2);
+  border-radius: 10px;
+  padding: 6px 12px;
+  font-size: 0.72rem;
+  color: var(--text-danger);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.entity-input-field {
+  width: 100%;
+  margin-top: 4px;
+  font-size: 0.90rem;
+  font-weight: 700;
+}
+
+.entity-param-help {
+  margin-top: 3px;
+}
+
+.entity-telemetry-hud-title {
+  font-size: 0.70rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.entity-metric-label {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+}
+
+.entity-subtab-content {
+  display: none;
+
+  &.active {
+    display: block;
+  }
+}
+
+.entity-cost-label {
+  font-size: 0.70rem;
+  font-weight: 700;
+
+  &--credits { color: #d97706; }
+  &--metal { color: #4b5563; }
+  &--crystal { color: #2563eb; }
+  &--buildtime { color: #059669; }
+  &--supply { color: #7c3aed; }
+  &--research { color: var(--text-secondary); }
+}
+
+.cost-num {
+  &--credits { color: #b45309; }
+  &--metal { color: #374151; }
+  &--crystal { color: #1d4ed8; }
+  &--buildtime { color: #047857; }
+  &--supply { color: #6d28d9; }
+  &--research { color: var(--text-main); }
+}
+
+.entity-cost-desc {
+  font-size: 0.66rem;
+  color: var(--text-muted);
+}
+
+// Armamento
+.entity-weapons-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.entity-weapon-card {
+  background: var(--neu-card-bg);
+  box-shadow: var(--neu-shadow-card-sm);
+  border-radius: 12px;
+  padding: 12px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+// Habilidades
+.entity-abilities-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.entity-ability-card {
+  background: var(--neu-card-bg);
+  box-shadow: var(--neu-shadow-card-sm);
+  border-radius: 12px;
+  padding: 12px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+// Costes y Logística
+.entity-costs-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.entity-cost-item {
+  background: var(--neu-card-bg);
+  box-shadow: var(--neu-shadow-card-sm);
+  border-radius: 12px;
+  padding: 12px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  text-align: center;
+
+  .cost-num {
+    font-size: 1.25rem;
+    font-weight: 800;
+    font-family: var(--font-mono);
+    margin-top: 2px;
+  }
+}
+
+// Responsividad
+@media (max-width: 980px) {
+  .entity-layout-grid {
+    grid-template-columns: minmax(190px, 220px) 1fr;
+    gap: 10px;
+  }
+
+  .entity-param-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .entity-abilities-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .entity-telemetry-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .entity-costs-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .entity-layout-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .entity-catalog-column {
+    max-height: 200px;
+  }
+}
+
+.entity-list-loading {
+  padding: 12px;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+.entity-card-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  .entity-card-name {
+    font-weight: 800;
+    font-size: 0.84rem;
+    color: var(--text-main);
+  }
+}
+
+.entity-card-role {
+  font-size: 0.70rem;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+
+.entity-empty-msg {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  padding: 10px;
+}
+
+.weapon-card-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  .weapon-icon-box {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: rgba(59, 130, 246, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    color: var(--text-blue);
+    flex-shrink: 0;
+  }
+
+  .weapon-title {
+    font-weight: 800;
+    font-size: 0.84rem;
+    color: var(--text-main);
+  }
+
+  .weapon-sub {
+    font-size: 0.70rem;
+    color: var(--text-muted);
+  }
+}
+
+.weapon-card-right {
+  text-align: right;
+  flex-shrink: 0;
+
+  .weapon-dps {
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--text-danger, #ef4444);
+    font-family: var(--font-mono);
+  }
+
+  .weapon-range {
+    font-size: 0.68rem;
+    color: var(--text-secondary);
+  }
+}
+
+.ability-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .ability-title-row {
+    font-weight: 800;
+    font-size: 0.82rem;
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .ability-pill {
+    font-size: 0.60rem;
+  }
+}
+
+.ability-desc {
+  font-size: 0.70rem;
+  color: var(--text-secondary);
+  line-height: 1.3;
+  margin-top: 4px;
+}
+
+.ability-id {
+  font-size: 0.62rem;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  margin-top: 4px;
+}
+

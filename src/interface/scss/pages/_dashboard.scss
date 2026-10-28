@@ -1,0 +1,240 @@
+// ==============================================================================
+// SOLARIS NEXUS STUDIO - SASS: PAGES / DASHBOARD
+// Componentes y layout de Workflows, Permisos y Ejecuciones
+// Compatible con Modo Light, Modo Dark y Temas Dinámicos
+// ==============================================================================
+
+#tab-dashboard {
+  flex-direction: column;
+  gap: 12px;
+
+  &.active {
+    display: flex !important;
+  }
+
+  .dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 14px;
+    margin-bottom: 16px;
+  }
+}
+
+// Panel contenedor de tareas
+.dash-workflow-panel {
+  flex: 1;
+  padding: 8px 0;
+  background: transparent;
+  box-shadow: none;
+  border: none;
+}
+
+// Encabezado de la grilla de tareas
+.dash-grid-header {
+  display: grid;
+  grid-template-columns: minmax(220px, 1.8fr) 180px 140px;
+  align-items: center;
+  gap: 14px;
+  padding: 0 14px 8px 14px;
+  border-bottom: 1px solid var(--border-subtle);
+  margin-bottom: 8px;
+  font-weight: 700;
+  font-size: 0.70rem;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  width: 100%;
+  box-sizing: border-box;
+
+  & > div:last-child {
+    text-align: right;
+  }
+}
+
+// Lista vertical de tareas y registros
+.dash-task-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+// Fila de tarea / item de workflow
+.workflow-task-item {
+  display: grid;
+  grid-template-columns: minmax(220px, 1.8fr) 180px 140px;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 16px;
+  background: var(--neu-card-bg);
+  box-shadow: var(--neu-shadow-card-sm);
+  border: 1px solid var(--neu-border-subtle);
+  border-radius: 12px;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  width: 100%;
+  box-sizing: border-box;
+
+  &:hover {
+    box-shadow: var(--neu-shadow-card);
+    transform: translateY(-1px);
+  }
+
+  .workflow-col-main {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+  }
+
+  .workflow-col-badge {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    min-width: 0;
+  }
+
+  .workflow-col-action {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    min-width: 0;
+  }
+
+  .main-text {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+
+    .main-title {
+      font-size: 0.84rem;
+      font-weight: 700;
+      color: var(--text-main);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .main-desc {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+  .workflow-col-badge {
+    flex-shrink: 0;
+  }
+
+  .workflow-col-action {
+    flex-shrink: 0;
+  }
+}
+
+// Ícono circular de tarea con variantes temáticas BEM
+.task-icon-circle {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 800;
+  font-family: var(--font-mono);
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+
+  &--str {
+    background: #e0f2fe;
+    color: #0284c7;
+  }
+
+  &--vfs {
+    background: #dbeafe;
+    color: #2563eb;
+  }
+
+  &--bin {
+    background: #e0e7ff;
+    color: #4f46e5;
+  }
+
+  &--ent {
+    background: #fef3c7;
+    color: #d97706;
+  }
+
+  &--gal {
+    background: #fce7f3;
+    color: #db2777;
+  }
+}
+
+// Adaptación de los badges de ícono para modo oscuro
+[data-mode="dark"] {
+  .task-icon-circle {
+    &--str {
+      background: rgba(2, 132, 199, 0.2);
+      color: #38bdf8;
+    }
+
+    &--vfs {
+      background: rgba(37, 99, 235, 0.2);
+      color: #60a5fa;
+    }
+
+    &--bin {
+      background: rgba(79, 70, 229, 0.2);
+      color: #818cf8;
+    }
+
+    &--ent {
+      background: rgba(217, 119, 6, 0.2);
+      color: #fbbf24;
+    }
+
+    &--gal {
+      background: rgba(219, 39, 119, 0.2);
+      color: #f472b6;
+    }
+  }
+}
+
+// Botón de acción de fila
+.btn-row-action {
+  background: var(--neu-slot-bg);
+  color: var(--text-blue);
+  border: 1px solid var(--neu-border-subtle);
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+
+  &:hover {
+    background: var(--text-blue);
+    color: #ffffff;
+    box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
+    transform: translateY(-1px);
+  }
+}
+
+.log-empty-state {
+  text-align: center;
+  padding: 24px;
+  color: var(--text-muted);
+}
+
+.log-time {
+  font-size: 0.74rem;
+  font-family: var(--font-mono);
+  color: var(--text-secondary);
+}
+

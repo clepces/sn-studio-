@@ -1,0 +1,72 @@
+      <!-- ======================================================================
+           VISTA: BÓVEDA DE RESGUARDOS ATÓMICOS & EMPAQUETADOR (DOCK ITEM 6)
+           ====================================================================== -->
+      <section id="tab-vault" class="view-panel">
+        <div class="reagle-card-panel vault-card-panel">
+          <div class="vault-header">
+            <div>
+              <div class="vault-header-title-wrap">
+                <span class="vault-header-icon">🛡️</span>
+                <h3 class="vault-header-title">Bóveda de Resguardos Atómicos &amp; Empaquetador (.zip)</h3>
+              </div>
+              <p class="vault-header-desc">
+                Almacén inmutable de copias de seguridad .bak, empaquetador ZIP canónico y verificación SHA-256.
+              </p>
+            </div>
+            <span class="metric-badge-pill vault-badge-active">PROTECCIÓN ATÓMICA ACTIVA</span>
+          </div>
+
+          <div class="vault-body">
+            <div class="vault-purpose-card">
+              <h4 class="vault-purpose-title">Propósito y Funcionalidad de la Bóveda:</h4>
+              <p class="vault-purpose-text">
+                Cumpliendo la regla Nivel 4 (Disaster Recovery) de la Constitución, todo guardado de archivos de configuración (.str, .entity, EnabledMods.txt) genera copias timestamped inmutables en <code>storage/backups/</code>. Desde esta bóveda se pueden auditar los respaldos, restaurar versiones anteriores en caso de error y empaquetar mods listos para distribución en un solo clic.
+              </p>
+            </div>
+
+            <!-- Tabla de Respaldos Recientes en storage/backups/ -->
+            <div class="vault-table-wrap">
+              <div class="vault-table-header">
+                <span class="vault-table-title">Puntos de Restauración Disponibles (.bak)</span>
+                <span class="sidebar-pill-badge" id="vault-backups-count">3 Archivos</span>
+              </div>
+
+              <div class="vault-items-list">
+                <div class="workflow-task-item">
+                  <div>
+                    <div class="vault-item-title">EnabledMods.txt.20261020_014850.bak</div>
+                    <div class="vault-item-desc">Copia de seguridad previa a la inyección del minimod P999</div>
+                  </div>
+                  <div><span class="metric-badge-pill">✓ SHA-256 Verificado</span></div>
+                  <button class="btn-reagle" data-action="vault:audit-hash" data-message="Respaldo íntegro verificado en storage/backups/.">Auditar Hash</button>
+                </div>
+
+                <div class="workflow-task-item">
+                  <div>
+                    <div class="vault-item-title">CAPITALSHIP_TECHBATTLESHIP.entity.bak</div>
+                    <div class="vault-item-desc">Parámetros de combate de fábrica del Acorazado Kol</div>
+                  </div>
+                  <div><span class="metric-badge-pill">✓ VFS Canónico</span></div>
+                  <button class="btn-reagle" data-action="vault:audit-hash" data-message="Copia de fábrica protegida contra escritura.">Auditar Hash</button>
+                </div>
+
+                <div class="workflow-task-item">
+                  <div>
+                    <div class="vault-item-title">String_table.str.original.bak</div>
+                    <div class="vault-item-desc">Diccionario de traducción original en inglés de Rebellion v1.85</div>
+                  </div>
+                  <div><span class="metric-badge-pill">✓ 7.828 Cadenas</span></div>
+                  <button class="btn-reagle" data-action="vault:audit-hash" data-message="Diccionario original preservado en UTF-8 con BOM.">Auditar Hash</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="vault-footer-row">
+              <button class="btn-reagle btn-reagle-primary" data-action="vault:package-mod" data-message="Empaquetador ZIP en desarrollo: generará el paquete estándar para ModDB/NexusMods.">
+                📦 Empaquetar Mod en Archivo Canónico (.zip)
+              </button>
+              <button class="btn-reagle" data-tab="tab-dashboard">← Volver al Dashboard</button>
+            </div>
+          </div>
+        </div>
+      </section>

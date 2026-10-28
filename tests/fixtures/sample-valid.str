@@ -1,0 +1,11 @@
+﻿TXT
+NumStrings 3
+StringInfo
+	ID "IDS_MAIN_MENU_TITLE"
+	Value "Sins of a Solar Empire: Rebellion"
+StringInfo
+	ID "IDS_FLEET_STATUS"
+	Value "Fleet %s is currently holding position with [VALUE] ships remaining."
+StringInfo
+	ID "IDS_PLANET_TEC_CAPITAL"
+	Value "Primary administrative world of the Trader Emergency Coalition."

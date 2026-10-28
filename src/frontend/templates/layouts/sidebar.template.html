@@ -1,0 +1,225 @@
+    <!-- ==========================================================================
+         2. SUB-SIDEBAR DE NAVEGACIÓN Y EXPLORADOR VFS / LOCAL
+         ========================================================================== -->
+    <nav class="reagle-sidebar">
+      <!-- Semáforo Mac-like superior -->
+      <div class="sidebar-top-bar">
+        <div class="traffic-dots-group">
+          <div class="traffic-dot dot-red"></div>
+          <div class="traffic-dot dot-yellow"></div>
+          <div class="traffic-dot dot-green"></div>
+        </div>
+        <button class="window-view-icon" id="btn-toggle-sidebar" title="Colapsar panel lateral" type="button" aria-label="Toggle Sidebar"></button>
+      </div>
+
+      <!-- Perfil de Usuario Corporativo -->
+      <div class="user-profile-row">
+        <div class="user-avatar-circle">CN</div>
+        <div class="user-info">
+          <div class="user-title-wrap">
+            <span class="user-name-text">Clepces org. ltd</span>
+            <span class="user-dropdown-arrow">▼</span>
+          </div>
+          <span class="user-subtext">solaris.nexus@clepces.com</span>
+        </div>
+      </div>
+
+      <!-- Sección: Core Workspace (Plataforma Principal) -->
+      <div class="sidebar-section-title">Core Workspace</div>
+      <div class="sidebar-items-list">
+
+        <!-- Dashboard -->
+        <button class="sidebar-nav-item active" data-tab="tab-dashboard">
+          <div class="sidebar-nav-left">
+            <svg viewBox="0 0 24 24"><line x1="6" y1="3" x2="6" y2="15"></line><circle cx="18" cy="6" r="3"></circle><circle cx="6" cy="18" r="3"></circle><path d="M18 9a9 9 0 0 1-9 9"></path></svg>
+            <span>Dashboard</span>
+          </div>
+          <span class="sidebar-pill-badge" id="sidebar-count-dashboard">7.828</span>
+        </button>
+
+        <!-- Studio Edition (Insignia Master) -->
+        <button class="sidebar-nav-item" data-tab="tab-studio">
+          <div class="sidebar-nav-left">
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+            <span>Studio Edition</span>
+          </div>
+          <span class="sidebar-pill-badge sidebar-pill-badge--primary">PRO</span>
+        </button>
+      </div>
+
+      <!-- Sección: Vistas Especializadas (Legacy) -->
+      <div class="sidebar-section-title">Vistas Especializadas</div>
+      <div class="sidebar-items-list">
+        <!-- Estudio de Traducción (.str) -->
+        <button class="sidebar-nav-item" data-tab="tab-translation">
+          <div class="sidebar-nav-left">
+            <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+            <span>Traducción (.str)</span>
+          </div>
+          <span class="sidebar-pill-badge" id="sidebar-count-strings">7.828</span>
+        </button>
+
+        <!-- Library (VFS Mods) -->
+        <button class="sidebar-nav-item" data-tab="tab-mods">
+          <div class="sidebar-nav-left">
+            <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+            <span>Library (VFS Mods)</span>
+          </div>
+          <span class="sidebar-pill-badge" id="sidebar-count-mods">0</span>
+        </button>
+
+        <!-- Shared Entities -->
+        <button class="sidebar-nav-item" data-tab="tab-entities">
+          <div class="sidebar-nav-left">
+            <svg viewBox="0 0 24 24"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path><polyline points="16 6 12 2 8 6"></polyline><line x1="12" y1="2" x2="12" y2="15"></line></svg>
+            <span>Shared Entities</span>
+          </div>
+          <span class="sidebar-pill-badge" id="sidebar-count-entities">1.872</span>
+        </button>
+
+        <!-- Galaxy Forge -->
+        <button class="sidebar-nav-item" data-tab="tab-galaxy">
+          <div class="sidebar-nav-left">
+            <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 1 10 10c0 5.52-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2z"></path></svg>
+            <span>Galaxy Forge</span>
+          </div>
+          <span class="sidebar-pill-badge" id="sidebar-count-galaxy">126</span>
+        </button>
+
+        <!-- ConvertData CLI -->
+        <button class="sidebar-nav-item" data-tab="tab-convert">
+          <div class="sidebar-nav-left">
+            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            <span>ConvertData CLI</span>
+          </div>
+          <span class="sidebar-pill-badge">BIN</span>
+        </button>
+      </div>
+
+      <!-- Sección: Status -->
+      <div class="sidebar-section-title">Status</div>
+      <div class="sidebar-items-list">
+
+        <button class="sidebar-nav-item" data-tab="tab-system">
+          <div class="sidebar-nav-left">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="3"></circle></svg>
+            <span>System Health</span>
+          </div>
+          <span class="sidebar-pill-badge">OK</span>
+        </button>
+
+      </div>
+
+      <!-- Sección: History (Conectada a Bóveda & Diálogos Contextuales) -->
+      <div class="sidebar-section-title">History</div>
+      <div class="sidebar-items-list">
+
+        <div class="sidebar-nav-item u-cursor-pointer" id="btn-sidebar-recent" title="Ver archivos modificados recientemente">
+          <div class="sidebar-nav-left">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            <span>Recently Edited</span>
+          </div>
+          <span class="sidebar-pill-badge">HIST</span>
+        </div>
+
+
+
+      </div>
+
+      <!-- Sección: Data -->
+      <div class="sidebar-section-title">Data</div>
+      <div class="sidebar-items-list">
+
+        <button class="sidebar-nav-item" data-tab="tab-vault" title="Abrir Bóveda de Resguardos .bak">
+          <div class="sidebar-nav-left">
+            <svg viewBox="0 0 24 24"><path d="M21 8v13H3V8"></path><path d="M1 3h22v5H1z"></path><line x1="10" y1="12" x2="14" y2="12"></line></svg>
+            <span>Archive (.bak)</span>
+          </div>
+          <span class="sidebar-pill-badge sidebar-pill-badge--success">VAULT</span>
+        </button>
+        
+      </div>
+
+
+      <!-- ======================================================================
+           EXPLORADOR REAL DE RUTAS Y ARCHIVOS (VFS & JUEGO LOCAL)
+           ====================================================================== -->
+      <div class="sidebar-section-title">
+        <span>Explorador VFS &amp; Local</span>
+        <span class="section-add-btn" id="btn-sidebar-scan-vfs" title="Re-escanear Directorios">+</span>
+      </div>
+
+      <div class="reagle-search-inset">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <input type="text" id="vfs-tree-search-input" aria-label="Buscar mod o archivo" placeholder="Buscar mod o archivo...">
+      </div>
+
+      <!-- Árbol Jerárquico con Despliegue Suave y Selección Determinista -->
+      <div class="folder-tree" id="sidebar-real-vfs-tree">
+        <!-- Rama 1: Carpeta de Mods VFS (Colapsable) -->
+        <div class="tree-node tree-folder-toggle active" data-folder="mods" title="Directorio de mods de Rebellion">
+          <div class="tree-node-left">
+            <span class="tree-caret">▼</span>
+            <svg viewBox="0 0 24 24"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+            <span>Mods-Rebellion v1.85</span>
+          </div>
+          <span class="sidebar-pill-badge" id="tree-badge-mods-count">0</span>
+        </div>
+
+        <div class="tree-sub-group" id="tree-group-mods">
+          <div class="tree-node tree-file-item" data-file-type="txt" data-target="EnabledMods.txt" title="Lista de mods habilitados (0 activos)">
+            <div class="tree-node-left">
+              <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+              <span>EnabledMods.txt</span>
+            </div>
+            <span class="sidebar-pill-badge sidebar-pill-badge--muted">0 ACT</span>
+          </div>
+        </div>
+
+        <!-- Rama 2: Carpeta de Instalación Local Vanilla (Colapsable) -->
+        <div class="tree-node tree-folder-toggle active" data-folder="vanilla" title="Archivos del juego base y localización">
+          <div class="tree-node-left">
+            <span class="tree-caret">▼</span>
+            <svg viewBox="0 0 24 24"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+            <span>Sins Rebellion (Vanilla)</span>
+          </div>
+          <span class="sidebar-pill-badge sidebar-pill-badge--success">INSTALADO</span>
+        </div>
+
+        <div class="tree-sub-group" id="tree-group-vanilla">
+          <div class="tree-node tree-file-item" data-file-type="str" data-target="English.str" title="Localización Española (7.828 cadenas)">
+            <div class="tree-node-left">
+              <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+              <span>Localizations/es/English.str</span>
+            </div>
+            <span class="sidebar-pill-badge">7.828</span>
+          </div>
+
+          <div class="tree-node tree-file-item" data-file-type="entity" data-target="Kol Battleship" title="Catálogo de 1.872 entidades GameInfo">
+            <div class="tree-node-left">
+              <svg viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline></svg>
+              <span>GameInfo (*.entity)</span>
+            </div>
+            <span class="sidebar-pill-badge">1.872</span>
+          </div>
+
+          <div class="tree-node tree-file-item" data-file-type="galaxy" data-target="Galaxy Maps" title="126 mapas de galaxias oficiales">
+            <div class="tree-node-left">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+              <span>Galaxy (*.galaxy)</span>
+            </div>
+            <span class="sidebar-pill-badge">126</span>
+          </div>
+        </div>
+
+        <!-- Panel Informativo de Inspección del Árbol (Sin saltos de vista desordenados) -->
+        <div id="tree-selection-inspector" class="tree-selection-inspector">
+          <div><strong>Elemento:</strong> <span id="tree-sel-name" class="tree-sel-name">-</span></div>
+          <div class="tree-sel-meta">
+            <span id="tree-sel-type" class="tree-sel-type">-</span>
+            <button class="btn-reagle btn-tree-open" id="btn-tree-open-target">Abrir en Módulo →</button>
+          </div>
+        </div>
+
+      </div>
+    </nav>

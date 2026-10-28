@@ -1,0 +1,84 @@
+// ==============================================================================
+// SOLARIS NEXUS STUDIO - SASS 7-1: LAYOUT / HEADER
+// Cabecera de módulo, botón de restauración y acciones dinámicas
+// ==============================================================================
+
+.reagle-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.header-left-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.btn-restore-sidebar {
+  display: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 9px;
+  background: var(--neu-card-bg);
+  box-shadow: var(--neu-shadow-card-sm);
+  border: 1px solid var(--neu-border-subtle);
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--text-secondary);
+  transition: all 0.15s ease;
+  flex-shrink: 0;
+
+  &:hover {
+    color: var(--text-main);
+    transform: scale(1.05);
+  }
+
+  svg {
+    width: 16px;
+    height: 16px;
+    stroke: currentColor;
+    stroke-width: 2.2;
+    fill: none;
+  }
+}
+
+.reagle-sidebar.collapsed ~ .reagle-workspace .btn-restore-sidebar {
+  display: inline-flex;
+}
+
+.header-title-box {
+  min-width: 0;
+
+  h1 {
+    font-size: 1.45rem;
+    font-weight: 800;
+    color: var(--text-main);
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  p {
+    font-size: 0.76rem;
+    color: var(--text-muted);
+    margin-top: 2px;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+.header-actions-group {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-shrink: 0;
+}

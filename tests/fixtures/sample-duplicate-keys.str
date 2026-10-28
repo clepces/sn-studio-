@@ -1,0 +1,14 @@
+TXT
+NumStrings 4
+StringInfo
+	ID "IDS_ACTION_FIRE"
+	Value "Fire primary plasma cannon"
+StringInfo
+	ID "IDS_ACTION_RETREAT"
+	Value "Execute tactical warp retreat"
+StringInfo
+	ID "IDS_ACTION_FIRE"
+	Value "Duplicated ID causing syntax collision"
+StringInfo
+	ID "IDS_ACTION_REPAIR"
+	Value "Repair nanobots deployed"

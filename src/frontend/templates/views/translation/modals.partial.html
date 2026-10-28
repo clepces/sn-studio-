@@ -1,0 +1,193 @@
+  <!-- ==========================================================================
+       MODALES ESPECÍFICOS DEL ESTUDIO DE TRADUCCIÓN (.STR)
+       ========================================================================== -->
+
+  <!-- MODAL: AJUSTES Y PROPIEDADES DEL PROYECTO .STR -->
+  <div class="modal-overlay" id="modal-str-project-settings">
+    <div class="modal-card modal-card--lg">
+      <div class="modal-card-header">
+        <h3 class="modal-card-title">⚙️ Ajustes y Propiedades del Proyecto .str</h3>
+        <button class="btn-icon-reagle modal-card-close" id="modal-settings-close" data-action="live:close-settings" title="Cerrar modal">&times;</button>
+      </div>
+
+      <div class="modal-card-body">
+        <div class="str-settings-grid">
+          <div class="str-settings-box">
+            <span class="str-settings-label">Proyecto / Mod</span>
+            <span class="str-settings-val str-settings-val--blue" id="modal-set-project-name">Sins Base</span>
+            <span class="str-settings-sub" id="modal-set-version-info">Versión: v1.85 Rebellion</span>
+          </div>
+          <div class="str-settings-box">
+            <span class="str-settings-label">Total Cadenas (NumStrings)</span>
+            <span class="str-settings-val" id="modal-set-total-strings">0</span>
+            <span class="str-settings-sub" id="modal-set-translated-summary">0 traducidas (0%)</span>
+          </div>
+          <div class="str-settings-box">
+            <span class="str-settings-label">Codificación &amp; Formato</span>
+            <span class="str-settings-val str-settings-val--mono">UTF-8 con BOM</span>
+            <span class="str-settings-sub">Salto de línea canónico CRLF (\r\n)</span>
+          </div>
+          <div class="str-settings-box">
+            <span class="str-settings-label">Token Guard Integrity</span>
+            <span class="str-settings-val str-settings-val--success" id="modal-set-token-status">100% Protegido</span>
+            <span class="str-settings-sub" id="modal-set-tokens-count">0 tokens detectados</span>
+          </div>
+        </div>
+
+        <div class="str-settings-details">
+          <div class="str-settings-detail-row">
+            <span class="detail-label">Ruta Canónica del Archivo:</span>
+            <span class="detail-val" id="modal-set-canonical-path">--</span>
+          </div>
+          <div class="str-settings-detail-row">
+            <span class="detail-label">Consumo Estimado de Memoria:</span>
+            <span class="detail-val" id="modal-set-ram-usage">--</span>
+          </div>
+          <div class="str-settings-detail-row">
+            <span class="detail-label">Firma de Integridad (SHA-256):</span>
+            <span class="str-settings-hash" id="modal-set-sha256" title="Hash SHA-256 de integridad">--</span>
+          </div>
+          <div class="str-settings-detail-row">
+            <span class="detail-label">Repositorio de Persistencia:</span>
+            <span class="detail-val">SQLite3 (tbl_projects &amp; tbl_string_entries)</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-card-footer">
+        <button class="btn-reagle btn-reagle-danger" id="btn-settings-delete-project" data-action="live:open-delete-modal" title="Eliminar este proyecto de la base de datos">
+          🗑️ Eliminar Proyecto
+        </button>
+        <div class="modal-card-btn-group">
+          <button class="btn-reagle" data-action="live:close-settings">Cerrar</button>
+          <button class="btn-reagle btn-reagle-primary" data-action="live:export-str" title="Exportar archivo .str compilado">
+            💾 Exportar .str
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: CREAR NUEVO PROYECTO .STR -->
+  <div class="modal-overlay" id="modal-str-create-project">
+    <div class="modal-card modal-card--lg">
+      <div class="modal-card-header">
+        <h3 class="modal-card-title">📄 Crear Nuevo Proyecto de Traducción .str</h3>
+        <button class="btn-icon-reagle modal-card-close" id="modal-create-close" data-action="create-str:cancel" title="Cerrar modal">&times;</button>
+      </div>
+
+      <div class="modal-card-body">
+        <div class="modal-form-grid">
+          <div class="modal-form-group modal-form-group--full">
+            <label for="create-str-name">Nombre del Proyecto / Mod:</label>
+            <input type="text" id="create-str-name" class="reagle-input" placeholder="Ej: Sins of a Solar Empire - Spanish Mod" required>
+          </div>
+
+          <div class="modal-form-group">
+            <label for="create-str-version">Versión del Motor / Juego:</label>
+            <input type="text" id="create-str-version" class="reagle-input" value="v1.85 Rebellion">
+          </div>
+
+          <div class="modal-form-group">
+            <label for="create-str-type">Tipo de Diccionario:</label>
+            <select id="create-str-type" class="reagle-input">
+              <option value="base">Idioma Base Vanilla (English.str)</option>
+              <option value="mod" selected>Mod VFS (.str en Mod/String)</option>
+              <option value="minimod">Minimod Parche P999</option>
+              <option value="empty">Diccionario Vacío Canónico</option>
+            </select>
+          </div>
+
+          <div class="modal-form-group modal-form-group--full">
+            <label for="create-str-path">Ruta Canónica del Archivo .str:</label>
+            <input type="text" id="create-str-path" class="reagle-input" value="Localizations/es/String/English.str" placeholder="Localizations/es/String/English.str">
+          </div>
+        </div>
+
+        <div class="str-settings-details str-settings-details--spaced">
+          <div class="str-settings-detail-row">
+            <span class="detail-label">Codificación Mandatoria:</span>
+            <span class="metric-badge-pill success">UTF-8 con BOM (\xEF\xBB\xBF)</span>
+          </div>
+          <div class="str-settings-detail-row">
+            <span class="detail-label">Terminación de Línea:</span>
+            <span class="metric-badge-pill">CRLF (\r\n) Canónico</span>
+          </div>
+          <div class="str-settings-detail-row">
+            <span class="detail-label">Integridad de Sintaxis:</span>
+            <span class="detail-val">Token Guard activo con validación en tiempo real</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-card-footer">
+        <button class="btn-reagle" data-action="create-str:cancel">Cancelar</button>
+        <button class="btn-reagle btn-reagle-primary" id="btn-create-str-submit" data-action="create-str:submit">
+          ✨ Crear Proyecto Canónico
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: CONFIRMACIÓN CRÍTICA DE ELIMINACIÓN DE PROYECTO .STR -->
+  <div class="modal-overlay" id="modal-str-delete-confirm">
+    <div class="modal-card modal-card--md">
+      <div class="modal-card-header">
+        <div class="modal-header-danger">
+          <span class="modal-danger-badge">CRÍTICO / SEGURIDAD VFS</span>
+          <h3 class="modal-card-title">⚠️ Eliminar Proyecto .str</h3>
+        </div>
+        <button class="btn-icon-reagle modal-card-close" id="modal-delete-close" data-action="delete:cancel" title="Cerrar modal">&times;</button>
+      </div>
+
+      <div class="modal-card-body">
+        <div class="modal-target-box">
+          <div>Proyecto Objetivo: <strong id="delete-target-name">--</strong></div>
+          <div>Identificador: <span id="delete-target-id" class="target-id-highlight">--</span></div>
+          <div>Ubicación: <code id="delete-target-path">--</code></div>
+        </div>
+
+        <p class="modal-delete-notice">
+          Selecciona el protocolo de eliminación. Por supervivencia del kernel y seguridad perimetral, los botones se habilitarán al finalizar el temporizador de confirmación.
+        </p>
+
+        <div class="modal-delete-options-grid">
+          <!-- Opción 1: Borrado Digital -->
+          <div class="modal-delete-opt-card modal-delete-opt-card--digital">
+            <div class="opt-header">
+              <span class="opt-title">🛡️ Borrado Digital (Base de Datos)</span>
+              <span class="metric-badge-pill badge-recommended">RECOMENDADO</span>
+            </div>
+            <p class="opt-desc">
+              Desvincula y elimina el proyecto y sus cadenas de SQLite3. El archivo físico <code>.str</code> permanece <strong>100% INTACTO</strong> en el disco para resguardo.
+            </p>
+            <div class="opt-actions">
+              <button class="btn-reagle btn-reagle-warning" id="btn-delete-digital" data-action="delete:digital" disabled>
+                ⏳ Espera (5s)...
+              </button>
+            </div>
+          </div>
+
+          <!-- Opción 2: Borrado Físico + Digital -->
+          <div class="modal-delete-opt-card modal-delete-opt-card--physical">
+            <div class="opt-header">
+              <span class="opt-title opt-title--danger">🔥 Borrado Físico + Digital</span>
+              <span class="modal-danger-badge">DESTRUCTIVO</span>
+            </div>
+            <p class="opt-desc">
+              Elimina los registros en SQLite3 y <strong>BORRA DEFINITIVAMENTE</strong> el archivo <code>.str</code> del disco. Acción irreversible.
+            </p>
+            <div class="opt-actions">
+              <button class="btn-reagle btn-reagle-danger" id="btn-delete-physical" data-action="delete:physical" disabled>
+                ⏳ Espera (5s)...
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-card-footer modal-card-footer--right">
+        <button class="btn-reagle" data-action="delete:cancel">Cancelar y Volver</button>
+      </div>
+    </div>
+  </div>

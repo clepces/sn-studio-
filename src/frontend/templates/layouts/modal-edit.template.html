@@ -1,0 +1,33 @@
+  <!-- ==========================================================================
+       MODAL DE EDICIÓN CON TOKEN GUARD EN TIEMPO REAL
+       ========================================================================== -->
+  <div class="modal-overlay" id="edit-modal">
+    <div class="modal-card">
+      <div class="modal-card-header">
+        <h3 id="modal-string-id" class="modal-card-title">IDS_SAMPLE_KEY</h3>
+        <button class="btn-icon-reagle modal-card-close" id="modal-close">&times;</button>
+      </div>
+
+      <div>
+        <label class="modal-card-label">Texto Original en Inglés:</label>
+        <div id="modal-original-text" class="modal-card-orig-text"></div>
+      </div>
+
+      <div>
+        <label for="modal-translated-input" class="modal-card-label">Traducción al Español:</label>
+        <textarea id="modal-translated-input" class="reagle-input modal-card-textarea"></textarea>
+      </div>
+
+      <div id="modal-token-feedback" class="modal-card-feedback"></div>
+
+      <div class="modal-card-footer">
+        <button class="btn-reagle modal-card-btn-tm" id="btn-suggest-tm">
+          🧠 Autocompletar con Memoria (TM)
+        </button>
+        <div class="modal-card-btn-group">
+          <button class="btn-reagle" id="modal-cancel">Cancelar</button>
+          <button class="btn-reagle btn-reagle-success" id="modal-save">Guardar Cambios</button>
+        </div>
+      </div>
+    </div>
+  </div>

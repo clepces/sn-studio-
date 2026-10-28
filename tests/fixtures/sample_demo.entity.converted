@@ -1,0 +1,285 @@
+﻿TXT2
+SinsArchiveVersion 194
+entityType "CapitalShip"
+ability:0 ""
+ability:1 ""
+ability:2 ""
+ability:3 ""
+ability:4 ""
+defaultAutoAttackRange "Invalid"
+defaultAutoAttackOn TRUE
+prefersToFocusFire TRUE
+usesFighterAttack FALSE
+autoJoinFleetDefault TRUE
+canBomb FALSE
+mainViewIcon ""
+basePrice
+	credits 0.000000
+	metal 0.000000
+	crystal 0.000000
+slotCount 0.000000
+BuildTime -1.000000
+MaxHullPoints
+	StartValue -1.000000
+	ValueIncreasePerLevel -1.000000
+MaxShieldPoints
+	StartValue -1.000000
+	ValueIncreasePerLevel -1.000000
+HullPointRestoreRate
+	StartValue -1.000000
+	ValueIncreasePerLevel -1.000000
+ShieldPointRestoreRate
+	StartValue -1.000000
+	ValueIncreasePerLevel -1.000000
+ArmorPointsFromExperience
+	StartValue -1.000000
+	ValueIncreasePerLevel -1.000000
+maxMitigation
+	StartValue -1.000000
+	ValueIncreasePerLevel -1.000000
+MaxAntiMatter
+	StartValue -1.000000
+	ValueIncreasePerLevel -1.000000
+AntiMatterRestoreRate
+	StartValue -1.000000
+	ValueIncreasePerLevel -1.000000
+CultureProtectRate
+	StartValue -1.000000
+	ValueIncreasePerLevel -1.000000
+NameStringID ""
+DescriptionStringID ""
+picture ""
+Prerequisites
+	NumResearchPrerequisites 0
+	RequiredFactionNameID ""
+	RequiredCompletedResearchSubjects 0
+roleType "Invalid"
+statCountType "Invalid"
+numRandomDebrisLarge 0
+numRandomDebrisSmall 0
+numSpecificDebris 2
+specificDebrisMeshName ""
+specificDebrisMeshName ""
+armorType "Invalid"
+hudIcon ""
+smallHudIcon ""
+infoCardIcon ""
+minZoomDistanceMult 1.250000
+NumWeapons 2
+Weapon
+	WeaponType "Invalid"
+	damageEnums
+		AttackType "Invalid"
+		DamageAffectType "Invalid"
+		DamageApplyType "Invalid"
+		DamageType "Invalid"
+		WeaponClassType "Invalid"
+	DamagePerBank:FRONT 0.000000
+	DamagePerBank:BACK 0.000000
+	DamagePerBank:LEFT 0.000000
+	DamagePerBank:RIGHT 0.000000
+	Range 0.000000
+	PreBuffCooldownTime 0.000000
+	CanFireAtFighter FALSE
+	SynchronizedTargeting FALSE
+	PointStaggerDelay 0.000000
+	TravelSpeed 0.000000
+	Duration 0.000000
+	fireConstraintType "CanAlwaysFire"
+	WeaponEffects
+		weaponType "Beam"
+		burstCount 0
+		burstDelay 0.000000
+		fireDelay 0.000000
+		muzzleEffectName ""
+		muzzleSoundMinRespawnTime 0.000000
+		muzzleSounds
+			soundCount 0
+		hitEffectName ""
+		hitHullEffectSounds
+			soundCount 0
+		hitShieldsEffectSounds
+			soundCount 0
+		beamEffectSounds
+			soundCount 0
+		beamGlowTextureName ""
+		beamCoreTextureName ""
+		beamWidth 0.000000
+		beamGlowColor 0
+		beamCoreColor 0
+		beamTilingRate 0.000000
+Weapon
+	WeaponType "Invalid"
+	damageEnums
+		AttackType "Invalid"
+		DamageAffectType "Invalid"
+		DamageApplyType "Invalid"
+		DamageType "Invalid"
+		WeaponClassType "Invalid"
+	DamagePerBank:FRONT 0.000000
+	DamagePerBank:BACK 0.000000
+	DamagePerBank:LEFT 0.000000
+	DamagePerBank:RIGHT 0.000000
+	Range 0.000000
+	PreBuffCooldownTime 0.000000
+	CanFireAtFighter FALSE
+	SynchronizedTargeting FALSE
+	PointStaggerDelay 0.000000
+	TravelSpeed 0.000000
+	Duration 0.000000
+	fireConstraintType "CanAlwaysFire"
+	WeaponEffects
+		weaponType "Beam"
+		burstCount 0
+		burstDelay 0.000000
+		fireDelay 0.000000
+		muzzleEffectName ""
+		muzzleSoundMinRespawnTime 0.000000
+		muzzleSounds
+			soundCount 0
+		hitEffectName ""
+		hitHullEffectSounds
+			soundCount 0
+		hitShieldsEffectSounds
+			soundCount 0
+		beamEffectSounds
+			soundCount 0
+		beamGlowTextureName ""
+		beamCoreTextureName ""
+		beamWidth 0.000000
+		beamGlowColor 0
+		beamCoreColor 0
+		beamTilingRate 0.000000
+m_weaponIndexForRange 0
+TargetCountPerBank:FRONT 0
+TargetCountPerBank:BACK 0
+TargetCountPerBank:LEFT 0
+TargetCountPerBank:RIGHT 0
+canOnlyTargetStructures FALSE
+mass 0.000000
+ShieldMeshName ""
+renderShield TRUE
+maxAccelerationLinear 0.000000
+maxAccelerationStrafe 0.000000
+maxDecelerationLinear 0.000000
+maxAccelerationAngular 0.000000
+maxDecelerationAngular 0.000000
+maxSpeedLinear 0.000000
+maxRollRate 0.000000
+maxRollAngle 0.000000
+useCustomHyperspaceEffects FALSE
+squadTypeEntityDef:0 ""
+squadAntiMatterCost:0 0.000000
+squadTypeEntityDef:1 ""
+squadAntiMatterCost:1 0.000000
+squadTypeEntityDef:2 ""
+squadAntiMatterCost:2 0.000000
+squadTypeEntityDef:3 ""
+squadAntiMatterCost:3 0.000000
+NumSoundsFor:ONATTACKORDERISSUED 0
+NumSoundsFor:ONCREATION 0
+NumSoundsFor:ONGENERALORDERISSUED 0
+NumSoundsFor:ONSELECTED 0
+NumSoundsFor:ONSTARTPHASEJUMP 0
+MeshNameInfoCount 12
+MeshNameInfo
+	meshName ""
+	criteriaType "Research"
+	prerequisites
+		NumResearchPrerequisites 0
+		RequiredFactionNameID ""
+		RequiredCompletedResearchSubjects 0
+MeshNameInfo
+	meshName ""
+	criteriaType "Research"
+	prerequisites
+		NumResearchPrerequisites 0
+		RequiredFactionNameID ""
+		RequiredCompletedResearchSubjects 0
+MeshNameInfo
+	meshName ""
+	criteriaType "Research"
+	prerequisites
+		NumResearchPrerequisites 0
+		RequiredFactionNameID ""
+		RequiredCompletedResearchSubjects 0
+MeshNameInfo
+	meshName ""
+	criteriaType "Research"
+	prerequisites
+		NumResearchPrerequisites 0
+		RequiredFactionNameID ""
+		RequiredCompletedResearchSubjects 0
+MeshNameInfo
+	meshName ""
+	criteriaType "Research"
+	prerequisites
+		NumResearchPrerequisites 0
+		RequiredFactionNameID ""
+		RequiredCompletedResearchSubjects 0
+MeshNameInfo
+	meshName ""
+	criteriaType "Research"
+	prerequisites
+		NumResearchPrerequisites 0
+		RequiredFactionNameID ""
+		RequiredCompletedResearchSubjects 0
+MeshNameInfo
+	meshName ""
+	criteriaType "Research"
+	prerequisites
+		NumResearchPrerequisites 0
+		RequiredFactionNameID ""
+		RequiredCompletedResearchSubjects 0
+MeshNameInfo
+	meshName ""
+	criteriaType "Research"
+	prerequisites
+		NumResearchPrerequisites 0
+		RequiredFactionNameID ""
+		RequiredCompletedResearchSubjects 0
+MeshNameInfo
+	meshName ""
+	criteriaType "Research"
+	prerequisites
+		NumResearchPrerequisites 0
+		RequiredFactionNameID ""
+		RequiredCompletedResearchSubjects 0
+MeshNameInfo
+	meshName ""
+	criteriaType "Research"
+	prerequisites
+		NumResearchPrerequisites 0
+		RequiredFactionNameID ""
+		RequiredCompletedResearchSubjects 0
+MeshNameInfo
+	meshName ""
+	criteriaType "Research"
+	prerequisites
+		NumResearchPrerequisites 0
+		RequiredFactionNameID ""
+		RequiredCompletedResearchSubjects 0
+MeshNameInfo
+	meshName ""
+	criteriaType "Research"
+	prerequisites
+		NumResearchPrerequisites 0
+		RequiredFactionNameID ""
+		RequiredCompletedResearchSubjects 0
+meshNameIncreasedEffectName ""
+meshNameDecreasedEffectName ""
+ExhaustParticleSystemName ""
+ExplosionName ""
+CommandPoints
+	StartValue -1.000000
+	ValueIncreasePerLevel -1.000000
+weaponCooldownDecreasePerc
+	StartValue -1.000000
+	ValueIncreasePerLevel -1.000000
+weaponDamageIncreasePerc
+	StartValue -1.000000
+	ValueIncreasePerLevel -1.000000
+EngineSoundID ""
+formationRank 0
+minShadow 0.000000
+maxShadow 0.000000

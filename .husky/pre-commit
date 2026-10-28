@@ -1,0 +1,18 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+echo "🛡️ Ejecutando verificaciones de pre-commit (Solaris Nexus Studio)..."
+
+# 1. TypeScript Strict Typecheck
+npm run typecheck || {
+    echo "❌ Error en TypeScript Typecheck. Corrige los tipos antes de hacer commit."
+    exit 1
+}
+
+# 2. PHP Unit Tests Suite
+php tests/run-all-tests.php || {
+    echo "❌ Error en PHP Test Suite. Corrige los tests antes de hacer commit."
+    exit 1
+}
+
+echo "✅ Pre-commit verificado exitosamente."

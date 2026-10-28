@@ -1,0 +1,44 @@
+      <!-- ======================================================================
+           VISTA: PIPELINE GRÁFICO & SHADERS (DOCK ITEM 4)
+           ====================================================================== -->
+      <section id="tab-pipeline" class="view-panel">
+        <div class="reagle-card-panel pipeline-card-panel">
+          <div class="pipeline-header">
+            <div>
+              <div class="pipeline-header-title-wrap">
+                <span class="pipeline-header-icon">🥞</span>
+                <h3 class="pipeline-header-title">Pipeline Gráfico &amp; Shaders por Capas</h3>
+              </div>
+              <p class="pipeline-header-desc">
+                Motor de optimización de texturas DirectX 9, generación de MIP-maps y linter de shaders HLSL.
+              </p>
+            </div>
+            <span class="metric-badge-pill neutral pipeline-badge-dev">EN DESARROLLO · ROADMAP V0.4</span>
+          </div>
+
+          <div class="pipeline-body">
+            <div class="pipeline-purpose-card">
+              <h4 class="pipeline-purpose-title">Propósito y Alcance del Módulo:</h4>
+              <p class="pipeline-purpose-text">
+                Procesador gráfico automatizado para convertir texturas .TGA y .PNG a formato .DDS DXT1 (difusas opacas) y DXT5 (con canal alfa para escudos y luces de emisión). Optimizará texturas 4K para mantener el consumo dentro del techo seguro LAA de 3.250 MB de Sins Rebellion.
+              </p>
+            </div>
+
+            <div class="pipeline-grid">
+              <div class="pipeline-grid-item">
+                <div class="pipeline-item-title">1. Compresión DXT1 / DXT5 Automática</div>
+                <div class="pipeline-item-desc">Reduce hasta un 75% el peso en VRAM sin degradar la nitidez de naves capitales.</div>
+              </div>
+              <div class="pipeline-grid-item">
+                <div class="pipeline-item-title">2. Generador de MIP-Maps de Precisión</div>
+                <div class="pipeline-item-desc">Genera niveles de detalle piramidales para evitar parpadeos visuales al alejar el zoom táctico.</div>
+              </div>
+            </div>
+
+            <div class="pipeline-footer">
+              <span class="pipeline-footer-info">Compatible con bibliotecas DirectX Tex y CLI nvcompress.</span>
+              <button class="btn-reagle" data-tab="tab-dashboard">← Volver al Dashboard</button>
+            </div>
+          </div>
+        </div>
+      </section>

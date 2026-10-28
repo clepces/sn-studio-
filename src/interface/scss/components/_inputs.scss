@@ -1,0 +1,215 @@
+// =============================================================================
+// SOLARIS NEXUS STUDIO - SASS 7-1: COMPONENTS / INPUTS
+// Sistema Global de Entradas de Formulario Neumórfico Reagle (Soft UI)
+// =============================================================================
+
+// 1. Normalización Global de Campos de Entrada
+input[type="text"],
+input[type="search"],
+input[type="number"],
+input[type="password"],
+input[type="email"],
+input[type="url"],
+input[type="tel"],
+textarea,
+select,
+.reagle-input {
+  width: 100%;
+  background: var(--neu-slot-bg, #cfd4db);
+  box-shadow: inset 2px 2px 5px #b4b9c2, inset -2px -2px 5px #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 10px;
+  padding: 8px 14px;
+  font-size: 0.80rem;
+  font-family: var(--font-sans);
+  color: var(--text-main, #181a1e);
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  outline: none;
+  box-sizing: border-box;
+
+  &::placeholder {
+    color: var(--text-muted, #8c94a2);
+    font-size: 0.78rem;
+  }
+
+  &:hover:not(:disabled) {
+    border-color: rgba(37, 99, 235, 0.35);
+    background: #d7dce4;
+  }
+
+  &:focus {
+    background: #f1f4f8;
+    border-color: var(--text-blue, #2563eb);
+    box-shadow: inset 1px 1px 3px #b4b9c2, inset -1px -1px 3px #ffffff, 0 0 0 3px rgba(37, 99, 235, 0.22);
+    color: var(--text-main, #181a1e);
+  }
+
+  &:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+    background: #c8cdd4;
+  }
+}
+
+// Monospace para rutas y código
+input.font-mono,
+textarea.font-mono,
+.input-code {
+  font-family: var(--font-mono, "SF Mono", Consolas, monospace) !important;
+  font-size: 0.76rem !important;
+}
+
+// 1.1 Excepciones para Contenedores de Búsqueda Neumórficos (Estilo Soft UI Image Ref)
+.reagle-search-bar,
+.reagle-search-full,
+.reagle-search-slot {
+  background: var(--neu-slot-bg, #cfd4db) !important;
+  box-shadow: inset 2px 2px 5px #b4b9c2, inset -2px -2px 5px #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.6) !important;
+  border-radius: 9999px !important;
+  height: 32px !important;
+  padding: 0 12px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  min-width: 170px !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+
+  &:focus-within {
+    background: #eef2f7 !important;
+    border-color: rgba(99, 102, 241, 0.5) !important;
+    box-shadow: inset 2px 2px 4px #cbd5e1, inset -2px -2px 4px #ffffff, 0 0 0 3px rgba(99, 102, 241, 0.18) !important;
+  }
+
+  svg {
+    width: 14px !important;
+    height: 14px !important;
+    stroke: var(--text-secondary, #64748b) !important;
+    stroke-width: 2 !important;
+    fill: none !important;
+    flex-shrink: 0 !important;
+  }
+
+  input[type="text"],
+  input[type="search"],
+  input {
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+    outline: none !important;
+    padding: 0 !important;
+    height: 100% !important;
+    font-size: 0.76rem !important;
+    color: var(--text-main, #181a1e) !important;
+
+    &:hover,
+    &:focus {
+      background: transparent !important;
+      box-shadow: none !important;
+      border: none !important;
+      outline: none !important;
+    }
+  }
+}
+
+// Textarea Específico
+textarea,
+textarea.reagle-input {
+  min-height: 80px;
+  line-height: 1.45;
+  resize: vertical;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #a8aeb8;
+    border-radius: 4px;
+  }
+}
+
+// Select Específico con Chevron Estilizado
+select,
+select.reagle-input {
+  -webkit-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235a6270' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 14px;
+  padding-right: 32px;
+  cursor: pointer;
+}
+
+// Buscadores Neumórficos con Icono Inset
+.reagle-search-bar,
+.reagle-search-inset {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 320px;
+
+  svg {
+    position: absolute;
+    left: 12px;
+    width: 15px;
+    height: 15px;
+    stroke: var(--text-secondary, #5a6270);
+    stroke-width: 2;
+    fill: none;
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  input[type="text"],
+  input[type="search"] {
+    width: 100%;
+    padding: 7px 14px 7px 34px !important;
+    border-radius: 20px !important;
+  }
+}
+
+// Casillas de Verificación y Radios Neumórficos
+input[type="checkbox"],
+input[type="radio"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  background: var(--neu-slot-bg, #cfd4db);
+  box-shadow: inset 2px 2px 4px #b4b9c2, inset -2px -2px 4px #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 5px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  transition: all 0.15s ease;
+  margin-right: 6px;
+
+  &:checked {
+    background: var(--text-blue, #2563eb);
+    box-shadow: 2px 2px 5px rgba(37, 99, 235, 0.4);
+    border-color: var(--text-blue, #2563eb);
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='20 6 9 17 4 12'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 12px;
+  }
+}
+
+input[type="radio"] {
+  border-radius: 50%;
+
+  &:checked {
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffffff'%3e%3ccircle cx='12' cy='12' r='6'/%3e%3c/svg%3e");
+    background-size: 10px;
+  }
+}
+
+// Botón de Archivo Personalizado
+input[type="file"] {
+  display: none;
+}

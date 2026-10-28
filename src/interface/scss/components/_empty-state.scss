@@ -1,0 +1,68 @@
+// ==============================================================================
+// SOLARIS NEXUS STUDIO - SASS 7-1: COMPONENTS / EMPTY STATE
+// Componente de estado vacío unificado
+// ==============================================================================
+
+.virtual-empty-state,
+.nexus-empty-state {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 32px 16px;
+  min-height: 220px;
+  text-align: center;
+}
+
+.empty-state-card {
+  background: var(--neu-card-bg);
+  box-shadow: var(--neu-shadow-card);
+  border-radius: 18px;
+  padding: 24px 28px;
+  max-width: 440px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid var(--neu-border-subtle);
+}
+
+.empty-state-badge {
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--color-blue);
+  background: rgba(37, 99, 235, 0.08);
+  padding: 2px 9px;
+  border-radius: 8px;
+}
+
+.empty-state-title {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--text-main);
+  letter-spacing: -0.02em;
+}
+
+.empty-state-desc {
+  font-size: 0.80rem;
+  color: var(--text-secondary);
+  line-height: 1.45;
+
+  code {
+    font-family: var(--font-mono);
+    background: var(--neu-slot-bg);
+    padding: 1px 5px;
+    border-radius: 5px;
+    font-size: 0.74rem;
+  }
+}
+
+.empty-state-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 4px;
+  flex-wrap: wrap;
+  justify-content: center;
+}

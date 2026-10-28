@@ -1,0 +1,60 @@
+      <!-- ======================================================================
+           VISTA 6: CONVERTDATA CLI & ENGINE TOOLS
+           ====================================================================== -->
+      <section id="tab-convert" class="view-panel">
+        <div class="reagle-card-panel convert-card-wrapper">
+          <div class="convert-card-header">
+            <div>
+              <h3>ConvertData CLI - Pipeline DirectX ↔ Texto</h3>
+              <p>
+                Subproceso nativo ConvertData_Rebellion.exe con cálculo de integridad SHA-256.
+              </p>
+            </div>
+            <span class="metric-badge-pill" id="cli-status-badge">CLI NATIVO DISPONIBLE</span>
+          </div>
+
+          <div class="convert-form-body">
+            <!-- Selectores de Tipo y Dirección -->
+            <div class="convert-grid-selectors">
+              <div>
+                <label for="convert-resource-type" class="convert-label">Tipo de Recurso:</label>
+                <select id="convert-resource-type" class="reagle-input u-w-full">
+                  <option value="entity">Entidad (.entity)</option>
+                  <option value="mesh">Malla 3D (.mesh)</option>
+                  <option value="particle">Efecto Partícula (.particle)</option>
+                </select>
+              </div>
+
+              <div>
+                <label for="convert-direction" class="convert-label">Dirección:</label>
+                <select id="convert-direction" class="reagle-input u-w-full">
+                  <option value="bin_to_txt">Binario DirectX ➔ Texto Editable (TXT)</option>
+                  <option value="txt_to_bin">Texto Editable ➔ Binario DirectX (BIN)</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Entrada de Ruta de Archivo -->
+            <div>
+              <div class="convert-presets-row">
+                <label for="convert-file-path" class="convert-label">Ruta del Archivo Objetivo:</label>
+                <div class="convert-presets-list">
+                  <span>Presets:</span>
+                  <button type="button" class="btn-preset-link" data-action="set-input-value" data-target="#convert-file-path" data-value="C:/Games/Sins of a Solar Empire Rebellion/GameInfo/CAPITALSHIP_TECHBATTLESHIP.entity">Kol</button> |
+                  <button type="button" class="btn-preset-link" data-action="set-input-value" data-target="#convert-file-path" data-value="C:/Games/Sins of a Solar Empire Rebellion/GameInfo/CAPITALSHIP_TECHSUPPORT.entity">Dunov</button> |
+                  <button type="button" class="btn-preset-link" data-action="set-input-value" data-target="#convert-file-path" data-value="tests/fixtures/sample_demo.entity">Fixture</button>
+                </div>
+              </div>
+              <input type="text" id="convert-file-path" class="reagle-input convert-input-path" value="C:/Games/Sins of a Solar Empire Rebellion/GameInfo/CAPITALSHIP_TECHBATTLESHIP.entity">
+            </div>
+
+            <!-- Botón de Ejecución -->
+            <button class="btn-reagle btn-reagle-primary convert-btn-submit" id="btn-run-cli-main" type="button">
+              ⚡ Ejecutar Conversión Nativa
+            </button>
+
+            <!-- Terminal / Caja de Salida -->
+            <div id="convert-result-box" class="convert-result-box"></div>
+          </div>
+        </div>
+      </section>

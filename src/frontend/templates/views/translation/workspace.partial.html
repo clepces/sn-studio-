@@ -1,0 +1,135 @@
+        <!-- ====================================================================
+             1. SUBPESTAÑA: WORKSPACE (ESCRITORIO DE GESTIÓN Y CARGA)
+             ==================================================================== -->
+        <div class="str-subtab-pane active" id="subtab-str-workspace">
+          <!-- Hero de Bienvenida y Acciones Rápidas -->
+          <div class="str-workspace-hero">
+            <div class="str-workspace-greeting">
+              <div class="title">
+                <span>📚 Escritorio de Localización Léxica (.str)</span>
+                <span class="metric-badge-pill" id="workspace-db-badge">SQLite3 Conectada</span>
+              </div>
+              <p class="desc">
+                Carga, gestiona y audita múltiples archivos de traducción de <em>Sins of a Solar Empire</em>. Cada archivo cuenta con supervisión de variables Token Guard y sincronización con la base de datos local.
+              </p>
+            </div>
+            <div class="str-workspace-actions">
+              <button class="btn-reagle btn-reagle-primary" id="btn-workspace-new-str" data-action="workspace:new-str">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+                <span>Nuevo .str</span>
+              </button>
+              <button class="btn-reagle" id="btn-workspace-upload" data-action="workspace:upload">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M9 16h6v-6h4l-7-7-7 7h4zm-4 2h14v2H5z"/></svg>
+                <span>Importar Archivo</span>
+              </button>
+              <button class="btn-reagle" id="btn-workspace-refresh" data-action="workspace:refresh">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M17.65 6.35A7.958 7.958 0 0 0 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0 1 12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg>
+                <span>Actualizar</span>
+              </button>
+              <input type="file" id="file-input-str" accept=".str,.txt" class="str-file-input-hidden">
+            </div>
+          </div>
+
+          <!-- Distribución Dual Responsiva: Proyectos Registrados (Izq) vs. Archivos Físicos (Der) -->
+          <div class="str-workspace-dual-layout">
+            <!-- Columna Principal: Proyectos .str Activos en SQLite -->
+            <div class="str-workspace-col-main">
+              <div class="reagle-card-panel str-section-card">
+                <div class="str-section-header">
+                  <div>
+                    <h3 class="str-section-title">Proyectos de Traducción Registrados</h3>
+                    <p class="str-section-desc">Archivos persistidos en la base de datos SQLite relacional.</p>
+                  </div>
+                  <span class="metric-badge-pill" id="workspace-projects-count">0 Proyectos</span>
+                </div>
+
+                <div class="str-workspace-grid" id="str-projects-container">
+                  <!-- Renderizado dinámico desde /api/strings/workspace -->
+                  <div class="str-project-card">
+                    <div class="str-project-header">
+                      <div>
+                        <div class="name">Cargando proyectos reales...</div>
+                        <div class="path">Conectando con storage/database.sqlite</div>
+                      </div>
+                      <span class="metric-badge-pill">Verificando</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Columna Lateral: Diccionario .str Detectados (Categorizado) -->
+            <div class="str-workspace-col-side">
+              <div class="str-discovered-card">
+                <div class="str-section-header">
+                  <div>
+                    <h4 class="str-section-title">Diccionario .str</h4>
+                    <p class="str-section-desc">Exploración de diccionarios de instalación base, mods y fixtures.</p>
+                  </div>
+                  <span class="metric-badge-pill neutral" id="workspace-discovered-count">0 Diccionarios</span>
+                </div>
+
+                <!-- Barra de Navegación Segmentada Homogénea (Mismo diseño de pestañas) -->
+                <div class="reagle-segmented-tabs str-disc-segmented-tabs" id="str-disc-segmented-tabs">
+                  <button class="tab-link-btn str-disc-tab active" data-action="switch-disc-tab" data-disc-tab="base-langs" id="disc-tab-base">
+                    <span>🌐 Idiomas Base</span>
+                    <span class="disc-tab-count" id="disc-tab-base-count">0</span>
+                  </button>
+                  <button class="tab-link-btn str-disc-tab" data-action="switch-disc-tab" data-disc-tab="mods" id="disc-tab-mods">
+                    <span>🧩 Mods</span>
+                    <span class="disc-tab-count" id="disc-tab-mods-count">0</span>
+                  </button>
+                  <button class="tab-link-btn str-disc-tab" data-action="switch-disc-tab" data-disc-tab="tests" id="disc-tab-tests">
+                    <span>🧪 Test STR</span>
+                    <span class="disc-tab-count" id="disc-tab-tests-count">0</span>
+                  </button>
+                </div>
+
+                <div class="str-files-slot-container">
+                  <!-- Panel 1: Idiomas Base -->
+                  <div id="str-disc-pane-base-langs" class="str-disc-pane active">
+                    <div id="str-base-langs-list" class="str-files-list">
+                      <!-- Poblado dinámicamente con diseño de item unificado -->
+                    </div>
+                  </div>
+                  <!-- Panel 2: Diccionarios de Mods -->
+                  <div id="str-disc-pane-mods" class="str-disc-pane">
+                    <div id="str-mods-list" class="str-files-list">
+                      <!-- Poblado dinámicamente con diseño de item unificado -->
+                    </div>
+                  </div>
+                  <!-- Panel 3: Test STR Fixtures -->
+                  <div id="str-disc-pane-tests" class="str-disc-pane">
+                    <div id="str-test-fixtures-list" class="str-files-list">
+                      <!-- Poblado dinámicamente con diseño de item unificado -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Panel Guía y Reglas del Formato .str de Iron Engine -->
+          <div class="str-guide-panel">
+            <h3 class="str-guide-panel-title">
+              📖 Guía de Arquitectura Léxica IronEngine
+            </h3>
+            <p class="str-guide-panel-desc">
+              Estándares técnicos para prevenir cuelgues (CTD) en Sins of a Solar Empire: Rebellion:
+            </p>
+            <div class="str-guide-grid">
+              <div class="str-guide-card">
+                <h4>🔢 Cabecera NumStrings</h4>
+                <p>La primera línea debe ser exactamente <code>TXT</code> o <code>BIN</code> seguida de <code>NumStrings X</code>. Si este número no coincide con el total de cadenas parseadas, el motor abortará la carga.</p>
+              </div>
+              <div class="str-guide-card">
+                <h4>🛡️ Token Guard</h4>
+                <p>Las variables como <code>{0}</code>, <code>{1}</code>, <code>%s</code> o <code>[VALUE0]</code> son inyectadas en tiempo de ejecución por el ejecutable de 32 bits. Token Guard impide borrarlas o corromperlas.</p>
+              </div>
+              <div class="str-guide-card">
+                <h4>🔤 Codificación UTF-8 / UTF-16LE</h4>
+                <p>El juego requiere una cabecera Byte Order Mark (BOM) obligatoria para no desfasar los acentos y caracteres especiales del español.</p>
+              </div>
+            </div>
+          </div>
+        </div>

@@ -1,0 +1,96 @@
+// ==============================================================================
+// SOLARIS NEXUS STUDIO - MODES: DARK (MODO NOCTURNO BASE)
+// Paleta Neutra Plana / Sin Efectos de Relieve ni Filtros
+// ==============================================================================
+
+[data-mode="dark"] {
+  --color-mode: "dark";
+
+  // --- Fondos y Superficies Neutras Oscuras ---
+  --bg-canvas: #090d16;
+  --bg-window: #0f172a;
+  --bg-sidebar: #0d1526;
+  --bg-workspace: #0f172a;
+  --bg-card: #162032;
+  --bg-slot: #0b1120;
+  --bg-input: #111a2e;
+  --bg-segmented: #0b1120;
+  --bg-hover: rgba(255, 255, 255, 0.05);
+  --bg-active: rgba(255, 255, 255, 0.09);
+
+  // --- Bordes Neutros ---
+  --border-subtle: #1e293b;
+  --border-medium: #334155;
+  --border-focus: #3b82f6;
+
+  // --- Tipografía y Contraste ---
+  --text-main: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --text-inverse: #0f172a;
+
+  // --- Colores de Estado del Sistema ---
+  --color-blue: #3b82f6;
+  --color-cyan: #06b6d4;
+  --color-success: #10b981;
+  --color-amber: #f59e0b;
+  --color-danger: #ef4444;
+
+  // --- Badges Semánticos Oscuros ---
+  --badge-green-bg: rgba(16, 185, 129, 0.15);
+  --badge-green-text: #34d399;
+  --badge-blue-bg: rgba(59, 130, 246, 0.15);
+  --badge-blue-text: #60a5fa;
+  --badge-amber-bg: rgba(245, 158, 11, 0.15);
+  --badge-amber-text: #fbbf24;
+  --badge-red-bg: rgba(239, 68, 68, 0.15);
+  --badge-red-text: #f87171;
+
+  // --- Dock Lateral ---
+  --dock-capsule-bg: #090d16;
+  --dock-dark-pill: #020617;
+  --dock-btn-active: #1e293b;
+  --dock-btn-hover: rgba(255, 255, 255, 0.08);
+  --dock-icon-color: #64748b;
+  --dock-icon-active: #f8fafc;
+  --dock-text-vertical: #475569;
+
+  // --- Aliases de compatibilidad con código existente ---
+  --neu-canvas-bg: var(--bg-canvas);
+  --neu-window-bg: var(--bg-window);
+  --neu-sidebar-bg: var(--bg-sidebar);
+  --neu-card-bg: var(--bg-card);
+  --neu-slot-bg: var(--bg-slot);
+  --neu-input-bg: var(--bg-input);
+  --neu-segmented-bg: var(--bg-segmented);
+  --neu-border-subtle: var(--border-subtle);
+  --text-blue: var(--color-blue);
+  --text-cyan: var(--color-cyan);
+  --text-success: var(--color-success);
+  --text-amber: var(--color-amber);
+  --text-danger: var(--color-danger);
+
+  // --- Sombras Base (Planas / Sin Relieve Neumórfico) ---
+  --shadow-canvas: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.3), 0 0 0 1px var(--border-subtle);
+  --shadow-card-sm: 0 1px 2px rgba(0, 0, 0, 0.25);
+  --shadow-card-hover: 0 4px 10px rgba(0, 0, 0, 0.4), 0 0 0 1px var(--border-medium);
+  --shadow-pill-active: 0 1px 3px rgba(0, 0, 0, 0.4);
+  --shadow-dock: 0 4px 14px rgba(0, 0, 0, 0.4);
+  --shadow-floating: 0 20px 30px rgba(0, 0, 0, 0.6);
+  --shadow-inset: none;
+  --shadow-inset-deep: none;
+  --shadow-inset-soft: none;
+
+  // Aliases de sombras neutras para el modo base
+  --neu-shadow-canvas: var(--shadow-canvas);
+  --neu-shadow-card: var(--shadow-card);
+  --neu-shadow-card-sm: var(--shadow-card-sm);
+  --neu-shadow-card-hover: var(--shadow-card-hover);
+  --neu-shadow-pill-active: var(--shadow-pill-active);
+  --neu-shadow-dock: var(--shadow-dock);
+  --neu-shadow-floating: var(--shadow-floating);
+  --neu-shadow-inset: var(--shadow-inset);
+  --neu-shadow-inset-deep: var(--shadow-inset-deep);
+  --neu-shadow-inset-soft: var(--shadow-inset-soft);
+}

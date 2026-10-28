@@ -1,0 +1,54 @@
+        <!-- ====================================================================
+             4. SUBPESTAÑA: MEMORIA CRUZADA (BANCO RELACIONAL TM)
+             ==================================================================== -->
+        <div class="str-subtab-pane" id="subtab-str-expansion">
+          <div class="str-tm-card">
+            <div class="str-panel-header">
+              <div>
+                <h3 class="str-panel-title">
+                  🌐 Banco Relacional de Memoria de Traducción (TM)
+                </h3>
+                <p class="str-panel-desc">
+                  Reutilización inteligente de segmentos traducidos entre el juego base y diferentes mods.
+                </p>
+              </div>
+              <span class="metric-badge-pill" id="tm-total-segments-badge">SQLite3 TM Activa</span>
+            </div>
+
+            <!-- Métricas de la Memoria de Traducción -->
+            <div class="str-telemetry-grid str-telemetry-grid--tm">
+              <div class="str-telemetry-box">
+                <span class="label">Segmentos Memorizados</span>
+                <span class="value" id="tm-stat-segments">--</span>
+                <span class="desc">Entradas únicas con hash SHA-256</span>
+              </div>
+              <div class="str-telemetry-box">
+                <span class="label">Reutilizaciones Totales</span>
+                <span class="value value--blue" id="tm-stat-reuses">--</span>
+                <span class="desc">Veces que se autopropagaron</span>
+              </div>
+              <div class="str-telemetry-box">
+                <span class="label">Segmentos Verificados</span>
+                <span class="value value--success" id="tm-stat-verified">--</span>
+                <span class="desc">Revisados por control de calidad</span>
+              </div>
+            </div>
+
+            <!-- Buscador de Concordancias en la Memoria -->
+            <div class="str-tm-search-box">
+              <label for="tm-search-input" class="str-tm-search-label">
+                Buscar Concordancia en la Memoria (Fuzzy &amp; Exact):
+              </label>
+              <div class="str-tm-search-row">
+                <input type="text" id="tm-search-input" class="reagle-input str-tm-search-input" placeholder="Introduce una frase o término en inglés o español...">
+                <button class="btn-reagle btn-reagle-primary" id="btn-tm-search-action" data-action="tm:search">
+                  🔍 Buscar
+                </button>
+              </div>
+            </div>
+
+            <div id="tm-search-results" class="str-tm-results-list">
+              <!-- Se puebla con los resultados de la búsqueda -->
+            </div>
+          </div>
+        </div>

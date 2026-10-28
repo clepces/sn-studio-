@@ -1,0 +1,396 @@
+// ==============================================================================
+// SOLARIS NEXUS STUDIO - SASS 7-1: LAYOUT / SIDEBAR
+// Barra lateral unificada con árbol de archivos y perfil de usuario
+// ==============================================================================
+
+.reagle-sidebar {
+  width: 230px;
+  height: 100%;
+  background: var(--neu-sidebar-bg);
+  border-right: 1px solid var(--neu-border-subtle);
+  display: flex;
+  flex-direction: column;
+  padding: 14px;
+  gap: 10px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  flex-shrink: 0;
+  transition: width 0.28s cubic-bezier(0.4, 0, 0.2, 1), padding 0.28s ease, opacity 0.2s ease;
+  user-select: none;
+  -webkit-user-select: none;
+
+  &.collapsed {
+    width: 0 !important;
+    min-width: 0 !important;
+    max-width: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border-right: none !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    overflow: hidden !important;
+  }
+
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba(160, 168, 180, 0.3);
+    border-radius: 4px;
+  }
+}
+
+// Semáforo Mac-like superior y botón derecho de vista
+.sidebar-top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2px;
+}
+
+.traffic-dots-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.traffic-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  box-shadow: inset 0 1px 1.5px rgba(0, 0, 0, 0.25);
+
+  &.dot-red { background: #ff5f56; }
+  &.dot-yellow { background: #ffbd2e; }
+  &.dot-green { background: #27c93f; }
+}
+
+.window-view-icon {
+  width: 18px;
+  height: 15px;
+  border: 1.5px solid var(--text-muted);
+  border-radius: 3px;
+  background: transparent;
+  position: relative;
+  opacity: 0.65;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.15s ease;
+
+  &:hover {
+    opacity: 1;
+    border-color: var(--text-main);
+    transform: scale(1.08);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 3px;
+    width: 1.5px;
+    height: 100%;
+    background: var(--text-muted);
+  }
+}
+
+// Perfil de Usuario con Avatar Circular
+.user-profile-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 4px 0 8px 0;
+}
+
+.user-avatar-circle {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #1e2023;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.86rem;
+  border: 1.5px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 2px 2px 6px rgba(160, 166, 176, 0.4);
+  flex-shrink: 0;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.user-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+}
+
+.user-name-text {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--text-main);
+  white-space: nowrap;
+}
+
+.user-dropdown-arrow {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+.user-subtext {
+  font-size: 0.74rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+// Títulos de Grupo de la Barra Lateral
+.sidebar-section-title {
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-top: 6px;
+  margin-bottom: 2px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .section-add-btn {
+    font-size: 1rem;
+    cursor: pointer;
+    color: var(--text-secondary);
+    line-height: 1;
+  }
+}
+
+.sidebar-items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+// Botón de Ítem de Navegación
+.sidebar-nav-item {
+  background: transparent;
+  border: none;
+  border-radius: 12px;
+  padding: 7px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  transition: all 0.18s ease;
+  width: 100%;
+  text-align: left;
+
+  .sidebar-nav-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    svg {
+      width: 16px;
+      height: 16px;
+      stroke: currentColor;
+      stroke-width: 2;
+      fill: none;
+      flex-shrink: 0;
+    }
+  }
+
+  &:hover {
+    color: var(--text-main);
+    background: var(--bg-hover);
+  }
+
+  &.active {
+    background: var(--neu-card-bg);
+    box-shadow: var(--neu-shadow-pill-active);
+    color: var(--text-main);
+    font-weight: 700;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      right: -21px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 4px;
+      height: 16px;
+      background: rgba(160, 168, 180, 0.7);
+      border-radius: 2px 0 0 2px;
+    }
+
+    .sidebar-pill-badge {
+      background: var(--neu-window-bg);
+      color: var(--text-main);
+      box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.12);
+    }
+  }
+}
+
+// Pastilla contadora a la derecha ('0', '3', '2')
+.sidebar-pill-badge {
+  font-size: 0.68rem;
+  padding: 1px 6px;
+  border-radius: 10px;
+  background: var(--neu-slot-bg);
+  box-shadow: var(--neu-shadow-inset-soft);
+  color: var(--text-secondary);
+  font-weight: 600;
+  font-family: var(--font-mono);
+  min-width: 18px;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+// Buscador Debossed / Inset en Documents
+.reagle-search-inset {
+  background: var(--neu-slot-bg);
+  box-shadow: var(--neu-shadow-inset);
+  border-radius: 12px;
+  padding: 7px 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+  border: 1px solid var(--neu-border-subtle);
+
+  svg {
+    width: 14px;
+    height: 14px;
+    stroke: var(--text-muted);
+    stroke-width: 2.2;
+    fill: none;
+    flex-shrink: 0;
+  }
+
+  input {
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 0.82rem;
+    color: var(--text-main);
+    width: 100%;
+
+    &::placeholder {
+      color: var(--text-muted);
+    }
+  }
+}
+
+// Árbol Jerárquico de Carpetas / Documentos
+.folder-tree {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 4px;
+  font-size: 0.78rem;
+}
+
+.tree-node {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  color: var(--text-secondary);
+  font-weight: 500;
+  transition: all 0.15s ease;
+
+  &:hover {
+    color: var(--text-main);
+    background: var(--bg-hover);
+  }
+
+  &.selected {
+    background: var(--bg-active);
+    color: var(--text-main);
+    font-weight: 700;
+  }
+
+  .tree-node-left {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+
+    svg {
+      width: 14px;
+      height: 14px;
+      stroke: currentColor;
+      stroke-width: 2;
+      fill: none;
+    }
+  }
+}
+
+.tree-sub-group {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding-left: 18px;
+  border-left: 1.5px solid var(--neu-border-subtle);
+  margin-left: 12px;
+}
+
+.sidebar-pill-badge--primary {
+  background: #1a73e8 !important;
+  color: #ffffff !important;
+  font-weight: 700;
+}
+
+.sidebar-pill-badge--success {
+  background: #d1fae5 !important;
+  color: #059669 !important;
+}
+
+.sidebar-pill-badge--muted {
+  background: #f1f5f9 !important;
+  color: #64748b !important;
+}
+
+.tree-selection-inspector {
+  margin-top: 8px;
+  padding: 8px 10px;
+  background: rgba(0, 0, 0, 0.03);
+  border-radius: 10px;
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+  display: none;
+}
+
+.tree-sel-name {
+  color: var(--text-main);
+  font-weight: 700;
+}
+
+.tree-sel-meta {
+  margin-top: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tree-sel-type {
+  font-family: var(--font-mono);
+}
+
+.btn-tree-open {
+  padding: 2px 8px;
+  font-size: 0.68rem;
+}

@@ -1,0 +1,87 @@
+      <!-- ======================================================================
+           VISTA MASTER: STUDIO EDITION (WORKSPACE INTEGRADO)
+           ====================================================================== -->
+      <section id="tab-studio" class="view-panel">
+        <!-- Barra de Herramientas Superior del Studio -->
+        <div class="reagle-tabs-row studio-toolbar">
+          <div class="tabs-heading-group studio-heading-group">
+            <div class="studio-title-wrap">
+              <h2 class="section-subheading-title">Studio Edition</h2>
+              <span class="metric-badge-pill studio-badge-pro">
+                UNIFIED WORKSPACE
+              </span>
+            </div>
+            <div class="reagle-segmented-tabs">
+              <button class="tab-link-btn active" data-studio-mode="str">Diccionario (.str)</button>
+              <button class="tab-link-btn" data-studio-mode="entities">Entidades (.entity)</button>
+              <button class="tab-link-btn" data-studio-mode="galaxy">Galaxias (.galaxy)</button>
+            </div>
+          </div>
+
+          <div class="studio-actions-wrap">
+            <button class="btn-row-action" data-tab="tab-translation" title="Abrir vista completa de traducción">
+              <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+              <span>Vista Extendida</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Banner Informativo del Studio -->
+        <div class="studio-banner">
+          <div>
+            <h3 class="studio-banner-title">
+              Entorno Unificado de Ingeniería Inversa y Modding
+            </h3>
+            <p class="studio-banner-desc">
+              Edición en tiempo real con aislamiento de memoria virtual (LAA) y sincronización atómica de manifiestos.
+            </p>
+          </div>
+          <div class="studio-banner-metrics">
+            <div>
+              <span class="studio-metric-label">MODS ACTIVOS</span>
+              <strong class="studio-metric-val" id="studio-active-mods-count">1 Mod</strong>
+            </div>
+            <div>
+              <span class="studio-metric-label">PRESUPUESTO RAM</span>
+              <strong class="studio-metric-val studio-metric-val--safe">SEGURO (1.8 GB)</strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contenedores Dinámicos del Studio -->
+        <div id="studio-mode-str" class="studio-mode-panel active">
+          <div class="reagle-card-panel studio-card">
+            <div class="studio-card-header">
+              <h4 class="studio-card-title">Vista Rápida: Cadenas Léxicas Recientes</h4>
+              <button class="btn-row-action" data-tab="tab-translation">Abrir Editor Completo →</button>
+            </div>
+            <div class="studio-card-info">
+              Diccionario activo: <code>Localizations/es/String/English.str</code> · 7.828 cadenas protegidas por Token Guard.
+            </div>
+          </div>
+        </div>
+
+        <div id="studio-mode-entities" class="studio-mode-panel">
+          <div class="reagle-card-panel studio-card">
+            <div class="studio-card-header">
+              <h4 class="studio-card-title">Vista Rápida: Entidades de Flota y Estructuras</h4>
+              <button class="btn-row-action" data-tab="tab-entities">Abrir Inspector de Entidades →</button>
+            </div>
+            <div class="studio-card-info">
+              Base de datos <code>GameInfo/</code> · 1.872 entidades indexadas · Validación de bancos de armas contra mallas .mesh.
+            </div>
+          </div>
+        </div>
+
+        <div id="studio-mode-galaxy" class="studio-mode-panel">
+          <div class="reagle-card-panel studio-card">
+            <div class="studio-card-header">
+              <h4 class="studio-card-title">Vista Rápida: Topología Galáctica</h4>
+              <button class="btn-row-action" data-tab="tab-galaxy">Abrir Galaxy Forge →</button>
+            </div>
+            <div class="studio-card-info">
+              Mapas estelares <code>Galaxy/</code> · 126 escenarios disponibles · Generador topológico procedural.
+            </div>
+          </div>
+        </div>
+      </section>

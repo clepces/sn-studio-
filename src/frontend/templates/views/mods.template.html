@@ -1,0 +1,253 @@
+      <!-- ======================================================================
+           VISTA 2: GESTOR DE MODS Y ORQUESTADOR VFS
+           ====================================================================== -->
+      <section id="tab-mods" class="view-panel">
+        <!-- Subpestañas Distribuidas del Gestor VFS (5 Tabs Ejecutivas) -->
+        <div class="mod-subtab-bar">
+          <button class="mod-subtab-btn active" data-subtab="subtab-mods-hierarchy">
+            <svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10"/></svg>
+            <span>Jerarquía</span>
+          </button>
+          <button class="mod-subtab-btn" data-subtab="subtab-mods-paths">
+            <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            <span>Rutas &amp; Detección</span>
+          </button>
+          <button class="mod-subtab-btn" data-subtab="subtab-mods-collisions">
+            <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-1 6h2v5h-2V7zm0 6h2v2h-2v-2z"/></svg>
+            <span>Colisiones VFS</span>
+          </button>
+          <button class="mod-subtab-btn" data-subtab="subtab-mods-injector">
+            <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            <span>Inyector Minimod</span>
+          </button>
+          <button class="mod-subtab-btn" data-subtab="subtab-mods-ram">
+            <svg viewBox="0 0 24 24"><path d="M6 2v6h.01L6 8.01 10 12l-4 4 .01.01H6V22h12v-5.99h-.01L18 16l-4-4 4-3.99-.01-.01H18V2H6z"/></svg>
+            <span>Monitor RAM LAA</span>
+          </button>
+        </div>
+
+        <!-- 1. SUBPESTAÑA: JERARQUÍA EN ENABLEDMODS.TXT -->
+        <div class="mod-subtab-pane active" id="subtab-mods-hierarchy">
+          <div class="reagle-card-panel mod-card-panel">
+            <div class="mod-card-header">
+              <div>
+                <h3 class="mod-card-title">Jerarquía Canónica en EnabledMods.txt</h3>
+                <p class="mod-card-desc">
+                  Orden secuencial de carga en la cascada virtualizada. Prioridad 999 se superpone en la cúspide sin alterar archivos base.
+                </p>
+              </div>
+              <div class="mod-btn-group">
+                <button class="btn-row-action" data-action="mod:scan" title="Escanear mods instalados">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M10 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"/></svg>
+                  Escanear Directorio
+                </button>
+                <button class="btn-row-action" data-action="mod:restore-vanilla" title="Restaurar a Vanilla oficial">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"/></svg>
+                  Restaurar Vanilla
+                </button>
+                <button class="btn-reagle-action btn-reagle-primary" data-action="mod:save-vfs" title="Guardar cambios con respaldo atómico .bak">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M17 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V7l-4-4zm-5 16c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm3-10H5V5h10v4z"/></svg>
+                  <span>Guardar VFS (.bak)</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Lista de mods o estado vacío canónico -->
+            <div id="mod-active-list" class="mod-active-list">
+              <!-- Inyectado dinámicamente -->
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. SUBPESTAÑA: DETECCIÓN DE RUTAS & DIRECTORIO PERSONALIZADO -->
+        <div class="mod-subtab-pane" id="subtab-mods-paths">
+          <!-- Tarjeta de Directorio Personalizado -->
+          <div class="reagle-card-panel mod-card-panel">
+            <div class="mod-card-header mod-card-header--top">
+              <div>
+                <h3 class="mod-card-title">Directorio Personalizado de Instalación del Juego</h3>
+                <p class="mod-card-desc">
+                  Define la ruta donde instalaste el juego fuera de plataformas convencionales (ej. <code>C:\Games\Sins of a Solar Empire Rebellion</code>).
+                </p>
+              </div>
+              <span class="metric-badge-pill" id="custom-path-badge">Directorio Local</span>
+            </div>
+
+            <div class="mod-input-row">
+              <input type="text" id="input-custom-game-path" aria-label="Introduce la ruta física del juego" class="reagle-input" value="C:\Games\Sins of a Solar Empire Rebellion" placeholder="Introduce la ruta física del juego...">
+              <button class="btn-reagle-action btn-reagle-primary" id="btn-validate-custom-path" data-action="mod:validate-custom-path">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg>
+                <span>Validar y Vincular Ruta</span>
+              </button>
+            </div>
+
+            <!-- Tarjeta de Resultados de Validación -->
+            <div id="custom-path-result-box" class="mod-validation-box">
+              <div class="mod-badge-row">
+                <span class="metric-badge-pill" id="res-badge-rw">✓ Permisos RW</span>
+                <span class="metric-badge-pill" id="res-badge-exe">✓ Rebellion.exe</span>
+                <span class="metric-badge-pill" id="res-badge-loc">✓ Localizations (es)</span>
+                <span class="metric-badge-pill neutral" id="res-badge-ent">1.872 .entity</span>
+              </div>
+              <span class="mod-status-text" id="custom-path-status-msg">Ruta canónica verificada en disco local.</span>
+            </div>
+          </div>
+
+          <!-- Tarjeta de Detección Multiplataforma Estándar -->
+          <div class="reagle-card-panel mod-card-panel">
+            <div class="mod-card-header">
+              <div>
+                <h3 class="mod-card-title">Detección Automática de Rutas de Mods (Steam / GOG / Stardock)</h3>
+                <p class="mod-card-desc">
+                  Escaneo automático de rutas estándar registradas en el perfil de usuario del sistema operativo.
+                </p>
+              </div>
+              <button class="btn-row-action" id="btn-scan-platforms" data-action="mod:detect-platforms">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M17.65 6.35A7.958 7.958 0 0 0 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0 1 12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg>
+                Re-escanear Plataformas
+              </button>
+            </div>
+            <div id="platform-detection-list" class="mod-platform-grid"></div>
+          </div>
+        </div>
+
+        <!-- 3. SUBPESTAÑA: AUDITORÍA DE COLISIONES VFS -->
+        <div class="mod-subtab-pane" id="subtab-mods-collisions">
+          <div class="reagle-card-panel mod-card-panel">
+            <div class="mod-card-header">
+              <div>
+                <h3 class="mod-card-title">Auditoría de Colisiones VFS (Archivos Compartidos)</h3>
+                <p class="mod-card-desc">
+                  Matriz de resolución de colisiones entre mods y el juego base. Supervisa qué mod prevalece en cada recurso.
+                </p>
+              </div>
+              <div class="mod-btn-group">
+                <button class="btn-row-action" data-action="mod:check-collisions">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                  Re-auditar Colisiones
+                </button>
+              </div>
+            </div>
+
+            <!-- Barra de Métricas de Colisión -->
+            <div class="mod-collision-metrics">
+              <div class="mod-collision-metric-box">
+                <div class="mod-collision-metric-label">Archivos Auditados</div>
+                <div class="mod-collision-metric-value">9.826</div>
+              </div>
+              <div class="mod-collision-metric-box">
+                <div class="mod-collision-metric-label">Sobrescrituras VFS</div>
+                <div class="mod-collision-metric-value primary" id="vfs-override-count">2 Activas</div>
+              </div>
+              <div class="mod-collision-metric-box">
+                <div class="mod-collision-metric-label">Conflictos Cíclicos</div>
+                <div class="mod-collision-metric-value success">0 (Limpio)</div>
+              </div>
+              <div class="mod-collision-metric-box">
+                <div class="mod-collision-metric-label">Estado de Cascada</div>
+                <div class="mod-collision-metric-value">P0 ➔ P999</div>
+              </div>
+            </div>
+
+            <!-- Lista de Colisiones Auditadas -->
+            <div id="vfs-conflicts-container" class="mod-collision-list">
+              <!-- Tarjeta de Colisión 1 -->
+              <div class="vfs-collision-card resolved">
+                <div class="mod-collision-row">
+                  <span class="mod-collision-file">Localizations/es/String/English.str</span>
+                  <span class="metric-badge-pill">✓ Override Canónico Seguro</span>
+                </div>
+                <div class="mod-collision-desc">
+                  Ganador VFS: <strong>[ES] Traducción Rebellion (P999)</strong> ➔ Prevalece sobre Vanilla Base (P0) (7.828 cadenas).
+                </div>
+              </div>
+
+              <!-- Tarjeta de Colisión 2 -->
+              <div class="vfs-collision-card resolved">
+                <div class="mod-collision-row">
+                  <span class="mod-collision-file">Window/main.brushes</span>
+                  <span class="metric-badge-pill neutral">Texturas en Caché</span>
+                </div>
+                <div class="mod-collision-desc">
+                  Ganador VFS: <strong>Sins Rebellion Vanilla (P0)</strong> ➔ Texturas DirectX 9 oficiales activas.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. SUBPESTAÑA: INYECTOR DE MINIMOD (P999) -->
+        <div class="mod-subtab-pane" id="subtab-mods-injector">
+          <div class="reagle-card-panel mod-card-panel">
+            <div class="mod-injector-header">
+              <h3 class="mod-card-title">Inyección Quirúrgica de Minimod (P999)</h3>
+              <span class="metric-badge-pill neutral" id="minimod-active-status-badge">○ STANDBY (Vanilla)</span>
+            </div>
+            <p class="mod-injector-desc">
+              Virtualiza un minimod en la cúspide de <code>EnabledMods.txt</code>. Permite traducir mods de gran escala (ej. Star Wars Interregnum, Sins Plus) prevaleciendo sin alterar sus carpetas.
+            </p>
+
+            <!-- Panel de Control del Minimod -->
+            <div class="minimod-status-panel" id="minimod-status-panel">
+              <div>
+                <div class="mod-minimod-title" id="minimod-current-title">Minimod: [ES] Idioma Español Rebellion</div>
+                <div class="mod-minimod-detail" id="minimod-current-desc">Prioridad asignada: P999 · Consumo estimado: 15 MB RAM</div>
+              </div>
+              <button class="btn-row-action" id="btn-toggle-minimod-p999" data-action="mod:toggle-minimod">
+                ⚡ Inyectar Minimod
+              </button>
+            </div>
+
+            <div class="mod-custom-name-group">
+              <label for="input-minimod-name" class="mod-custom-name-label">Nombre Personalizado del Minimod:</label>
+              <input type="text" id="input-minimod-name" class="reagle-input" value="Sins Rebellion Traduccion Espanol" placeholder="Nombre de mod...">
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. SUBPESTAÑA: MONITOR DE MEMORIA RAM LAA (32-BIT) -->
+        <div class="mod-subtab-pane" id="subtab-mods-ram">
+          <div class="reagle-card-panel mod-card-panel">
+            <div class="mod-injector-header">
+              <h3 class="mod-card-title">Presupuesto de Memoria LAA (Techo 3.250 MB)</h3>
+              <span class="metric-badge-pill" id="ram-margin-badge">1.850 MB Margen</span>
+            </div>
+            <p class="mod-injector-desc">
+              Supervisa el consumo acumulado de memoria RAM para evitar caídas MiniDump causadas por el límite de direccionamiento de 32 bits de Rebellion.
+            </p>
+
+            <div class="mod-ram-info">
+              <div class="mod-ram-row">
+                <span>Consumo Actual Estimado:</span>
+                <span id="ram-meter-text">0 MB / 3250 MB (0%)</span>
+              </div>
+              <div class="mod-ram-track">
+                <div class="mod-ram-fill" id="ram-meter-fill"></div>
+              </div>
+              <div id="ram-risk-badge" class="mod-ram-risk safe">
+                ESTADO: SEGURO (Bajo riesgo de desbordamiento de memoria de 32 bits)
+              </div>
+            </div>
+
+            <!-- Desglose por Subsistema -->
+            <div class="ram-breakdown-grid">
+              <div class="ram-subsystem-item">
+                <span>Texturas DirectX 9:</span>
+                <strong>520 MB</strong>
+              </div>
+              <div class="ram-subsystem-item">
+                <span>Entidades de Flota:</span>
+                <strong>480 MB</strong>
+              </div>
+              <div class="ram-subsystem-item">
+                <span>Partículas &amp; Audio:</span>
+                <strong>260 MB</strong>
+              </div>
+              <div class="ram-subsystem-item">
+                <span>Cadenas &amp; VFS:</span>
+                <strong>140 MB</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
