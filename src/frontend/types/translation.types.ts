@@ -91,6 +91,27 @@ export interface TmStatsPayload {
   recent?: TmItem[];
 }
 
+export interface TokenValidationResult {
+  valid: boolean;
+  missing: string[];
+  extra: string[];
+}
+
+export interface AuditFileResult {
+  success: boolean;
+  data?: {
+    file_path: string;
+    status: 'valid' | 'warning' | 'error' | string;
+    declared_numstrings: number;
+    parsed_numstrings: number;
+    tokens_count: number;
+    has_bom: boolean;
+    errors?: string[];
+    warnings?: string[];
+  };
+  error?: unknown;
+}
+
 export interface NexusCoreBridge {
   state: {
     allEntries: StrEntryState[];
@@ -100,7 +121,38 @@ export interface NexusCoreBridge {
     currentFilter: string;
   };
   extractTokens: (text: string) => string[];
-  validateTokenSyntax: (orig: string, trans: string) => { valid: boolean; missing: string[]; extra: string[] };
+  validateTokenSyntax: (orig: string, trans: string) => TokenValidationResult;
   downloadBlob: (content: string, filename: string, mime?: string) => void;
   apiPost: (endpoint: string, data: unknown) => Promise<{ success: boolean; data?: unknown; error?: string }>;
+}
+
+export interface TranslationStudioModule {
+  init: () => void;
+  getCount: () => number;
+  loadWorkspace: () => Promise<void>;
+  selectProject: (projectId: string, switchToLiveTab?: boolean) => Promise<void>;
+  renderVirtualGrid: () => void;
+  switchSubTab: (targetSubTabId: string) => void;
+  applyFilters: () => void;
+  enterLiveEditor: (projectId?: string) => void;
+  exitLiveEditor: () => void;
+  openProjectSettingsModal: (projectId?: string) => void;
+  closeProjectSettingsModal: () => void;
+  openCreateProjectModal: () => void;
+  closeCreateProjectModal: () => void;
+  openDeleteConfirmModal: (projectId?: string) => void;
+  closeDeleteConfirmModal: () => void;
+  syncNavigationState: (isLive: boolean) => void;
+  loadDemoData: () => Promise<void>;
+  exportStrFile: () => void;
+  handleStrUpload: (e: Event) => void;
+}
+
+declare global {
+  interface Window {
+    NexusCore: NexusCoreBridge;
+    TranslationStudioModule: TranslationStudioModule;
+    ContextualActions?: { render: (tabId: string) => void };
+    GlobalNexusCore?: any;
+  }
 }

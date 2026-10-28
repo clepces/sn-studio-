@@ -16,27 +16,20 @@ export class ViewNavigatorRouter {
   public switchTab(targetTabId: string): void {
     if (!targetTabId) return;
 
-    const panels = document.querySelectorAll<HTMLElement>('.view-panel');
-    panels.forEach((p) => {
-      p.classList.toggle('active', p.id === targetTabId);
-    });
-
-    const navItems = document.querySelectorAll<HTMLElement>('.sidebar-nav-item');
-    navItems.forEach((btn) => {
-      btn.classList.toggle('active', btn.dataset.tab === targetTabId);
-    });
-
-    const dockBtns = document.querySelectorAll<HTMLElement>('.dock-btn, .dock-settings-btn');
-    dockBtns.forEach((btn) => {
-      btn.classList.toggle('active', btn.dataset.tab === targetTabId);
-    });
-
     this.activeTabId = targetTabId;
     GlobalStore.setActiveTab(targetTabId);
     GlobalEventBus.emit('router:navigated', targetTabId);
 
-    if (window.location.hash !== `#${targetTabId}`) {
-      window.history.replaceState(null, '', `#${targetTabId}`);
+    if (typeof (window as any).ViewNavigator?.switchTab === 'function') {
+      (window as any).ViewNavigator.switchTab(targetTabId);
+    } else {
+      const panels = document.querySelectorAll<HTMLElement>('.view-panel');
+      panels.forEach((p) => {
+        p.classList.toggle('active', p.id === targetTabId);
+      });
+      if (window.location.hash !== `#${targetTabId}`) {
+        window.history.replaceState(null, '', `#${targetTabId}`);
+      }
     }
   }
 

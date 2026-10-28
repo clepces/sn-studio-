@@ -5,7 +5,6 @@
     "module": "ESNext",
     "moduleResolution": "bundler",
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
-    "baseUrl": ".",
 
     /* Control de Compilacion y Salida */
     "rootDir": ".",
@@ -35,7 +34,9 @@
 
     /* Rutas de Modulos (Aliases) */
     "paths": {
+      "*": ["./*"],
       "@/*": ["./src/frontend/*"],
+      "@core/*": ["./src/core/*"],
       "@shared/*": ["./src/shared/*"]
     }
   },

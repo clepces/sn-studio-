@@ -14,7 +14,65 @@
       } catch (e) {}
     })();
   </script>
-  <link rel="stylesheet" href="assets/css/main-theme.css?v=0.4.1">
+  <link rel="stylesheet" href="/assets/css/main-theme.css?v=0.4.1">
+  <style>
+    #global-preloader {
+      position: fixed;
+      z-index: 99999;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: #0f172a;
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      transition: opacity 0.6s ease, visibility 0.6s ease;
+    }
+    .buca-spinner {
+      width: 48px;
+      height: 48px;
+      border: 4px solid rgba(255, 255, 255, 0.1);
+      border-top: 4px solid #38bdf8;
+      border-radius: 50%;
+      margin-bottom: 24px;
+      animation: buca-spin 0.8s linear infinite;
+    }
+    @keyframes buca-spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    .buca-text {
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 1.5rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+    }
+    .buca-sub {
+      color: #94a3b8;
+      font-size: 0.85rem;
+      margin-top: 8px;
+      letter-spacing: 1px;
+    }
+    .splash-progress-wrapper {
+      width: 200px;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 2px;
+      margin-top: 16px;
+      overflow: hidden;
+    }
+    #splash-progress {
+      width: var(--buca-progress, 0%);
+      height: 100%;
+      background: #38bdf8;
+      transition: width 0.2s ease;
+    }
+  </style>
 </head>
 <body>
     <div id="global-preloader">
@@ -50,7 +108,7 @@
   {{modal}}
 
   <!-- SCRIPTS DEL SISTEMA (ARQUITECTURA 100% TYPESCRIPT) -->
-  <script src="assets/js/lib/engine.js?v=0.4.5"></script>
-  <script type="module" src="assets/js/bundle.js?v=0.4.2"></script>
+  <script src="/assets/js/lib/engine.js?v=0.4.5"></script>
+  <script type="module" src="/assets/js/bundle.js?v=0.4.2"></script>
 </body>
 </html>

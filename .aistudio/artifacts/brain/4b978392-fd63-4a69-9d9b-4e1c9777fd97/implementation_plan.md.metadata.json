@@ -1,0 +1,6 @@
+{
+  "summary":  "Plan de migración arquitectónica a Kernel/Engine para Solaris Nexus Studio. Define las fases de refactorización hacia un sistema modular, profesional y de alto rendimiento basado en la arquitectura de VOSviewer.",
+  "updatedAt":  "2026-10-28T07:04:35.229522348Z",
+  "requestFeedback":  true,
+  "userFacing":  true
+}
