@@ -4,6 +4,7 @@ import { GlobalStore } from '@/state/app-store.state';
 import { SystemApiClient } from '@/api-client/system-api.client';
 import { GlobalTelemetryManager } from '@/modules/telemetry-manager';
 import { GlobalNexusCore } from '@/state/nexus-core';
+import { initPreloader } from '@/modules/preloader-manager';
 
 import '@/components/nexus-components';
 import '@/modules/contextual-actions';
@@ -23,6 +24,7 @@ console.info('🚀 [SolarisNexus] Enterprise Frontend initialized with 100% Pure
 (window as any).GlobalNexusCore = GlobalNexusCore;
 
 document.addEventListener('DOMContentLoaded', async () => {
+  initPreloader();
   try {
     const health = await SystemApiClient.getHealth();
     GlobalStore.setState({ systemHealth: health });

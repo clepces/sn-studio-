@@ -39,6 +39,7 @@
 @use "components/modals";
 @use "components/datatable-virtual";
 @use "components/pagination";
+@use "components/preloader";
 
 // 4. Páginas y Vistas Especializadas
 @use "pages/dashboard";

@@ -1,0 +1,75 @@
+
+/* Estilos Críticos del Preloader (Splash) */
+#global-preloader {
+  position: fixed;
+  z-index: 99999;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(135deg, #ffffff 0%, #f0f5ff 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.6s;
+  
+  &[data-theme="dark"], html[data-theme="dark"] & {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  }
+}
+
+.buca-spinner {
+  width: 48px;
+  height: 48px;
+  border: 4px solid rgba(37, 99, 235, 0.1);
+  border-top: 4px solid #2563eb;
+  border-radius: 50%;
+  margin-bottom: 24px;
+  box-shadow: 0 0 20px rgba(37, 99, 235, 0.15);
+  display: block;
+}
+
+.buca-text {
+  color: #2563eb;
+  font-weight: 700;
+  font-size: 1.5rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  
+  html[data-theme="dark"] & {
+    color: #ffffff;
+  }
+}
+
+.buca-sub {
+  color: #64748b;
+  font-size: 0.85rem;
+  font-weight: 400;
+  margin-top: 8px;
+  letter-spacing: 1px;
+  
+  html[data-theme="dark"] & {
+    color: #94a3b8;
+  }
+}
+
+.splash-progress-wrapper {
+  width: 200px;
+  height: 4px;
+  background: rgba(37, 99, 235, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 20px 0;
+}
+
+#splash-progress {
+  width: var(--buca-progress, 0%);
+  height: 100%;
+  background: #2563eb;
+  transition: width 0.3s ease;
+}
+
+.buca-sub--low-opacity {
+  opacity: 0.7;
+}

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>BUCA - Corporate Hybrid Glass</title>
+
+    <!-- Google Fonts: Identidad Corporativa -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/assets/icons/logo-dark.svg">
+
+    <!-- Pre-init: Prevención de FOUC y Carga de Preferencias -->
+    <script>
+        (function () {
+            try {
+                const theme = localStorage.getItem('buca-theme') || 'light';
+                document.documentElement.setAttribute('data-theme', theme);
+
+                const perfConfig = JSON.parse(localStorage.getItem('buca_performance_config') || '{"profile":"balanced"}');
+                const profile = perfConfig.profile || 'balanced';
+                const tiers = { 'eco': 'L0', 'balanced': 'L1', 'pro': 'L2', 'ultra': 'L3' };
+                document.documentElement.setAttribute('data-buca-perf', tiers[profile] || 'L1');
+            } catch (e) {
+                document.documentElement.setAttribute('data-theme', 'light');
+                document.documentElement.setAttribute('data-buca-perf', 'L1');
+            }
+        })();
+    </script>
+
+    <style>
+        /* Animaciones Globales */
+        @keyframes buca-spin {
+            0% {
+                -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+        }
+
+        @-webkit-keyframes buca-spin {
+            0% {
+                -webkit-transform: rotate(0deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(360deg);
+            }
+        }
+
+        /* Estilos Críticos del Preloader (Splash) */
+        #global-preloader {
+            position: fixed;
+            z-index: 99999;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(135deg, #ffffff 0%, #f0f5ff 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.6s;
+        }
+
+        html[data-theme="dark"] #global-preloader {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        }
+
+        .buca-spinner {
+            width: 48px;
+            height: 48px;
+            border: 4px solid rgba(37, 99, 235, 0.1);
+            border-top: 4px solid #2563eb;
+            border-radius: 50%;
+            -webkit-animation: buca-spin 0.8s linear infinite;
+            animation: buca-spin 0.8s linear infinite;
+            margin-bottom: 24px;
+            box-shadow: 0 0 20px rgba(37, 99, 235, 0.15);
+            will-change: transform;
+            display: block;
+        }
+
+        .buca-text {
+            color: #2563eb;
+            font-weight: 700;
+            font-size: 1.5rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        html[data-theme="dark"] .buca-text {
+            color: #ffffff;
+        }
+
+        .buca-sub {
+            color: #64748b;
+            font-size: 0.85rem;
+            font-weight: 400;
+            margin-top: 8px;
+            letter-spacing: 1px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        html[data-theme="dark"] .buca-sub {
+            color: #94a3b8;
+        }
+
+        .splash-progress-wrapper {
+            width: 200px;
+            height: 4px;
+            background: rgba(37, 99, 235, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+
+        #splash-progress {
+            width: var(--buca-progress, 0%);
+            height: 100%;
+            background: #2563eb;
+            transition: width 0.3s ease;
+        }
+
+        #splash-percentage {
+            margin-top: 0;
+        }
+
+        .buca-sub--low-opacity {
+            opacity: 0.7;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+
+        /* Ocultar scroll durante la carga */
+        body {
+            margin: 0;
+            overflow: hidden;
+            font-family: 'Outfit', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="glass-theme">
+    <!-- SPLASH SCREEN (Preloader Modularizado) -->
+    <div id="global-preloader">
+        <div class="buca-spinner"></div>
+        <div class="buca-text">BUCA</div>
+
+        <div class="splash-progress-wrapper">
+            <div id="splash-progress"></div>
+        </div>
+
+        <div id="splash-percentage" class="buca-sub">0%</div>
+        <div id="splash-status" class="buca-sub buca-sub--low-opacity">Iniciando Corporate Hybrid Glass...</div>
+    </div>
+
+    <!-- APP CONTAINER (Igual que modular) -->
+    <div id="app"></div>
+
+    <!-- Entry Point -->
+    <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>
